@@ -38,41 +38,38 @@ class Button {
     this.defaultScale = defaultScale;
     this.hoverScale = hoverScale;
     this.currentScale = defaultScale;
-    // Set width and height based on image once loaded (use default if not loaded yet)
-    this.width = 100;
-    this.height = 50;
+    this.width = img.width * defaultScale || 100;
+    this.height = img.height * defaultScale || 50;
+
     img.onload = () => {
       this.width = img.width * this.defaultScale;
       this.height = img.height * this.defaultScale;
     };
   }
-  
+
   draw() {
     ctx.save();
     ctx.translate(this.x, this.y);
     ctx.scale(this.currentScale, this.currentScale);
-    // Draw the image centered
-    ctx.drawImage(this.img, -this.img.width/2, -this.img.height/2);
+    ctx.drawImage(this.img, -this.img.width / 2, -this.img.height / 2);
     ctx.restore();
   }
-  
-  // Check if mouse is over the button
-  isHovered(mouseX, mouseY) {
-    // Calculate scaled width and height
+
+  isHovered(touchX, touchY) {
     const w = this.img.width * this.currentScale;
     const h = this.img.height * this.currentScale;
     return (
-      mouseX >= this.x - w/2 &&
-      mouseX <= this.x + w/2 &&
-      mouseY >= this.y - h/2 &&
-      mouseY <= this.y + h/2
+      touchX >= this.x - w / 2 &&
+      touchX <= this.x + w / 2 &&
+      touchY >= this.y - h / 2 &&
+      touchY <= this.y + h / 2
     );
   }
-  
-  update(mouseX, mouseY, clicked) {
-    if (this.isHovered(mouseX, mouseY)) {
+
+  update(touchX, touchY, touched) {
+    if (this.isHovered(touchX, touchY)) {
       this.currentScale = this.hoverScale;
-      if (clicked) {
+      if (touched) {
         gameRoom = this.targetRoom;
       }
     } else {
@@ -81,130 +78,70 @@ class Button {
   }
 }
 
-// Other Sprite Classes can be implemented similarly if needed.
-// For simplicity, we’ll use buttons to switch rooms and draw static backgrounds/text.
 
+// Buttons
 let buttonWeiter, buttonZurueck, miniPw;
-// We'll initialize these once images are loaded.
 
 function initButtons() {
-  // For "polizei_wand" room: one button to go to "chemie_raum" and one to "slideshow"
   buttonWeiter = new Button(canvas.width - 200, canvas.height - 130, images.weiter, "chemie_raum", 1.2, 1.8);
   buttonZurueck = new Button(200, canvas.height - 130, images.zurueck, "slideshow", 1.2, 1.8);
-  
-  // For "chemie_raum": a mini button (using polizei_raum image) that sends you back to "polizei_wand"
   miniPw = new Button(canvas.width - 200, canvas.height - 330, images.polizei_raum, "polizei_wand", 0.23, 0.3);
 }
 
-// Track mouse state
-let mouseX = 0;
-let mouseY = 0;
-let mouseClicked = false;
+// Touch Event Handlers
+let touchX = 0;
+let touchY = 0;
+let touched = false;
 
-canvas.addEventListener("mousemove", (e) => {
+canvas.addEventListener("touchstart", (e) => {
+  const touch = e.touches[0];
   const rect = canvas.getBoundingClientRect();
-  mouseX = e.clientX - rect.left;
-  mouseY = e.clientY - rect.top;
+  touchX = touch.clientX - rect.left;
+  touchY = touch.clientY - rect.top;
+  touched = true;
 });
 
-canvas.addEventListener("mousedown", (e) => {
-  mouseClicked = true;
+canvas.addEventListener("touchmove", (e) => {
+  const touch = e.touches[0];
+  const rect = canvas.getBoundingClientRect();
+  touchX = touch.clientX - rect.left;
+  touchY = touch.clientY - rect.top;
 });
 
-canvas.addEventListener("mouseup", (e) => {
-  mouseClicked = false;
+canvas.addEventListener("touchend", () => {
+  touched = false;
 });
 
-// Keyboard event for room changes
-document.addEventListener("keydown", (e) => {
-  const keyRoomMap = {
-    "0": "polizei_wand",
-    "z": "zeitung",
-    "s": "slideshow",
-    "c": "chemie_raum",
-    "1": "aufgabe_1"
-  };
-  if (keyRoomMap[e.key]) {
-    gameRoom = keyRoomMap[e.key];
-  }
-});
-
-// Main draw function
+// Main Draw Function
 function drawScene() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
-  
+
   if (gameRoom === "polizei_wand") {
-    // Draw background
     ctx.drawImage(images.polizei_raum, 0, 0, canvas.width, canvas.height);
-    // Update and draw buttons
-    buttonWeiter.update(mouseX, mouseY, mouseClicked);
+    buttonWeiter.update(touchX, touchY, touched);
     buttonWeiter.draw();
-    buttonZurueck.targetRoom = "slideshow"; // Set target for zurück in this room
-    buttonZurueck.update(mouseX, mouseY, mouseClicked);
+    buttonZurueck.targetRoom = "slideshow";
+    buttonZurueck.update(touchX, touchY, touched);
     buttonZurueck.draw();
   } 
-  else if (gameRoom === "zeitung") {
-    // Fill background gray and draw text
-    ctx.fillStyle = "rgb(61,61,61)";
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
-    ctx.fillStyle = "white";
-    ctx.font = "50px Arial";
-    ctx.textAlign = "center";
-    ctx.fillText("HIER ZEITUNG", canvas.width/2, canvas.height/2);
-    // One button to go to slideshow
-    buttonWeiter.targetRoom = "slideshow";
-    buttonWeiter.update(mouseX, mouseY, mouseClicked);
-    buttonWeiter.draw();
-  }
-  else if (gameRoom === "slideshow") {
-    // Fill background gray and draw text
-    ctx.fillStyle = "rgb(61,61,61)";
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
-    ctx.fillStyle = "white";
-    ctx.font = "50px Arial";
-    ctx.textAlign = "center";
-    ctx.fillText("HIER SLIDES", canvas.width/2, canvas.height/2);
-    // Buttons to switch rooms
-    buttonWeiter.targetRoom = "polizei_wand";
-    buttonWeiter.update(mouseX, mouseY, mouseClicked);
-    buttonWeiter.draw();
-    buttonZurueck.targetRoom = "zeitung";
-    buttonZurueck.update(mouseX, mouseY, mouseClicked);
-    buttonZurueck.draw();
-  }
   else if (gameRoom === "chemie_raum") {
-    // Black background, draw chemie_raum image
     ctx.fillStyle = "black";
     ctx.fillRect(0, 0, canvas.width, canvas.height);
     ctx.drawImage(images.chemie_raum, canvas.width * 0.1, 0, canvas.width * 0.8, canvas.height);
-    // Button to go back to polizei_wand
     buttonZurueck.targetRoom = "polizei_wand";
-    buttonZurueck.update(mouseX, mouseY, mouseClicked);
+    buttonZurueck.update(touchX, touchY, touched);
     buttonZurueck.draw();
-    // Mini_pw button and speech bubble
-    miniPw.update(mouseX, mouseY, mouseClicked);
+    miniPw.update(touchX, touchY, touched);
     miniPw.draw();
-    // Draw speech bubble at fixed position
-    ctx.drawImage(images.sprechblase, canvas.width/2 - 50, canvas.height - 130, 100, 50);
-  }
-  else if (gameRoom === "aufgabe_1") {
-    // White background; for demonstration, draw miniPw
-    ctx.fillStyle = "white";
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
-    miniPw.targetRoom = "polizei_wand";
-    miniPw.update(mouseX, mouseY, mouseClicked);
-    miniPw.draw();
+    ctx.drawImage(images.sprechblase, canvas.width / 2 - 50, canvas.height - 130, 100, 50);
   }
 }
 
-// Main game loop using requestAnimationFrame
+// Game Loop
 function gameLoop() {
   drawScene();
   requestAnimationFrame(gameLoop);
 }
 
-// Initialize buttons once images are loaded
 initButtons();
-
-// Start the game loop
 gameLoop();
