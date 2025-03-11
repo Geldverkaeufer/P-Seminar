@@ -13,7 +13,7 @@ resizeCanvas(); // Call once to set initial size
 // Global game state
 let gameRoom = "polizei_wand";
 
-// Load Images (ensure filenames match exactly)
+// Load Images
 const images = {
   polizei_raum: new Image(),
   chemie_raum: new Image(),
@@ -28,88 +28,67 @@ images.weiter.src = "images/weiter.png";
 images.zurueck.src = "images/zurueck.png";
 images.sprechblase.src = "images/Sprechblase.png";
 
-// Button Class (similar to your Pygame Button)
+// Button Class
 class Button {
-  constructor(x, y, img, targetRoom, defaultScale = 1.0, hoverScale = 1.5) {
+  constructor(x, y, img, targetRoom, scale = 1.0) {
     this.x = x;
     this.y = y;
     this.img = img;
     this.targetRoom = targetRoom;
-    this.defaultScale = defaultScale;
-    this.hoverScale = hoverScale;
-    this.currentScale = defaultScale;
-    this.width = img.width * defaultScale || 100;
-    this.height = img.height * defaultScale || 50;
+    this.scale = scale;
+    this.width = img.width * scale || 100;
+    this.height = img.height * scale || 50;
 
     img.onload = () => {
-      this.width = img.width * this.defaultScale;
-      this.height = img.height * this.defaultScale;
+      this.width = img.width * this.scale;
+      this.height = img.height * this.scale;
     };
   }
 
   draw() {
-    ctx.save();
-    ctx.translate(this.x, this.y);
-    ctx.scale(this.currentScale, this.currentScale);
-    ctx.drawImage(this.img, -this.img.width / 2, -this.img.height / 2);
-    ctx.restore();
+    ctx.drawImage(this.img, this.x - this.width / 2, this.y - this.height / 2, this.width, this.height);
   }
 
-  isHovered(touchX, touchY) {
-    const w = this.img.width * this.currentScale;
-    const h = this.img.height * this.currentScale;
+  isClicked(clickX, clickY) {
     return (
-      touchX >= this.x - w / 2 &&
-      touchX <= this.x + w / 2 &&
-      touchY >= this.y - h / 2 &&
-      touchY <= this.y + h / 2
+      clickX >= this.x - this.width / 2 &&
+      clickX <= this.x + this.width / 2 &&
+      clickY >= this.y - this.height / 2 &&
+      clickY <= this.y + this.height / 2
     );
   }
-
-  update(touchX, touchY, touched) {
-    if (this.isHovered(touchX, touchY)) {
-      this.currentScale = this.hoverScale;
-      if (touched) {
-        gameRoom = this.targetRoom;
-      }
-    } else {
-      this.currentScale = this.defaultScale;
-    }
-  }
 }
-
 
 // Buttons
 let buttonWeiter, buttonZurueck, miniPw;
 
 function initButtons() {
-  buttonWeiter = new Button(canvas.width - 200, canvas.height - 130, images.weiter, "chemie_raum", 1.2, 1.8);
-  buttonZurueck = new Button(200, canvas.height - 130, images.zurueck, "slideshow", 1.2, 1.8);
-  miniPw = new Button(canvas.width - 200, canvas.height - 330, images.polizei_raum, "polizei_wand", 0.23, 0.3);
+  buttonWeiter = new Button(canvas.width - 200, canvas.height - 130, images.weiter, "chemie_raum", 1.2);
+  buttonZurueck = new Button(200, canvas.height - 130, images.zurueck, "slideshow", 1.2);
+  miniPw = new Button(canvas.width - 200, canvas.height - 330, images.polizei_raum, "polizei_wand", 0.23);
 }
 
-// Touch Event Handlers
-let touchX = 0;
-let touchY = 0;
-let touched = false;
+// Handle Clicks (Mouse + Touch)
+function handleClick(x, y) {
+  if (buttonWeiter.isClicked(x, y)) {
+    gameRoom = buttonWeiter.targetRoom;
+  } else if (buttonZurueck.isClicked(x, y)) {
+    gameRoom = buttonZurueck.targetRoom;
+  } else if (miniPw.isClicked(x, y)) {
+    gameRoom = miniPw.targetRoom;
+  }
+}
+
+canvas.addEventListener("mousedown", (e) => {
+  const rect = canvas.getBoundingClientRect();
+  handleClick(e.clientX - rect.left, e.clientY - rect.top);
+});
 
 canvas.addEventListener("touchstart", (e) => {
   const touch = e.touches[0];
   const rect = canvas.getBoundingClientRect();
-  touchX = touch.clientX - rect.left;
-  touchY = touch.clientY - rect.top;
-  touched = true;
-});
-
-canvas.addEventListener("touchmove", (e) => {
-  const touch = e.touches[0];
-  const rect = canvas.getBoundingClientRect();
-  touchX = touch.clientX - rect.left;
-  touchY = touch.clientY - rect.top;
-});
-
-canvas.addEventListener("touchend", () => {
-  touched = false;
+  handleClick(touch.clientX - rect.left, touch.clientY - rect.top);
+  e.preventDefault(); // Prevents unwanted scrolling
 });
 
 // Main Draw Function
@@ -118,20 +97,14 @@ function drawScene() {
 
   if (gameRoom === "polizei_wand") {
     ctx.drawImage(images.polizei_raum, 0, 0, canvas.width, canvas.height);
-    buttonWeiter.update(touchX, touchY, touched);
     buttonWeiter.draw();
-    buttonZurueck.targetRoom = "slideshow";
-    buttonZurueck.update(touchX, touchY, touched);
     buttonZurueck.draw();
   } 
   else if (gameRoom === "chemie_raum") {
     ctx.fillStyle = "black";
     ctx.fillRect(0, 0, canvas.width, canvas.height);
     ctx.drawImage(images.chemie_raum, canvas.width * 0.1, 0, canvas.width * 0.8, canvas.height);
-    buttonZurueck.targetRoom = "polizei_wand";
-    buttonZurueck.update(touchX, touchY, touched);
     buttonZurueck.draw();
-    miniPw.update(touchX, touchY, touched);
     miniPw.draw();
     ctx.drawImage(images.sprechblase, canvas.width / 2 - 50, canvas.height - 130, 100, 50);
   }
