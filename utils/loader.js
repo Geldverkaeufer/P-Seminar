@@ -3,5 +3,6 @@ export const load = {
         loadSprite("bgpolizei","./assets/polizeiraumSK.jpg")
         loadSprite("bgRaum1","./assets/raum1.jpg")
         loadSprite("Sprechblase","./assets/Sprechblase.png")
+        loadSprite("bgRaum3","./assets/raum3.jpg")        
     }
 }
