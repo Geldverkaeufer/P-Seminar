@@ -19,7 +19,9 @@ const scenes = {
         uiManager.displayKollegenNachricht("Wir sind in dem ersten Raum gelandet, aber was ist dieses Pfeifen?\nOh Gott! Ich glaube uns wurde die Sauerstoffzufuhr abgedreht...\nSchnell! Finde die Gasflasche mit dem Sauerstoff bevor es zu spät ist!")
     },
     raum2: () => {},
-    raum3: () => {},
+    raum3: () => {
+        uiManager.displayRaum3()
+    },
     slideshow: () => {},
     end: () => {},
 }
