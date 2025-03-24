@@ -4,11 +4,13 @@ class UIManager {
     displayPolizeiMap() {
         add([
             sprite("bgpolizei"),
-            scale(Math.max(width() / 1302, height() / 759)), // Scale to fill the screen completely
-            pos(width() / 2, height() / 2), // Center the image
+            area(),
+            scale(Math.max(width() / 1302, height() / 759)), 
+            pos(width() / 2, height() / 2), 
             anchor("center"),
+            "PolizeiBG"
         ]);
-        onClick(() => {go("raum1")}
+        onClick("PolizeiBG",() => {go("raum1")}
         )
         onKeyPress("enter", () => go("raum1"))
     }
