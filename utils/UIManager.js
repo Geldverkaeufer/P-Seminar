@@ -24,7 +24,24 @@ class UIManager {
             fixed(),
             "Raum1BG"
         ])
-        onClick("Raum1BG",() => {go("polizeiMap")})
+        onClick("Raum1BG",() => {go("raum3")})
+    }
+
+    r1t1() {
+
+    }
+
+    displayRaum3() {
+        add([
+            sprite("bgRaum3"),
+            area(),
+            scale(Math.max(width() / 2000, height() / 1500)), 
+            pos(width() / 2, height() / 2), 
+            anchor("center"),
+            fixed(),
+            "Raum3BG"
+        ])
+        onClick("Raum3BG",() => {go("polizeiMap")})
     }
     r1t1() {
 
