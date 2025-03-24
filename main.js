@@ -4,7 +4,7 @@ import { load } from "./utils/loader.js";
 
 kaboom({
     width: window.innerWidth,
-    height: window.innerWidth *(3/4),
+    height: window.innerHeight,
     letterbox: true
 })
 
