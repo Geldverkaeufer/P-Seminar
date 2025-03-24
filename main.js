@@ -15,9 +15,11 @@ const scenes = {
         uiManager.displayPolizeiMap()
     },
     raum1: () => {
-        uiManager.displayKollegenNachricht("Hallo Kollege. Das ist passiert!",(300,400))
+        uiManager.displayRaum1()
+        uiManager.displayKollegenNachricht("Wir sind in dem ersten Raum gelandet, aber was ist dieses Pfeifen?\nOh Gott! Ich glaube uns wurde die Sauerstoffzufuhr abgedreht...\nSchnell! Finde die Gasflasche mit dem Sauerstoff bevor es zu spät ist!")
     },
     raum2: () => {},
+    raum3: () => {},
     slideshow: () => {},
     end: () => {},
 }
