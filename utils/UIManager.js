@@ -4,10 +4,12 @@ class UIManager {
     displayPolizeiMap() {
         add([
             sprite("bgpolizei"),
-            pos(width() / 2, height() / 2),
-            anchor("center")
-        ])
+            scale(Math.max(width() / 1302, height() / 759)), // Scale to fill the screen completely
+            pos(width() / 2, height() / 2), // Center the image
+            anchor("center"),
+        ]);
     }
+    
     
     displayKollegenNachricht (content, position) {
         add([
