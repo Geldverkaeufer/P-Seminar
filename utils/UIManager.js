@@ -5,21 +5,37 @@ class UIManager {
         add([
             sprite("bgpolizei"),
             area(),
-            scale(Math.max(width() / 1302, height() / 759)), 
+            scale(Math.max(width() / 1574, height() / 908)), 
             pos(width() / 2, height() / 2), 
             anchor("center"),
+            fixed(),
             "PolizeiBG"
         ]);
-        onClick("PolizeiBG",() => {go("raum1")}
-        )
-        onKeyPress("enter", () => go("raum1"))
+        onClick("PolizeiBG",() => {go("raum1")})
+    }
+
+    displayRaum1() {
+        add([
+            sprite("bgRaum1"),
+            area(),
+            scale(Math.max(width() / 1574, height() / 908)), 
+            pos(width() / 2, height() / 2), 
+            anchor("center"),
+            fixed(),
+            "Raum1BG"
+        ])
+        onClick("Raum1BG",() => {go("polizeiMap")})
+    }
+    r1t1() {
+
     }
     
     
-    displayKollegenNachricht (content, position) {
+    displayKollegenNachricht (content) {
         add([
             sprite("Sprechblase"), 
-            pos(position), 
+            pos(width()/2,height()/10*9), 
+            scale(1),
             anchor("center"),
         ]);
     
@@ -31,9 +47,8 @@ class UIManager {
             color(0,0,0),
             area(),
             anchor("center"),
-            pos(position),       
+            pos(width()/2,height()/10*9), 
         ])
-        
     }   
 }
 
