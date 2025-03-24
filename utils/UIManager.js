@@ -8,6 +8,9 @@ class UIManager {
             pos(width() / 2, height() / 2), // Center the image
             anchor("center"),
         ]);
+        onClick("bgpolizei", () => {go("raum1")}
+        )
+        onKeyPress("enter", () => go("raum1"))
     }
     
     
