@@ -35,7 +35,7 @@ class UIManager {
         add([
             sprite("Sprechblase"), 
             pos(width()/2,height()/10*9), 
-            scale(1),
+            scale(Math.max(width() / 1046/5, height() /177/5)), 
             anchor("center"),
         ]);
     
