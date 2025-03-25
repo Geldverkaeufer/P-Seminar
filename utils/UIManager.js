@@ -5,7 +5,7 @@ class UIManager {
         add([
             sprite("bgpolizei"),
             area(),
-            scale(Math.max(width() / 1574, height() / 908)), 
+            scale(width() / 1492, height() / 811), 
             pos(width() / 2, height() / 2), 
             anchor("center"),
             fixed(),
@@ -18,7 +18,7 @@ class UIManager {
         add([
             sprite("bgRaum1"),
             area(),
-            scale(Math.max(width() / 1574, height() / 908)), 
+            scale(width() / 1574, height() / 908), 
             pos(width() / 2, height() / 2), 
             anchor("center"),
             fixed(),
@@ -35,7 +35,7 @@ class UIManager {
         add([
             sprite("bgRaum3"),
             area(),
-            scale(Math.max(width() / 2000, height() / 1500)), 
+            scale(width() / 1696, height() / 984), 
             pos(width() / 2, height() / 2), 
             anchor("center"),
             fixed(),
@@ -43,16 +43,12 @@ class UIManager {
         ])
         onClick("Raum3BG",() => {go("polizeiMap")})
     }
-    r1t1() {
-
-    }
-    
     
     displayKollegenNachricht (content) {
         add([
             sprite("Sprechblase"), 
             pos(width()/2,height()/10*9), 
-            scale(Math.max(width() / 1046/5, height() /177/5)), 
+            scale(width() / 1500, height() /1500), 
             anchor("center"),
         ]);
     
