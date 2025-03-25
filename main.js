@@ -5,7 +5,9 @@ import { load } from "./utils/loader.js";
 kaboom({
     width: window.innerWidth,
     height: window.innerHeight,
-    letterbox: true
+    stretch: true,
+    letterbox: true,
+    background: [0, 0, 0]
 })
 
 load.assets()
@@ -21,6 +23,7 @@ const scenes = {
     raum2: () => {},
     raum3: () => {
         uiManager.displayRaum3()
+        uiManager.displayKollegenNachricht("Raum3")
     },
     slideshow: () => {},
     end: () => {},
