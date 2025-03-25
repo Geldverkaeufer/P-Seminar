@@ -66,6 +66,12 @@ class UIManager {
             anchor("center"),
             pos(width()/2,height()/10*9), 
         ])
+        add([
+            sprite("Polmann"), 
+            pos(width(), height()), 
+            scale(Math.max(width() / 800/6, height() / 1600/5)), 
+            anchor("botright"), 
+        ]);
     }   
 }
 
