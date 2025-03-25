@@ -11,7 +11,7 @@ class UIManager {
             fixed(),
             "PolizeiBG"
         ]);
-        onClick("PolizeiBG",() => {go("raum1")})
+        onKeyPress("space",() => {go("raum1")})
     }
 
     displayRaum1() {
@@ -24,7 +24,7 @@ class UIManager {
             fixed(),
             "Raum1BG"
         ])
-        onClick("Raum1BG",() => {go("raum3")})
+        onKeyPress("space",() => {go("raum3")})
     }
 
     r1t1() {
@@ -41,33 +41,49 @@ class UIManager {
             fixed(),
             "Raum3BG"
         ])
-        onClick("Raum3BG",() => {go("polizeiMap")})
+        onKeyPress("space",() => {go("polizeiMap")})
     }
     
-    displayKollegenNachricht (content) {
-        add([
-            sprite("Sprechblase"), 
-            pos(width()/2,height()/10*9), 
-            scale(width() / 1500, height() /1500), 
-            anchor("center"),
-        ]);
-    
-        add([
-            text(content, {
-                size: 24, //an innerwidth angleichen
-                color: rgb(14, 4, 39),
-            }),
-            color(0,0,0),
-            area(),
-            anchor("center"),
-            pos(width()/2,height()/10*9), 
+    displayKollegenNachricht (big,content) {
+        if (big){
+            add([
+                sprite("Sprechblase"), 
+                pos(width()/2,height()/10*9), 
+                area(),
+                scale(width() / 1046/1.3, height() /177/5.5), 
+                anchor("center"),
+                "Sprechblase"
+            ]);
+        
+            add([
+                text(content, {
+                    size: 24,  
+                }),
+                color(0, 0, 0),
+                anchor("center"),
+                pos(width()/2, height()/10*9),
+                "nachricht"
+            ]);
+            
+            add([
+                sprite("Polmann"), 
+                pos(width(), height()), 
+                area(),
+                scale(Math.max(width() / 800/6, height() / 1600/5)), 
+                anchor("botright"), 
+                "Polmann"
+            ])
+        }
+        else {
+            add([
+                sprite("Polmann"), 
+                pos(width(), height()), 
+                area(),
+                scale(Math.max(width() / 800/6/3, height() / 1600/5/3)), 
+                anchor("botright"),
+                "miniPolmann"
         ])
-        add([
-            sprite("Polmann"), 
-            pos(width(), height()), 
-            scale(Math.max(width() / 800/6, height() / 1600/5)), 
-            anchor("botright"), 
-        ]);
+        }
     }   
 }
 
