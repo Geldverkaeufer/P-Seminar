@@ -16,16 +16,47 @@ const scenes = {
     polizeiMap: () => {
         uiManager.displayPolizeiMap()
     },
+
     raum1: () => {
         uiManager.displayRaum1()
-        uiManager.displayKollegenNachricht("Wir sind in dem ersten Raum gelandet, aber was ist dieses Pfeifen?\nOh Gott! Ich glaube uns wurde die Sauerstoffzufuhr abgedreht...\nSchnell! Finde die Gasflasche mit dem Sauerstoff bevor es zu spät ist!")
+        uiManager.displayKollegenNachricht(false,"Raum1")
+        onClick("miniPolmann", () => {
+            destroyAll("miniPolmann");  
+            wait(0.01, () => {  
+                uiManager.displayKollegenNachricht(true, "Raum1")})
+            }
+        )
+
+        onClick("Polmann", () => {
+            wait(0.01, () => {
+                ["Polmann","Sprechblase","nachricht"].forEach(destroyAll);;
+                uiManager.displayKollegenNachricht(false, "Raum3");
+            });
+        });    
     },
+
     raum2: () => {},
+
     raum3: () => {
         uiManager.displayRaum3()
-        uiManager.displayKollegenNachricht("Raum3")
-    },
+        uiManager.displayKollegenNachricht(false,"Raum3")
+        onClick("miniPolmann", () => {
+            destroyAll("miniPolmann");  
+            wait(0.01, () => { 
+                uiManager.displayKollegenNachricht(true, "Raum3")})
+            }
+        )
+
+        onClick("Polmann", () => {
+            wait(0.01, () => { 
+                ["Polmann","Sprechblase","nachricht"].forEach(destroyAll);;
+                uiManager.displayKollegenNachricht(false, "Raum3");
+            });
+        });
+        
+            },
     slideshow: () => {},
+
     end: () => {},
 }
 
