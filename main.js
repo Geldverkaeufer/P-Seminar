@@ -10,11 +10,14 @@ kaboom({
     background: [0, 0, 0]
 })
 
+
+
 load.assets()
 
 const scenes = {
     polizeiMap: () => {
         uiManager.displayPolizeiMap()
+        //uiManager.openLink("PolizeiBG","https://learningapps.org/watch?v=pvm56qkfn25")
     },
 
     raum1: () => {
@@ -54,7 +57,8 @@ const scenes = {
             });
         });
         
-            },
+    },
+
     slideshow: () => {},
 
     end: () => {},
