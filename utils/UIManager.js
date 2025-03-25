@@ -35,7 +35,7 @@ class UIManager {
         add([
             sprite("bgRaum3"),
             area(),
-            scale(width() / 1696, height() / 984), 
+            scale(width() / 1727, height() / 987), 
             pos(width() / 2, height() / 2), 
             anchor("center"),
             fixed(),
@@ -85,6 +85,13 @@ class UIManager {
         ])
         }
     }   
-}
+
+    openLink (sprite,link) {
+        onClick(sprite, () => {
+            window.open(link, "_blank");
+         })
+     }
+    }
+
 
 export const uiManager = new UIManager()
