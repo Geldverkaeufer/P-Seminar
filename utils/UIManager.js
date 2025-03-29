@@ -1,5 +1,3 @@
-
-
 class UIManager {
     displayPolizeiMap() {
         add([
@@ -14,6 +12,18 @@ class UIManager {
         onKeyPress("space",() => {go("raum1")})
     }
 
+    areaGasflaschen() {
+        add([
+            sprite("kreis"),
+            area(),
+            pos(width()/10*8,height()/10*5),
+            anchor("center"),
+            scale(0.7),
+            opacity(0),
+            "kreis"
+        ])
+    }
+
     displayRaum1() {
         add([
             sprite("bgRaum1"),
@@ -24,12 +34,46 @@ class UIManager {
             fixed(),
             "Raum1BG"
         ])
-        onKeyPress("space",() => {go("raum3")})
     }
 
-    r1t1() {
+    raum1t1() {
+        add([
+            sprite("gasflaschen"),
+            area(),
+            scale(width() / 1248, height() / 1182), 
+            pos(width() / 2, height() / 2), 
+            anchor("center"),
+            fixed(),
+            "GasflaschenBG"
+        ])
+        this.displayKollegenNachricht(true,"Sehr gut, du hast die Gasflaschen gefunden!\nAber die Beschriftung fehlt.\nLass uns schnell herausfinden in welcher sich der Sauerstoff befindet!")
+        let circles = [
+            { x: width() / 10 * 2, y: height() / 2, tag: "circle1", message: "Das ist Flasche 1.\nSchaue dir auf der learning app den Gasnachweis, den wir hier durchgeführt haben, an!" },
+            { x: width() / 2, y: height() / 2, tag: "circle2", message: "Das ist Flasche 2.\nSchaue dir auf der learning app den Gasnachweis, den wir hier durchgeführt haben, an!" },
+            { x: width() / 10 * 8, y: height() / 2, tag: "circle3", message: "Das ist Flasche 3.\nSchaue dir auf der learning app den Gasnachweis, den wir hier durchgeführt haben, an!" }
+        ];
+        
+        circles.forEach(({ x, y, tag, message }) => {
+            add([
+                sprite("kreis"),
+                area(),
+                pos(x, y),
+                anchor("center"),
+                opacity(0),
+                tag 
+            ]);
+        
+            onClick(tag, () => {
+                destroyAll("miniPolmann")
+                uiManager.displayKollegenNachricht(true, message);
+            });
 
-    }
+            this.verkleinerPolmann()
+            this.vergroesserPolmann("Sehr gut, du hast die Gasflaschen gefunden!\nAber die Beschriftung fehlt.\nLass uns schnell herausfinden in welcher sich der Sauerstoff befindet!")
+        });
+        
+        
+    }   
 
     displayRaum3() {
         add([
@@ -85,6 +129,36 @@ class UIManager {
         ])
         }
     }   
+
+    verkleinerPolmann () {
+        onClick("Polmann", () => {
+            wait(0.01, () => { 
+                ["Polmann","Sprechblase","nachricht"].forEach(destroyAll);;
+                uiManager.displayKollegenNachricht(false, "Raum3");
+            });
+        });
+    }
+
+    vergroesserPolmann(content) {
+        onClick("miniPolmann", () => {
+            destroyAll("miniPolmann");  
+            wait(0.01, () => {  
+                uiManager.displayKollegenNachricht(true, content)})
+            }
+        )
+    }
+
+    displayGlühbirne() {
+        add([
+            sprite("Glühbirne"),
+            area(),
+            scale(0.15), 
+            pos(width() /100*91, height() / 100*90), 
+            anchor("center"),
+            fixed(),
+            "Glühbirne"
+        ])
+    }
 
     openLink (sprite,link) {
         onClick(sprite, () => {
