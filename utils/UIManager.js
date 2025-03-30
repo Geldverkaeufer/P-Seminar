@@ -37,6 +37,7 @@ class UIManager {
     }
 
     raum1t1() {
+        let angeschaut = []
         add([
             sprite("gasflaschen"),
             area(),
@@ -66,14 +67,49 @@ class UIManager {
             onClick(tag, () => {
                 destroyAll("miniPolmann")
                 uiManager.displayKollegenNachricht(true, message);
+                angeschaut.push(tag)
+                wait(0.1,()=>{if (["circle1", "circle2", "circle3"].every(tag => angeschaut.includes(tag))) {  this.raum1t1_2() } })
             });
-
+            this.openLink("circle1","https://learningapps.org/watch?v=pvm56qkfn25")
             this.verkleinerPolmann()
             this.vergroesserPolmann("Sehr gut, du hast die Gasflaschen gefunden!\nAber die Beschriftung fehlt.\nLass uns schnell herausfinden in welcher sich der Sauerstoff befindet!")
         });
         
-        
     }   
+    raum1t1_2() {
+        destroyAll("*")
+        add([
+            sprite("gasflaschen"),
+            area(),
+            scale(width() / 1248, height() / 1182), 
+            pos(width() / 2, height() / 2), 
+            anchor("center"),
+            fixed(),
+            "GasflaschenBG"
+        ])
+        this.displayKollegenNachricht(true,"Du hast alle drei Versuche gesehen.\nJetzt wähle die Flasche mit dem Sauerstoff aus,\ndamit wir endlich wieder Luft bekommen!")
+
+        let flaschen = [
+            { x: width() / 10 * 2, y: height() / 2, tag: "1"},
+            { x: width() / 2, y: height() / 2, tag: "2"},
+            { x: width() / 10 * 8, y: height() / 2, tag: "3"}
+        ];
+        
+        flaschen.forEach(({ x, y, tag }) => {
+            add([
+                sprite("kreis"),
+                area(),
+                pos(x, y),
+                anchor("center"),
+                opacity(0),
+                tag 
+            ]);
+        
+            onClick(tag, () => {
+                this.displayNachricht(`Bist du dir sicher, dass du Flasche ${tag} öffnen willst?`,height()/2)
+            })
+        })
+    }
 
     displayRaum3() {
         add([
@@ -130,6 +166,32 @@ class UIManager {
         }
     }   
 
+    displayNachricht(content,y) {
+        add([
+            sprite("Sprechblase"), 
+            pos(width()/2,height()/2), 
+            area(),
+            scale(width() / 1046/1.3, height() /177/1.6), 
+            anchor("center"),
+            "Textfeld"
+        ]);
+
+        wait(0.01, () => { 
+            ["Polmann","Sprechblase","nachricht"].forEach(destroyAll);;
+            uiManager.displayKollegenNachricht(false, "Raum3");
+        });
+
+        add([
+            text(content, {
+                size: 24,  
+            }),
+            color(0, 0, 0),
+            anchor("center"),
+            pos(width()/2,y),
+            "Nachricht"
+        ]);
+    }
+
     verkleinerPolmann () {
         onClick("Polmann", () => {
             wait(0.01, () => { 
@@ -164,7 +226,7 @@ class UIManager {
         onClick(sprite, () => {
             window.open(link, "_blank");
          })
-     }
+    }
     }
 
 
