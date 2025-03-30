@@ -70,7 +70,7 @@ class UIManager {
                 angeschaut.push(tag)
                 wait(0.1,()=>{if (["circle1", "circle2", "circle3"].every(tag => angeschaut.includes(tag))) {  this.raum1t1_2() } })
             });
-            this.openLink("circle1","https://learningapps.org/watch?v=pvm56qkfn25")
+            //this.openLink("circle1","https://learningapps.org/watch?v=pvm56qkfn25")
             this.verkleinerPolmann()
             this.vergroesserPolmann("Sehr gut, du hast die Gasflaschen gefunden!\nAber die Beschriftung fehlt.\nLass uns schnell herausfinden in welcher sich der Sauerstoff befindet!")
         });
