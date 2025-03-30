@@ -58,7 +58,6 @@ const scenes = {
 
     r1t1: () => {
         uiManager.raum1t1()
-        uiManager.openLink("circle1","https://learningapps.org/watch?v=pvm56qkfn25")
         onKeyPress("space",() => {go("raum3")})
     },
 
