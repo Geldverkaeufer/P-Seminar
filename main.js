@@ -47,13 +47,15 @@ const scenes = {
                 destroyAll("Sprechblase");
                 destroyAll("nachricht");
                 destroyAll("Polmann");
+    
+                // Jetzt den Rest ausführen
                 wait(0.01,()=>{uiManager.displayKollegenNachricht(false,"laweiuf");uiManager.areaGasflaschen()})
                 uiManager.vergroesserPolmann("Wir sind hier in einem Chemie-Labor!\nBestimmt finden wir irgendwo Gasflaschen...");
                 uiManager.displayGlühbirne()
                 uiManager.verkleinerPolmann();;
                 onClick("kreis", () => { go("r1t1"); });
     
-                nachricht += 1; 
+                nachricht += 1; // Falls du noch weitere Schritte hinzufügen willst
             }
         });
     },
