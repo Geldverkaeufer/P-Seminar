@@ -12,6 +12,19 @@ class UIManager {
         onKeyPress("space",() => {go("raum1")})
     }
 
+    displayPolizeiRevier() {
+        add([
+            sprite("bgpolizeiRevier"),
+            area(),
+            scale(width() / 1600, height() / 1138), 
+            pos(width() / 2, height() / 2), 
+            anchor("center"),
+            fixed(),
+            "PolizeiRevierBG"
+        ]);
+        onKeyPress("space",() => {go("polizeiMap")})
+    }
+
     areaGasflaschen() {
         add([
             sprite("kreis"),
@@ -49,9 +62,9 @@ class UIManager {
         ])
         this.displayKollegenNachricht(true,"Sehr gut, du hast die Gasflaschen gefunden!\nAber die Beschriftung fehlt.\nLass uns schnell herausfinden in welcher sich der Sauerstoff befindet!")
         let circles = [
-            { x: width() / 10 * 2.5, y: height() / 2, tag: "circle1", message: "Das ist Flasche 1.\nSchaue dir auf der learning app den Gasnachweis, den wir hier durchgeführt haben, an!", link: "https://learningapps.org/watch?v=pvm56qkfn25" },
-            { x: width() / 2, y: height() / 2, tag: "circle2", message: "Das ist Flasche 2.\nSchaue dir auf der learning app den Gasnachweis, den wir hier durchgeführt haben, an!", link: "" },
-            { x: width() / 10 *7.5, y: height() / 2, tag: "circle3", message: "Das ist Flasche 3.\nSchaue dir auf der learning app den Gasnachweis, den wir hier durchgeführt haben, an!", link: "" }
+            { x: width() / 10 * 2.5, y: height() / 2, tag: "flasche1", message: "Das ist Flasche 1.\nSchaue dir auf der learning app den Gasnachweis, den wir hier durchgeführt haben, an!", link: "https://learningapps.org/watch?v=pvm56qkfn25" },
+            { x: width() / 2, y: height() / 2, tag: "flasche2", message: "Das ist Flasche 2.\nSchaue dir auf der learning app den Gasnachweis, den wir hier durchgeführt haben, an!", link: "" },
+            { x: width() / 10 *7.5, y: height() / 2, tag: "flasche3", message: "Das ist Flasche 3.\nSchaue dir auf der learning app den Gasnachweis, den wir hier durchgeführt haben, an!", link: "" }
         ];
         
         circles.forEach(({ x, y, tag, message, link }) => {
@@ -85,7 +98,7 @@ class UIManager {
                 uiManager.displayKollegenNachricht(true, message);
                 window.open(link, "_blank")
                 angeschaut.push(tag)
-                wait(0.1,()=>{if (["circle1", "circle2", "circle3"].every(tag => angeschaut.includes(tag))) {  this.raum1t1_2() } })
+                wait(0.1,()=>{if (["flasche1", "flasche2", "flasche3"].every(tag => angeschaut.includes(tag))) {  this.raum1t1_2() } })
             });
             this.verkleinerPolmann()
             this.vergroesserPolmann("Sehr gut, du hast die Gasflaschen gefunden!\nAber die Beschriftung fehlt.\nLass uns schnell herausfinden in welcher sich der Sauerstoff befindet!")
@@ -122,7 +135,67 @@ class UIManager {
             ]);
         
             onClick(tag, () => {
-                this.displayNachricht(`Bist du dir sicher, dass du Flasche ${tag} öffnen willst?`,height()/2)
+                this.displayNachricht(`Bist du dir sicher, dass du Flasche ${tag} öffnen willst?`,height()/20*8)
+                add([
+                    sprite("ja"),
+                    scale(width() /1600/7, height() /797/7),                                          //hier dann übernehemen
+                    area(),
+                    pos(width()/10*3.3,height()/10*6.3),
+                    anchor("center"),
+                    "ja" 
+                ])
+                add([
+                    sprite("nein"),
+                    scale(width() /1600/7, height() /797/7),                                          //hier dann übernehemen
+                    area(),
+                    pos(width()/10*6.6,height()/10*6.3),
+                    anchor("center"),
+                    "nein" 
+                ])
+                onHover("ja",() => {
+                    add([
+                        sprite("ja2"),
+                        scale(width() /1600/7, height() /797/7),                                          //hier dann übernehemen
+                        area(),
+                        pos(width()/10*3.3,height()/10*6.3),
+                        anchor("center"),
+                        "ja2" 
+                    ])
+                })
+                onHover("nein",() => {
+                    add([
+                        sprite("nein2"),
+                        scale(width() /1060/7, height() /537/7),                                          //hier dann übernehemen
+                        area(),
+                        pos(width()/10*6.6,height()/10*6.3),
+                        anchor("center"),
+                        "nein2" 
+                    ])
+                })
+                onHoverEnd("ja",() => {
+                    destroyAll("ja2")
+                    destroyAll("ja")
+                    add([
+                        sprite("ja"),
+                        scale(width() /1600/7, height() /797/7),                                          //hier dann übernehemen
+                        area(),
+                        pos(width()/10*3.3,height()/10*6.3),
+                        anchor("center"),
+                        "ja" 
+                    ])
+                })
+                onHoverEnd("nein",() => {
+                    destroyAll("nein2")
+                    destroyAll("nein")
+                    add([
+                        sprite("nein"),
+                        scale(width() /1600/7, height() /797/7),                                          //hier dann übernehemen
+                        area(),
+                        pos(width()/10*6.6,height()/10*6.3),
+                        anchor("center"),
+                        "nein" 
+                    ])
+                })
             })
         })
     }
@@ -154,11 +227,11 @@ class UIManager {
         
             add([
                 text(content, {
-                    size: 24,  
+                    size: height()/37,  
                 }),
                 color(0, 0, 0),
                 anchor("center"),
-                pos(width()/2, height()/10*9),
+                pos(width()/10*5, height()/10*9),
                 z(19),
                 "nachricht"
             ]);
@@ -202,7 +275,7 @@ class UIManager {
 
         add([
             text(content, {
-                size: 24,  
+                size: height()/37,  
             }),
             color(0, 0, 0),
             anchor("center"),
