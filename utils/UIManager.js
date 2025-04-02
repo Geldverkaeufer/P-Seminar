@@ -54,7 +54,7 @@ class UIManager {
         add([
             sprite("bg1t1"),
             area(),
-            scale(width() / 130, height() / 130), 
+            scale(width() / 27, height() / 23),  
             pos(width() / 2, height() / 2), 
             anchor("center"),
             fixed(),
