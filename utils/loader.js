@@ -10,5 +10,10 @@ export const load = {
         loadSprite("Glühbirne", "./assets/Glühbirne.png")
         loadSprite("Flasche", "./assets/Flasche.png")
         loadSprite("Flasche.2","./assets/Flasche.2.png")
+        loadSprite("bgpolizeiRevier","./assets/polizeiRevier.jpg")
+        loadSprite("nein","./assets/nein.jpg")
+        loadSprite("nein2","./assets/nein2.jpg")
+        loadSprite("ja","./assets/ja.jpg")
+        loadSprite("ja2","./assets/ja2.jpg")
     }
 }
