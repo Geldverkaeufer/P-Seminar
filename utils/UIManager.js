@@ -105,96 +105,157 @@ class UIManager {
         });
         
     }
-    raum1t1_2() {
+    raum1t1_2(nachricht) {
         destroyAll("*")
         add([
             sprite("bg1t1"),
             area(),
-            scale(width() / 130, height() / 130), 
+            scale(width() / 27, height() / 23), 
             pos(width() / 2, height() / 2), 
             anchor("center"),
             fixed(),
             "GasflaschenBG"
         ])
-        this.displayKollegenNachricht(true,"Du hast alle drei Versuche gesehen.\nJetzt wähle die Flasche mit dem Sauerstoff aus,\ndamit wir endlich wieder Luft bekommen!")
-
+        
+        this.displayKollegenNachricht(true,nachricht)
+        add([
+            text("<- zurück zu den Nachweisen", {
+                size: height()/37,  
+            }),
+            color(0, 0, 0),
+            anchor("center"),
+            pos(width()/10*1.2, height()/10*0.5),
+            z(19),
+            area(),
+            "zurück"
+        ]);
+        onClick("zurück",()=>{destroyAll("*",go("r1t1"))})
         let flaschen = [
             { x: width() / 10 * 2.5, y: height() / 2, tag: "1"},
             { x: width() / 2, y: height() / 2, tag: "2"},
             { x: width() / 10 * 7.5, y: height() / 2, tag: "3"}
         ];
-        
+        let korrekteFlasche = "3"
+        let disableHover = false;
+        let aktuelleFlasche = null;
+
         flaschen.forEach(({ x, y, tag }) => {
             add([
                 sprite("Flasche"),
-                scale(width() /553/7, height() /1614/1.5),                                          //hier dann übernehemen
+                scale(width() /553/7, height() /1614/1.5),
                 area(),
                 pos(x, y),
                 anchor("center"),
                 tag 
             ]);
-        
-            onClick(tag, () => {
-                this.displayNachricht(`Bist du dir sicher, dass du Flasche ${tag} öffnen willst?`,height()/20*8)
+
+            onHover(tag, () => {
+                if (disableHover) return; 
+                get(tag).forEach(obj => obj.opacity = 0);
                 add([
-                    sprite("ja"),
-                    scale(width() /1600/7, height() /797/7),                                          //hier dann übernehemen
+                    sprite("Flasche.2"),
+                    scale(width() /553/5, height() /1614/1.2),
                     area(),
-                    pos(width()/10*3.3,height()/10*6.3),
+                    pos(x, y),
                     anchor("center"),
-                    "ja" 
-                ])
-                add([
-                    sprite("nein"),
-                    scale(width() /1600/7, height() /797/7),                                          //hier dann übernehemen
-                    area(),
-                    pos(width()/10*6.6,height()/10*6.3),
-                    anchor("center"),
-                    "nein" 
-                ])
-                onHover("ja",() => {
-                    add([
-                        sprite("ja2"),
-                        scale(width() /1600/7, height() /797/7),                                          //hier dann übernehemen
-                        area(),
-                        pos(width()/10*3.3,height()/10*6.3),
-                        anchor("center"),
-                        "ja2" 
-                    ])
-                })
-                onHover("nein",() => {
-                    add([
-                        sprite("nein2"),
-                        scale(width() /1060/7, height() /537/7),                                          //hier dann übernehemen
-                        area(),
-                        pos(width()/10*6.6,height()/10*6.3),
-                        anchor("center"),
-                        "nein2" 
-                    ])
-                })
-                onHoverEnd("ja",() => {
-                    destroyAll("ja2")
-                    destroyAll("ja")
+                    `${tag}.2` 
+                ]);
+            });
+
+            onHoverEnd(tag, () => {
+                if (disableHover) return; 
+                get(tag).forEach(obj => obj.opacity = 1);
+                destroyAll(`${tag}.2`);
+            });
+
+            onClick(tag, () => {wait(0.1,()=>{
+                disableHover = true; 
+                aktuelleFlasche = tag;
+                this.displayNachricht(`Bist du dir sicher, dass du Flasche ${tag} öffnen willst?`, height() / 20 * 8);
+                destroyAll("ja");
+                destroyAll("nein");
                     add([
                         sprite("ja"),
-                        scale(width() /1600/7, height() /797/7),                                          //hier dann übernehemen
+                        scale(width() /1600/7, height() /797/7),                                          
                         area(),
                         pos(width()/10*3.3,height()/10*6.3),
                         anchor("center"),
                         "ja" 
                     ])
-                })
-                onHoverEnd("nein",() => {
-                    destroyAll("nein2")
-                    destroyAll("nein")
                     add([
                         sprite("nein"),
-                        scale(width() /1600/7, height() /797/7),                                          //hier dann übernehemen
+                        scale(width() /1600/7, height() /797/7),                                         
                         area(),
                         pos(width()/10*6.6,height()/10*6.3),
                         anchor("center"),
                         "nein" 
                     ])
+                    onHover("ja",() => {
+                        add([
+                            sprite("ja2"),
+                            scale(width() /1600/6, height() /797/6),                                         
+                            area(),
+                            pos(width()/10*3.3,height()/10*6.3),
+                            anchor("center"),
+                            "ja2" 
+                        ])
+                    })
+                    onHover("nein",() => {
+                        add([
+                            sprite("nein2"),
+                            scale(width() /1060/6, height() /537/6),                                        
+                            area(),
+                            pos(width()/10*6.6,height()/10*6.3),
+                            anchor("center"),
+                            "nein2" 
+                        ])
+                    })
+                    onHoverEnd("ja",() => {
+                        destroyAll("ja2")
+                        destroyAll("ja")
+                        add([
+                            sprite("ja"),
+                            scale(width() /1600/7, height() /797/7),                                          
+                            area(),
+                            pos(width()/10*3.3,height()/10*6.3),
+                            anchor("center"),
+                            "ja" 
+                        ])
+                    })
+                    onHoverEnd("nein",() => {
+                        destroyAll("nein2")
+                        destroyAll("nein")
+                        add([
+                            sprite("nein"),
+                            scale(width() /1600/7, height() /797/7),                                         
+                            area(),
+                            pos(width()/10*6.6,height()/10*6.3),
+                            anchor("center"),
+                            "nein" 
+                        ])
+                    })
+                    onClick("ja", () => {
+                        if (aktuelleFlasche === korrekteFlasche) {
+                            destroyAll("*"); 
+                            go("raum3"); 
+                    } else {wait(0.01,()=>{
+                        destroyAll("*")
+                        this.raum1t1_2("Das war nicht die richtige Flasche! Versuche es noch einmal.")
+                    })}
+                    
+                    });
+                
+                    onClick("nein", () => {
+                        aktuelleFlasche = null
+                        disableHover = false; 
+                        destroyAll("ja");
+                        destroyAll("nein"); 
+                        destroyAll("ja2"); 
+                        destroyAll("nein2"); 
+                        wait(0.1, () => { 
+                            this.raum1t1_2("Du hast alle drei Versuche gesehen.\nJetzt wähle die Flasche mit dem Sauerstoff aus,\ndamit wir endlich wieder Luft bekommen!"); // Szene neu laden
+                        })
+                    })
                 })
             })
         })
