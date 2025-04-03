@@ -54,7 +54,7 @@ class UIManager {
         add([
             sprite("bg1t1"),
             area(),
-            scale(width() / 27, height() / 23),  
+            scale(width() / 27, height() / 23), 
             pos(width() / 2, height() / 2), 
             anchor("center"),
             fixed(),
@@ -62,15 +62,15 @@ class UIManager {
         ])
         this.displayKollegenNachricht(true,"Sehr gut, du hast die Gasflaschen gefunden!\nAber die Beschriftung fehlt.\nLass uns schnell herausfinden in welcher sich der Sauerstoff befindet!")
         let circles = [
-            { x: width() / 10 * 2.5, y: height() / 2, tag: "flasche1", message: "Das ist Flasche 1.\nSchaue dir auf der learning app den Gasnachweis, den wir hier durchgeführt haben, an!", link: "https://learningapps.org/watch?v=pvm56qkfn25" },
-            { x: width() / 2, y: height() / 2, tag: "flasche2", message: "Das ist Flasche 2.\nSchaue dir auf der learning app den Gasnachweis, den wir hier durchgeführt haben, an!", link: "" },
-            { x: width() / 10 *7.5, y: height() / 2, tag: "flasche3", message: "Das ist Flasche 3.\nSchaue dir auf der learning app den Gasnachweis, den wir hier durchgeführt haben, an!", link: "" }
+            { x: width() / 10 * 2.5, y: height() / 2, tag: "flasche1", message: "Das ist Flasche 1.\nSchaue dir auf der learning app den Gasnachweis, den wir hier durchgeführt haben, an!", link: "https://learningapps.org/view40123185" },
+            { x: width() / 2, y: height() / 2, tag: "flasche2", message: "Das ist Flasche 2.\nSchaue dir auf der learning app den Gasnachweis, den wir hier durchgeführt haben, an!", link: "https://learningapps.org/watch?v=p9jyrv20t25" },
+            { x: width() / 10 *7.5, y: height() / 2, tag: "flasche3", message: "Das ist Flasche 3.\nSchaue dir auf der learning app den Gasnachweis, den wir hier durchgeführt haben, an!", link: "https://learningapps.org/watch?v=pj58et2rc25" }
         ];
         
         circles.forEach(({ x, y, tag, message, link }) => {
             add([
                 sprite("Flasche"),
-                scale(width() /553/7, height() /1614/1.5),                                          //Giulia kannst du hier bitte scale anpassen weil das passt nd gut
+                scale(width() /553/7, height() /1614/1.5),                                          
                 area(),
                 pos(x, y),
                 anchor("center"),
@@ -81,7 +81,7 @@ class UIManager {
                 get(tag).forEach(obj => obj.opacity = 0)
                 add([
                     sprite("Flasche.2"),
-                    scale(width() /553/5, height() /1614/1.2),                                          //Giulia kannst du hier bitte scale anpassen weil das passt nd gut
+                    scale(width() /553/5, height() /1614/1.2),                                         
                     area(),
                     pos(x, y),
                     anchor("center"),
@@ -98,7 +98,7 @@ class UIManager {
                 uiManager.displayKollegenNachricht(true, message);
                 window.open(link, "_blank")
                 angeschaut.push(tag)
-                wait(0.1,()=>{if (["flasche1", "flasche2", "flasche3"].every(tag => angeschaut.includes(tag))) {  this.raum1t1_2() } })
+                wait(0.1,()=>{if (["flasche1", "flasche2", "flasche3"].every(tag => angeschaut.includes(tag))) {  this.raum1t1_2("Du hast alle drei Versuche gesehen.\nJetzt wähle die Flasche mit dem Sauerstoff aus,\ndamit wir endlich wieder Luft bekommen!") } })
             });
             this.verkleinerPolmann()
             this.vergroesserPolmann("Sehr gut, du hast die Gasflaschen gefunden!\nAber die Beschriftung fehlt.\nLass uns schnell herausfinden in welcher sich der Sauerstoff befindet!")
