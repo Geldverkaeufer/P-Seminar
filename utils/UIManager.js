@@ -1,5 +1,7 @@
+let gespeicherterPolmannText = ""
+
 class UIManager {
-    displayPolizeiMap() {
+    /*displayPolizeiMap() {
         add([
             sprite("bgpolizei"),
             area(),
@@ -9,27 +11,13 @@ class UIManager {
             fixed(),
             "PolizeiBG"
         ]);
-        onKeyPress("space",() => {go("raum1")})
-    }
-
-    displayPolizeiRevier() {
-        add([
-            sprite("bgpolizeiRevier"),
-            area(),
-            scale(width() / 1600, height() / 1138), 
-            pos(width() / 2, height() / 2), 
-            anchor("center"),
-            fixed(),
-            "PolizeiRevierBG"
-        ]);
-        onKeyPress("space",() => {go("polizeiMap")})
-    }
+    }*/
 
     areaGasflaschen() {
         add([
             sprite("kreis"),
             area(),
-            pos(width()/10*8,height()/10*5),
+            pos(width()/10*8,height()/10*5.5),
             anchor("center"),
             scale(0.7),
             opacity(0),
@@ -41,7 +29,7 @@ class UIManager {
         add([
             sprite("bgRaum1"),
             area(),
-            scale(width() / 1574, height() / 908), 
+            scale(width() / 1574, height() / 908*0.88), 
             pos(width() / 2, height() / 2), 
             anchor("center"),
             fixed(),
@@ -105,6 +93,7 @@ class UIManager {
         });
         
     }
+
     raum1t1_2(nachricht) {
         destroyAll("*")
         add([
@@ -265,17 +254,18 @@ class UIManager {
         add([
             sprite("bgRaum3"),
             area(),
-            scale(width() / 1727, height() / 987), 
+            scale(width() / 1600, height() / 909), 
             pos(width() / 2, height() / 2), 
             anchor("center"),
             fixed(),
             "Raum3BG"
         ])
-        onKeyPress("space",() => {go("polizeiMap")})
+        onKeyPress("space",() => {go("intro")})
     }
     
-    displayKollegenNachricht (big,content) {
-        if (big){
+    displayKollegenNachricht(big, content) {
+        if (big) {
+            gespeicherterPolmannText = content; // <-- Text speichern!
             add([
                 sprite("Sprechblase"), 
                 pos(width()/2,height()/10*9), 
@@ -305,9 +295,8 @@ class UIManager {
                 anchor("botright"), 
                 z(20),
                 "Polmann"
-            ])
-        }
-        else {
+            ]);
+        } else {
             add([
                 sprite("Polmann"), 
                 pos(width(), height()), 
@@ -315,9 +304,9 @@ class UIManager {
                 scale(Math.max(width() / 800/6/3, height() / 1600/5/3)), 
                 anchor("botright"),
                 "miniPolmann"
-        ])
+            ]);
         }
-    }   
+    }
 
     displayNachricht(content,y) {
         add([
@@ -361,6 +350,14 @@ class UIManager {
                 uiManager.displayKollegenNachricht(true, content)})
             }
         )
+    }
+    vergroesserPolmann2() {
+        onClick("miniPolmann", () => {
+            destroyAll("miniPolmann");  
+            wait(0.01, () => {  
+                uiManager.displayKollegenNachricht(true, gespeicherterPolmannText); 
+            });
+        });
     }
 
     displayGlühbirne() {
