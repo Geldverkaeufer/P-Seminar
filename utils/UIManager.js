@@ -265,7 +265,7 @@ class UIManager {
     
     displayKollegenNachricht(big, content) {
         if (big) {
-            gespeicherterPolmannText = content; // <-- Text speichern!
+            gespeicherterPolmannText = content; 
             add([
                 sprite("Sprechblase"), 
                 pos(width()/2,height()/10*9), 
@@ -291,7 +291,7 @@ class UIManager {
                 sprite("Polmann"), 
                 pos(width(), height()), 
                 area(),
-                scale(Math.max(width() / 800/6, height() / 1600/5)), 
+                scale(0.8), 
                 anchor("botright"), 
                 z(20),
                 "Polmann"
@@ -301,7 +301,7 @@ class UIManager {
                 sprite("Polmann"), 
                 pos(width(), height()), 
                 area(),
-                scale(Math.max(width() / 800/6/3, height() / 1600/5/3)), 
+                scale(0.3), 
                 anchor("botright"),
                 "miniPolmann"
             ]);
