@@ -63,7 +63,7 @@ const scenes = {
 
     r1t1: () => {
         uiManager.raum1t1()
-        onKeyPress("space",() => {go("raum2")})
+        onKeyPress("space",() => {go("raum3")})
     },
 
     r1t3: () => {
