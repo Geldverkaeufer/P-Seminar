@@ -1,5 +1,6 @@
 export const load = {
     assets: () => {
+        loadFont("meineschrift", "/assets/SF-Pro-Display-Regular.otf");
         loadSprite("bgpolizei","./assets/polizeiraumSK.png")
         loadSprite("bgRaum1","./assets/raum1.jpg")
         loadSprite("Sprechblase","./assets/Sprechblase.png")
