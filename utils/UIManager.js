@@ -226,7 +226,7 @@ class UIManager {
                     onClick("ja", () => {
                         if (aktuelleFlasche === korrekteFlasche) {
                             destroyAll("*"); 
-                            go("raum3"); 
+                            go("raum2"); 
                     } else {wait(0.01,()=>{
                         destroyAll("*")
                         this.raum1t1_2("Das war nicht die richtige Flasche! Versuche es noch einmal.")
