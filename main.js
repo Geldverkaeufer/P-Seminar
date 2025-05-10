@@ -9,8 +9,8 @@ kaboom({
     stretch: true,
     letterbox: true,
     background: [0, 0, 0],
-     font: "meineschrift"
-    //font: "sans-serif"
+    //font: "meineschrift"
+    font: "sans-serif"
 })
 
 //debug.inspect = true
