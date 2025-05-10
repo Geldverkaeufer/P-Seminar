@@ -16,5 +16,21 @@ export const load = {
         loadSprite("ja","./assets/ja.jpg")
         loadSprite("ja2","./assets/ja2.jpg")
         loadSprite("Zeitung","./assets/Zeitung.jpg")
+        loadSprite("bgRaum2","./assets/raum2.jpg") 
+        loadSprite("bgRaum2_2","./assets/raum2_2.jpg") 
+        loadSprite("monitorRaum2","./assets/monitorRaum2.jpg") 
+        loadSprite("1Herausforderung","./assets/1Herausforderung.jpg") 
+        loadSprite("1Herausforderung2","./assets/1Herausforderung2.jpg") 
+        loadSprite("2Herausforderung","./assets/2Herausforderung.jpg") 
+        loadSprite("2Herausforderung2","./assets/2Herausforderung2.jpg") 
+        loadSprite("Molekül1Raum2","./assets/3-methylpent-2-ene.png") 
+        loadSprite("Molekül2Raum2","./assets/4-Fluoro-2-oxo-1,3-dioxolane.jpg") 
+        loadSprite("Molekül3Raum2","./assets/5,5-dimethoxy-3-methylpent-2-enal.png") 
+        loadSprite("Molekül4Raum2","./assets/23-Dimethylhex-2-ene.png") 
+        loadSprite("1teil","./assets/1teil.jpg") 
+        loadSprite("1teil2","./assets/1teil2.jpg") 
+        loadSprite("2teil","./assets/2teil.jpg") 
+        loadSprite("2teil2","./assets/2teil2.jpg") 
+        
     }
 }
