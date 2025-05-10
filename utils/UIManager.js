@@ -785,25 +785,26 @@ class UIManager {
                 z(19),
                 "nachricht"
             ]);
-            
-            add([
+        
+         add([
                 sprite("Polmann"), 
                 pos(width(), height()), 
                 area(),
-                scale(0.8), 
+                scale(Math.max(width() / 800/6, height() / 1600/5)), 
                 anchor("botright"), 
                 z(20),
                 "Polmann"
-            ]);
-        } else {
+            ])
+        }
+        else {
             add([
                 sprite("Polmann"), 
                 pos(width(), height()), 
                 area(),
-                scale(0.3), 
+                scale(Math.max(width() / 800/6/3, height() / 1600/5/3)), 
                 anchor("botright"),
                 "miniPolmann"
-            ]);
+        ])
         }
     }
 
