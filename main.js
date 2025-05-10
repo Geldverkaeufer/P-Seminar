@@ -70,7 +70,74 @@ const scenes = {
 
     },
 
-    raum2: () => {},
+    
+    
+    raum2: () => {
+       
+        uiManager.displayKollegenNachricht(false,"raum2")
+        uiManager.verkleinerPolmann()  
+        uiManager.areaWärmematteRaum2()
+        uiManager.displayRaum2();
+        wait(0.5, () => { uiManager.displayKollegenNachricht(true,"Auf dem Bildschirm finden wir sicherlich Hilfreiche Informationen um aus dem Raum zu gelangen")})
+        let nachricht = 0
+        // Erster Klick
+        onClick("Polmann", () => {
+            if (nachricht === 0) {
+                destroyAll("Sprechblase");
+                destroyAll("nachricht");
+                destroyAll("Polmann");
+                nachricht += 1;
+    
+                wait(0.01, () => {
+                    uiManager.displayKollegenNachricht(true,"wir könnten durch eine Säurme base Reaktion Wärme erzeugen um den BIldschirm Batterie ...");
+                });
+            }
+        });
+        // Zweiter Klick
+        onClick("Polmann", () => {
+            if (nachricht === 1) {
+                destroyAll("Sprechblase");
+                destroyAll("nachricht");
+                destroyAll("Polmann");
+    
+                // Jetzt den Rest ausführen
+                wait(0.01,()=>{uiManager.displayKollegenNachricht(false,"laweiuf");})
+                uiManager.vergroesserPolmann("Starte den Versuch indem du darauf klickst");
+                uiManager.displayGlühbirne()
+                uiManager.verkleinerPolmann();;
+                onClick("kreis", () => { go("r2t1"); });
+    
+                nachricht += 1; // Falls du noch weitere Schritte hinzufügen willst
+            }
+        });
+        onClick("kreis", () => { go("r2t1"); });
+    },
+
+    
+    r2t1: () => {
+        uiManager.displayRaum2()
+        uiManager.raum2t1()
+        uiManager.areaProtokollRaum2()
+        onClick("kreis", () => { go("r2t1_2"); });
+        
+    },
+
+    
+    r2t1_2:() => {
+        uiManager.displayRaum2()
+        uiManager.raum2t1_2()
+        uiManager.displayRaum2_2()
+        uiManager.displayKollegenNachricht(true,"super ! Der monitor ist angegangen, lass uns schauen \nwas der Dieb uns hinterlassen hat\n");;
+        uiManager.areaMonitorRaum2()
+        onClick("kreis", () => { go("r2t2"); });
+    },
+
+    
+    r2t2: () => {
+        uiManager.raum2t2()
+        onKeyPress("space",() => {go("raum3")})
+    },
+    
 
     raum3: () => {
         uiManager.displayRaum3()
