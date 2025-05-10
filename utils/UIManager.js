@@ -794,7 +794,7 @@ class UIManager {
                 anchor("botright"), 
                 z(20),
                 "Polmann"
-            ])
+            ]);
         }
         else {
             add([
@@ -804,7 +804,7 @@ class UIManager {
                 scale(Math.max(width() / 800/6/3, height() / 1600/5/3)), 
                 anchor("botright"),
                 "miniPolmann"
-        ])
+            ]);
         }
     }
 
