@@ -9,7 +9,7 @@ kaboom({
     stretch: true,
     letterbox: true,
     background: [0, 0, 0],
-    font: "sinko"
+    font: "apl386"
 })
 
 //debug.inspect = true
