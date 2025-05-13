@@ -320,7 +320,9 @@ class UIManager {
         ])
     }
     raum2t2 (){
-    
+
+        destroyAll("*")
+        
         add([
             sprite("monitorRaum2"),
             area(),
