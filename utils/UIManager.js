@@ -226,7 +226,7 @@ class UIManager {
                     onClick("ja", () => {
                         if (aktuelleFlasche === korrekteFlasche) {
                             destroyAll("*"); 
-                            go("raum2"); 
+                            this.raum1t3(); 
                     } else {wait(0.01,()=>{
                         destroyAll("*")
                         this.raum1t1_2("Das war nicht die richtige Flasche! Versuche es noch einmal.")
@@ -249,6 +249,114 @@ class UIManager {
             })
         })
     }
+
+
+    raum1t3() {
+    add([
+        sprite("Schloss"),
+        area(),
+        scale(1.2, 1.15),
+        pos(width() / 2, height() / 2),
+        anchor("center"),
+        fixed(),
+        "schloss"
+    ]);
+
+    let enteredCode = "";
+    let fehlerText = null; // ❗ Referenz zur Fehlermeldung
+
+    // Code-Anzeige
+    const codeDisplay = add([
+        text("", { size: height() / 30 }),
+        color(0, 0, 0),
+        anchor("topleft"),
+        pos(width() / 2 - 100, height() / 5 - 20),
+        "Nachricht"
+    ]);
+
+    // "OK"-Text oben rechts
+    const eingabeText = add([
+        text("OK", { size: height() / 35 }),
+        color(0, 0, 0),
+        anchor("center"),
+        pos(width() / 2 + 115, height() / 3.2),
+        area(),
+        "eingabetext"
+    ]);
+
+    eingabeText.onClick(() => {
+        if (enteredCode === "163") {
+            go("raum3");
+        } else {
+            if (fehlerText) destroy(fehlerText); // vorherige löschen
+            fehlerText = add([
+                text("Das war leider\nder falsche Code", {
+                    size: height() / 37,
+                }),
+                color(0, 0, 0),
+                anchor("topleft"),
+                pos(width() / 2 - 100, height() / 5 - 20),
+                "Nachricht"
+            ]);
+            enteredCode = "";
+            codeDisplay.text = "";
+        }
+    });
+
+    function createBtn(x, y, label) {
+        const btn = add([
+            rect(50, 50),
+            pos(x, y),
+            anchor("center"),
+            area(),
+            opacity(0),
+            "button",
+            { label }
+        ]);
+
+        btn.onClick(() => {
+            if (label === "DEL") {
+                enteredCode = enteredCode.slice(0, -1);
+            } else {
+                if (enteredCode.length <= 12) enteredCode += label;
+
+                // ❗ Wenn es eine Fehlermeldung gibt: entfernen
+                if (fehlerText) {
+                    destroy(fehlerText);
+                    fehlerText = null;
+                }
+            }
+
+            codeDisplay.text = enteredCode;
+        });
+    }
+
+    const offsetX = -80;
+    const offsetY = -95;
+
+    // Ziffernfeld
+    createBtn(width() / 2 + offsetX, height() / 2 + offsetY, "1");
+    createBtn(width() / 2 + 90 + offsetX, height() / 2 + offsetY, "2");
+    createBtn(width() / 2 + 180 + offsetX, height() / 2 + offsetY, "3");
+
+    createBtn(width() / 2 + offsetX, height() / 2 + 60 + offsetY, "4");
+    createBtn(width() / 2 + 90 + offsetX, height() / 2 + 60 + offsetY, "5");
+    createBtn(width() / 2 + 180 + offsetX, height() / 2 + 60 + offsetY, "6");
+
+    createBtn(width() / 2 + offsetX, height() / 2 + 120 + offsetY, "7");
+    createBtn(width() / 2 + 90 + offsetX, height() / 2 + 120 + offsetY, "8");
+    createBtn(width() / 2 + 180 + offsetX, height() / 2 + 120 + offsetY, "9");
+
+    createBtn(width() / 2 + 90 + offsetX, height() / 2 + 180 + offsetY, "0");
+
+    // "DEL"-Taste rechts unten
+    createBtn(width() / 2 + 180 + offsetX, height() / 2 + 180 + offsetY, "DEL");
+
+    onKeyPress("SPACE", () => {
+        go("raum2");
+    });
+    }
+    
      displayRaum2() {
         add([
             sprite("bgRaum2"),
