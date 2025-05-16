@@ -13,7 +13,7 @@ class Intro {
             "zeitung"
         ]);
 
-        this.weiter(9.5, () => {
+        this.weiter(0.5, () => {
             destroyAll("*");
             wait(0.01, () => {
                 INTRO.PolizeiRevier();
@@ -94,7 +94,7 @@ class Intro {
             text("<- zurück", {
                 size: height() / 37,
             }),
-            color(50, 50, 150),
+            color(20, 20, 120),
             anchor("center"),
             area(),
             pos(width() / 10 * 0.5, height() / 10 * p),
