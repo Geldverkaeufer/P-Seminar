@@ -286,7 +286,7 @@ class UIManager {
 
     eingabeText.onClick(() => {
         if (enteredCode === "163") {
-            go("raum3");
+            go("raum2");
         } else {
             if (fehlerText) destroy(fehlerText); // vorherige löschen
             fehlerText = add([
@@ -351,10 +351,7 @@ class UIManager {
 
     // "DEL"-Taste rechts unten
     createBtn(width() / 2 + 180 + offsetX, height() / 2 + 180 + offsetY, "DEL");
-
-    onKeyPress("SPACE", () => {
-        go("raum2");
-    });
+        
     }
     
      displayRaum2() {
