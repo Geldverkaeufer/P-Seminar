@@ -12,7 +12,7 @@ kaboom({
     font: "sinko"
 })
 
-debug.inspect = true
+//debug.inspect = true
 
 load.assets()
 
