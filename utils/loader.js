@@ -16,7 +16,6 @@ export const load = {
         loadSprite("ja","./assets/ja.jpg")
         loadSprite("ja2","./assets/ja2.jpg")
         loadSprite("Zeitung","./assets/Zeitung.jpg")
-        loadSprite("Schloss","./assets/codeSchloss.jpg")
         loadSprite("bgRaum2","./assets/raum2.jpg") 
         loadSprite("bgRaum2_2","./assets/raum2_2.jpg") 
         loadSprite("monitorRaum2","./assets/monitorRaum2.jpg") 
@@ -32,6 +31,6 @@ export const load = {
         loadSprite("1teil2","./assets/1teil2.jpg") 
         loadSprite("2teil","./assets/2teil.jpg") 
         loadSprite("2teil2","./assets/2teil2.jpg") 
-        
+        loadSprite("Schloss","./assets/codeSchloss.jpg")
     }
 }
