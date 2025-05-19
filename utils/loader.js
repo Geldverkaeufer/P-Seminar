@@ -32,5 +32,7 @@ export const load = {
         loadSprite("2teil","./assets/2teil.jpg") 
         loadSprite("2teil2","./assets/2teil2.jpg") 
         loadSprite("Schloss","./assets/codeSchloss.jpg")
+        loadSprite("r1Zettel1","./assets/r1Zettel1.png")
+        loadSprite("r1Zettel2","./assets/r1Zettel2.png")
     }
 }
