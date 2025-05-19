@@ -2,6 +2,7 @@ import kaboom from "./libs/kaboom.mjs"
 import { INTRO } from "./utils/Intro.js";
 import { uiManager } from "./utils/UIManager.js";
 import { load } from "./utils/loader.js";
+import { Raum1 } from "./utils/raum1.js";
 
 kaboom({
     width: window.innerWidth,
@@ -9,10 +10,11 @@ kaboom({
     stretch: true,
     letterbox: true,
     background: [0, 0, 0],
-    font: "sinko"
 })
 
 //debug.inspect = true
+
+
 
 load.assets()
 
@@ -23,7 +25,7 @@ const scenes = {
     },
 
     raum1: () => {
-        uiManager.displayRaum1();
+        Raum1.displayRaum1();
         wait(0.5, () => {uiManager.displayKollegenNachricht(true, "Willkommen im ersten Raum! Ich bin Herr Polizist.\nIch bin immer da, falls du einen Tipp brauchst,\nklick mich einfach an!")})
         let nachricht = 0
         onClick("Polmann", () => {
@@ -45,7 +47,7 @@ const scenes = {
         
                 wait(0.01, () => {
                     uiManager.displayKollegenNachricht(false, "laweiuf");
-                    uiManager.areaGasflaschen();
+                    Raum1.areaGasflaschen();
                 });
         
                 uiManager.vergroesserPolmann("Wir sind hier in einem Chemie-Labor!\nBestimmt finden wir irgendwo Gasflaschen...");
@@ -63,16 +65,9 @@ const scenes = {
     },
 
     r1t1: () => {
-        uiManager.raum1t1()
-        onKeyPress("space",() => {go("raum2")})
+        Raum1.t1()
     },
 
-    r1t3: () => {
-
-    },
-
-    
-    
     raum2: () => {
        
         uiManager.displayKollegenNachricht(false,"raum2")
@@ -138,7 +133,6 @@ const scenes = {
         uiManager.raum2t2()
         onKeyPress("space",() => {go("raum3")})
     },
-    
 
     raum3: () => {
         uiManager.displayRaum3()
@@ -160,6 +154,9 @@ const scenes = {
 for (const key in scenes) {
     scene(key,scenes[key])
 }
+onKeyPress("d",() => {debug.inspect = true})
+onKeyPress("f",()=>{debug.inspect = false})
+
 
 go("intro")
 console.log(height(),width())
