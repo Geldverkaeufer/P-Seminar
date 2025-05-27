@@ -1,5 +1,9 @@
 import { uiManager } from "./UIManager.js"
 
+export let nr = 0
+
+//bei t2zu3 noch ändern dass man nicht raum wechselt onclick tür UND polmann
+
 class RAUM1 {
 
     areaGasflaschen() {
@@ -28,6 +32,7 @@ class RAUM1 {
 
 
     t1() {
+        let aufgabe = 1
         let angeschaut = []
         add([
             sprite("bg1t1"),
@@ -78,10 +83,10 @@ class RAUM1 {
                 angeschaut.push(tag)
                 wait(0.1,()=>{if (["flasche1", "flasche2", "flasche3"].every(tag => angeschaut.includes(tag))) {  this.t1_2("Du hast alle drei Versuche gesehen.\nJetzt wähle die Flasche mit dem Sauerstoff aus,\ndamit wir endlich wieder Luft bekommen!") } })
             });
-            uiManager.verkleinerPolmann()
-            uiManager.vergroesserPolmann("Sehr gut, du hast die Gasflaschen gefunden!\nAber die Beschriftung fehlt.\nLass uns schnell herausfinden in welcher sich der Sauerstoff befindet!")
         });
-        
+        uiManager.verkleinerPolmann()
+        uiManager.vergroesserPolmann2()
+
     }
 
     t1_2(nachricht) {
@@ -216,7 +221,7 @@ class RAUM1 {
                     onClick("ja", () => {
                         if (aktuelleFlasche === korrekteFlasche) {
                             destroyAll("*"); 
-                            this.t3(); 
+                            this.t2zu3(); 
                     } else {wait(0.01,()=>{
                         destroyAll("*")
                         this.t1_2("Das war nicht die richtige Flasche! Versuche es noch einmal.")
@@ -238,8 +243,24 @@ class RAUM1 {
                 })
             })
         })
+        uiManager.vergroesserPolmann2()
     }
-
+    
+    t2zu3() {
+        destroyAll("*")
+        this.displayRaum1()
+        uiManager.displayKollegenNachricht(true,"du hast die aufgabe gelöst!\n jetzt lass uns schnell in den nächsten raum gehen")
+        add([
+            sprite("kreis"),
+            area(),
+            pos(width()/10*9,height()/10*6),
+            anchor("center"),
+            scale(1.3, 2.9),
+            opacity(0),
+            "tür"
+        ])
+        onClick("tür", () => {destroyAll("*");this.t3()})
+    }
 
     t3() {
         add([
@@ -253,6 +274,16 @@ class RAUM1 {
         ]);
         
         this.t3_Zettel()
+        uiManager.displayKollegenNachricht(true, "sieht so aus als wär die tür noch mit einem schloss verriegelt?\nlass uns herausfinden was der code ist")
+        uiManager.updateKollegenNachricht("sieht so aus als wär die tür noch mit einem schloss verriegelt?\nlass uns herausfinden was der code ist")
+        uiManager.verkleinerPolmann()
+        uiManager.vergroesserPolmann2()
+        onClick("miniPolmann", () => {
+            destroyAll("miniPolmann");  
+            wait(0.01, () => {  
+                uiManager.displayKollegenNachricht(true, "sieht so aus als wär die tür noch mit einem schloss verriegelt?\nlass uns herausfinden was der code ist")})
+            }
+        )
 
         let enteredCode = "";
         let fehlerText = null; 
@@ -310,7 +341,6 @@ class RAUM1 {
                 } else {
                     if (enteredCode.length <= 12) enteredCode += label;
 
-                    // ❗ Wenn es eine Fehlermeldung gibt: entfernen
                     if (fehlerText) {
                         destroy(fehlerText);
                         fehlerText = null;
@@ -414,7 +444,6 @@ class RAUM1 {
         displayZettel1();
         aktuellerZettel.onClick(toggleZettel);
     }
-
 
 }
 
