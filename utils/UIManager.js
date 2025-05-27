@@ -574,6 +574,10 @@ class UIManager {
         }
     }
 
+    updateKollegenNachricht(content) {
+        gespeicherterPolmannText = content
+    }
+
     displayNachricht(content,y) {
         add([
             sprite("Sprechblase"), 
