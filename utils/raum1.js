@@ -1,7 +1,5 @@
 import { uiManager } from "./UIManager.js"
 
-export let nr = 0
-
 //bei t2zu3 noch ändern dass man nicht raum wechselt onclick tür UND polmann
 
 class RAUM1 {
@@ -32,7 +30,6 @@ class RAUM1 {
 
 
     t1() {
-        let aufgabe = 1
         let angeschaut = []
         add([
             sprite("bg1t1"),
@@ -249,7 +246,7 @@ class RAUM1 {
     t2zu3() {
         destroyAll("*")
         this.displayRaum1()
-        uiManager.displayKollegenNachricht(true,"du hast die aufgabe gelöst!\n jetzt lass uns schnell in den nächsten raum gehen")
+        uiManager.displayKollegenNachricht(true,"du hast die aufgabe gelöst!\netzt lass uns schnell in den nächsten raum gehen")
         add([
             sprite("kreis"),
             area(),
@@ -292,7 +289,7 @@ class RAUM1 {
             text("", { size: height() / 30 }),
             color(0, 0, 0),
             anchor("topleft"),
-            pos(width() / 2 - 100, height() / 5 - 20),
+            pos(width() / 10* 4.47, height() / 10* 1.8),
             "Nachricht"
         ]);
 
@@ -300,7 +297,7 @@ class RAUM1 {
             text("OK", { size: height() / 35 }),
             color(0, 0, 0),
             anchor("center"),
-            pos(width() / 2 + 115, height() / 3.2),
+            pos(width() / 10 * 5.6, height() / 3.2),
             area(),
             "eingabetext"
         ]);
@@ -316,7 +313,7 @@ class RAUM1 {
                     }),
                     color(0, 0, 0),
                     anchor("topleft"),
-                    pos(width() / 2 - 100, height() / 5 - 20),
+                    pos(width() / 10 * 5.6, height() / 3.2),
                     "Nachricht"
                 ]);
                 enteredCode = "";
@@ -326,7 +323,7 @@ class RAUM1 {
 
         function createBtn(x, y, label) {
             const btn = add([
-                rect(50, 50),
+                rect(width() /38.4, width() /38.4),
                 pos(x, y),
                 anchor("center"),
                 area(),
@@ -351,26 +348,26 @@ class RAUM1 {
             });
         }
 
-        const offsetX = -80;
-        const offsetY = -95;
+        const offsetX = width()/ -24;
+        const offsetY = width()/ -20.21;
 
         // Ziffernfeld
         createBtn(width() / 2 + offsetX, height() / 2 + offsetY, "1");
-        createBtn(width() / 2 + 90 + offsetX, height() / 2 + offsetY, "2");
-        createBtn(width() / 2 + 180 + offsetX, height() / 2 + offsetY, "3");
+        createBtn(width() / 2 + width()/ 21.33 + offsetX, height() / 2 + offsetY, "2");
+        createBtn(width() / 2 + width()/ 10.66 + offsetX, height() / 2 + offsetY, "3");
 
         createBtn(width() / 2 + offsetX, height() / 2 + 60 + offsetY, "4");
-        createBtn(width() / 2 + 90 + offsetX, height() / 2 + 60 + offsetY, "5");
-        createBtn(width() / 2 + 180 + offsetX, height() / 2 + 60 + offsetY, "6");
+        createBtn(width() / 2 + width()/ 21.33 + offsetX, height() / 2 + width()/ 32 + offsetY, "5");
+        createBtn(width() / 2 + width()/ 10.66 + offsetX, height() / 2 + width()/ 32 + offsetY, "6");
 
         createBtn(width() / 2 + offsetX, height() / 2 + 120 + offsetY, "7");
-        createBtn(width() / 2 + 90 + offsetX, height() / 2 + 120 + offsetY, "8");
-        createBtn(width() / 2 + 180 + offsetX, height() / 2 + 120 + offsetY, "9");
+        createBtn(width() / 2 + width()/ 21.33 + offsetX, height() / 2 + width()/ 16 + offsetY, "8");
+        createBtn(width() / 2 + width()/ 10.66 + offsetX, height() / 2 + width()/ 16 + offsetY, "9");
 
-        createBtn(width() / 2 + 90 + offsetX, height() / 2 + 180 + offsetY, "0");
+        createBtn(width() / 2 + width()/ 21.33 + offsetX, height() / 2 + width()/ 10.66 + offsetY, "0");
 
         // "DEL"-Taste rechts unten
-        createBtn(width() / 2 + 180 + offsetX, height() / 2 + 180 + offsetY, "DEL");
+        createBtn(width() / 2 + width()/ 10.66 + offsetX, height() / 2 + width()/ 10.66 + offsetY, "DEL");
     }
 
     t3_Zettel() {
@@ -409,7 +406,7 @@ class RAUM1 {
                 sprite("Glühbirne"),
                 area(),
                 scale(0.15), 
-                pos(width() / 4, height() / 2 + 100), 
+                pos(width() / 4, height() / 2 + width()/ 19.2), 
                 anchor("center"),
                 fixed(),
                 "gluehbirne"
