@@ -313,7 +313,7 @@ class RAUM1 {
                     }),
                     color(0, 0, 0),
                     anchor("topleft"),
-                    pos(width() / 10 * 5.6, height() / 3.2),
+                    pos(width() / 10* 4.47, height() / 10* 1.8),
                     "Nachricht"
                 ]);
                 enteredCode = "";
