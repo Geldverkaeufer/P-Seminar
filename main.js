@@ -3,6 +3,7 @@ import { INTRO } from "./utils/Intro.js";
 import { uiManager } from "./utils/UIManager.js";
 import { load } from "./utils/loader.js";
 import { Raum1 } from "./utils/raum1.js";
+import { Raum3 } from "./utils/raum3.js";
 
 kaboom({
     width: window.innerWidth,
@@ -13,7 +14,6 @@ kaboom({
 })
 
 //debug.inspect = true
-
 
 
 load.assets()
@@ -62,10 +62,12 @@ const scenes = {
             }
         });
         
+        
     },
 
     r1t1: () => {
         Raum1.t1()
+        
     },
 
     raum2: () => {
@@ -135,20 +137,20 @@ const scenes = {
     },
 
     raum3: () => {
-        uiManager.displayRaum3()
-        uiManager.displayKollegenNachricht(false,"Raum3")
-        onClick("miniPolmann", () => {
-            destroyAll("miniPolmann");  
-            wait(0.01, () => { 
-                uiManager.displayKollegenNachricht(true, "Raum3")})
-            }
-        )
-        uiManager.verkleinerPolmann()  
+        Raum3.displayRaum3()
+        Raum3.bildschirmLogik()        
     },
 
-    slideshow: () => {},
-
-    end: () => {},
+    end: () => {
+        onKeyPress("space",()=>{go("intro")})
+        add([
+            text("Endscreen", { size: height() / 35 }),
+            color(255, 255, 255),
+            anchor("center"),
+            pos(width() / 10 * 5.6, height() / 3.2),
+            area(),
+        ]);
+    },
 }
 
 for (const key in scenes) {
