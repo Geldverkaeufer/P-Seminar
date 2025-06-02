@@ -76,7 +76,7 @@ class RAUM1 {
             onClick(tag, () => {
                 destroyAll("miniPolmann")
                 uiManager.displayKollegenNachricht(true, message);
-                //window.open(link, "_blank")
+                window.open(link, "_blank")
                 angeschaut.push(tag)
                 wait(0.1,()=>{if (["flasche1", "flasche2", "flasche3"].every(tag => angeschaut.includes(tag))) {  this.t1_2("Du hast alle drei Versuche gesehen.\nJetzt wähle die Flasche mit dem Sauerstoff aus,\ndamit wir endlich wieder Luft bekommen!") } })
             });
