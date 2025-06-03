@@ -22,6 +22,9 @@ load.assets()
 const scenes = {
     intro: () => {
         INTRO.Zeitung()
+        onKeyPress("1",()=>go("raum1"))
+        onKeyPress("2",()=>go("raum2"))
+        onKeyPress("3",()=>go("raum3"))
     },
 
     raum1: () => {
