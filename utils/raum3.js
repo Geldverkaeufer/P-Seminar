@@ -101,7 +101,8 @@ class RAUM3 {
         onClick("zurück" , () => {
             destroyAll("*");          
             this.displayRaum3();        
-            this.bildschirmLogik();      
+            this.bildschirmLogik();  
+            this.lampenLogik();
         });
         onKeyPress("escape" , () => {
             destroyAll("*");          
