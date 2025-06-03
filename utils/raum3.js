@@ -6,7 +6,7 @@ class RAUM3 {
         add([
             sprite("bgRaum3"),
             area(),
-            scale(width() / 1600, height() / 909), 
+            scale(width() / 1728, height() / 986), 
             pos(width() / 2, height() / 2), 
             anchor("center"),
             fixed(),
@@ -19,13 +19,16 @@ class RAUM3 {
     }
 
     bildschirmLogik () {
-        let angeschaut2 = []
         let bildschirme = [
                 { x: width() / 10 * 1.2, y: height() / 10* 5.8, tag: "b1", message: "Das ist Bildschirm 1.\nEntsperre diesen Bildschirm um den Tresor öffnen zu können!", code: 111, link: "", scalex: 2.6, scaley: 1, r: 0 },
                 { x: width() / 10 * 3.8, y: height() / 10* 6.6, tag: "b2", message: "Das ist Bildschirm 2.\nEntsperre diesen Bildschirm um den Tresor öffnen zu können!", code: 222,link:  "", scalex: 2.5, scaley: 1, r: 12 },
                 { x: width() / 10 *6.45, y: height() / 10* 6.56, tag: "b3", message: "Das ist Bildschirm 3.\nEntsperre diesen Bildschirm um den Tresor öffnen zu können!", code: 333, link: "" , scalex: 2.5, scaley: 1, r: -12 },
                 { x: width() / 10 *9.05, y: height() / 10* 5.8, tag: "b4", message: "Das ist Bildschirm 4.\nEntsperre diesen Bildschirm um den Tresor öffnen zu können!", code: 444, link: "" , scalex: 1.8, scaley: 1, r: -8 }
             ];
+            add([ sprite("kreis"),  scale(width() /553/7 * 0.3, height() /1614/1.5 * 0.3),   pos(width()/10* 4.8, height()/10* 6),  anchor("center"),    color(255,0,0) , opacity(1)])
+            add([ sprite("kreis"),  scale(width() /553/7 * 0.3, height() /1614/1.5 * 0.3),   pos(width()/10* 5.02, height()/10* 6),  anchor("center"),    color(255,0,0) , opacity(1)])
+            add([ sprite("kreis"),  scale(width() /553/7 * 0.3, height() /1614/1.5 * 0.3),   pos(width()/10* 5.24, height()/10* 6),  anchor("center"),    color(255,0,0) , opacity(1)])
+            add([ sprite("kreis"),  scale(width() /553/7 * 0.3, height() /1614/1.5 * 0.3),   pos(width()/10* 5.46, height()/10* 6),  anchor("center"),    color(255,0,0) , opacity(1)])
             
             bildschirme.forEach(({ x, y, tag, code, message, link, scalex, scaley, r}) => {
                 add([
@@ -35,7 +38,7 @@ class RAUM3 {
                     rotate(r),
                     pos(x, y),
                     anchor("center"),
-                    opacity(0.6),
+                    opacity(0),
                     tag 
                 ]);
 
@@ -43,8 +46,6 @@ class RAUM3 {
                 onClick(tag, () => {
                     destroyAll("*")
                     this.bildschirm(tag, code, message, link)
-                    angeschaut2.push(tag)
-                    wait(0.1,()=>{if (["b1", "b2", "b3", "b4"].every(tag => angeschaut2.includes(tag))) { displayKollegenNachricht(true, "alle bildschirme fertig")} })
                 });
             })
 
@@ -105,7 +106,8 @@ class RAUM3 {
         onKeyPress("escape" , () => {
             destroyAll("*");          
             this.displayRaum3();        
-            this.bildschirmLogik();      
+            this.bildschirmLogik();  
+            this.lampenLogik()    
         });
 
 
@@ -135,6 +137,7 @@ class RAUM3 {
                 destroyAll("*");
                 this.displayRaum3();
                 this.bildschirmLogik();
+                this.lampenLogik()
             } else {
                 if (fehlerText) destroy(fehlerText);
                 fehlerText = add([
@@ -150,7 +153,7 @@ class RAUM3 {
                 codeDisplay.text = "";
             }
         })
-        onKeyPress("enter", ()=> {
+        /*onKeyPress("enter", ()=> {
             if (enteredCode === `${code}`) {
                 this.geloesteBildschirme.add(tag); 
                 destroyAll("*");
@@ -170,8 +173,7 @@ class RAUM3 {
                 enteredCode = "";
                 codeDisplay.text = "";
             }
-        })
-
+        })*/
 
         function createBtn(x, y, label) {
             const btn = add([
@@ -218,11 +220,11 @@ class RAUM3 {
         createBtn(width() / 2 + width()/ 26 + offsetX, height() / 2 + offsetY, "2");
         createBtn(width() / 2 + width()/ 13 + offsetX, height() / 2 + offsetY, "3");
 
-        createBtn(width() / 2 + offsetX, height() / 2 + 60 + offsetY, "4");
+        createBtn(width() / 2 + offsetX, height() / 2 + width()/ 32 + offsetY, "4");
         createBtn(width() / 2 + width()/ 26 + offsetX, height() / 2 + width()/ 32 + offsetY, "5");
         createBtn(width() / 2 + width()/ 13 + offsetX, height() / 2 + width()/ 32 + offsetY, "6");
 
-        createBtn(width() / 2 + offsetX, height() / 2 + 120 + offsetY, "7");
+        createBtn(width() / 2 + offsetX, height() / 2 + width()/ 16 + offsetY, "7");
         createBtn(width() / 2 + width()/ 26 + offsetX, height() / 2 + width()/ 16 + offsetY, "8");
         createBtn(width() / 2 + width()/ 13 + offsetX, height() / 2 + width()/ 16 + offsetY, "9");
 
@@ -231,6 +233,20 @@ class RAUM3 {
         // "DEL"-Taste rechts unten
         createBtn(width() / 2 + width()/ 13 + offsetX, height() / 2 + width()/ 10.66 + offsetY, "DEL");
 
+    }
+
+    lampenLogik() {
+        console.log("Gelöste Bildschirme:", Array.from(this.geloesteBildschirme));
+        if (this.geloesteBildschirme.has("b1")) {add([ sprite("kreis"),  scale(width() /553/7 * 0.3, height() /1614/1.5 * 0.3),   pos(width()/10* 4.8, height()/10* 6),  anchor("center"),    color(0,255,0) , opacity(1)])}
+        if (this.geloesteBildschirme.has("b2")) {add([ sprite("kreis"),  scale(width() /553/7 * 0.3, height() /1614/1.5 * 0.3),   pos(width()/10* 5.02, height()/10* 6),  anchor("center"),    color(0,255,0) ,  opacity(1)])}
+        if (this.geloesteBildschirme.has("b3")) {add([ sprite("kreis"),  scale(width() /553/7 * 0.3, height() /1614/1.5 * 0.3),   pos(width()/10* 5.24, height()/10* 6),  anchor("center"),    color(0,255,0) ,  opacity(1)])}
+        if (this.geloesteBildschirme.has("b4")) {add([ sprite("kreis"),  scale(width() /553/7 * 0.3, height() /1614/1.5 * 0.3),   pos(width()/10* 5.46, height()/10* 6),  anchor("center"),    color(0,255,0) ,  opacity(1)])}
+        if (["b1", "b2", "b3", "b4"].every(tag => this.geloesteBildschirme.has(tag)))  {this.tresor()}
+
+    }
+
+    tresor() {
+        uiManager.displayKollegenNachricht(true,"alle")
     }
 
 }
