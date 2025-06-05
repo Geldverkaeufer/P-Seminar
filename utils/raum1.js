@@ -1,6 +1,9 @@
 import { uiManager } from "./UIManager.js"
 
 //bei t2zu3 noch ändern dass man nicht raum wechselt onclick tür UND polmann
+//bei t3 muss am anfang polmann aufploppen
+// t3 erklären dass lampe
+
 
 class RAUM1 {
 
@@ -76,7 +79,7 @@ class RAUM1 {
             onClick(tag, () => {
                 destroyAll("miniPolmann")
                 uiManager.displayKollegenNachricht(true, message);
-                window.open(link, "_blank")
+                //window.open(link, "_blank")
                 angeschaut.push(tag)
                 wait(0.1,()=>{if (["flasche1", "flasche2", "flasche3"].every(tag => angeschaut.includes(tag))) {  this.t1_2("Du hast alle drei Versuche gesehen.\nJetzt wähle die Flasche mit dem Sauerstoff aus,\ndamit wir endlich wieder Luft bekommen!") } })
             });
@@ -263,7 +266,7 @@ class RAUM1 {
         add([
             sprite("Schloss"),
             area(),
-            scale(1.2, 1.15),
+            scale(width()/1600* 1, height()/998* 1.22),
             pos(width() / 2, height() / 2),
             anchor("center"),
             fixed(),
