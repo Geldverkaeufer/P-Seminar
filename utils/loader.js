@@ -1,6 +1,6 @@
 export const load = {
     assets: () => {
-        loadSprite("bgpolizei","./assets/polizeiraumSK.png")
+        loadSprite("bgpolizei","./assets/PolizeiMap.jpg")
         loadSprite("bgRaum1","./assets/raum1.jpg")
         loadSprite("Sprechblase","./assets/Sprechblase.png")
         loadSprite("bgRaum3","./assets/raum3.jpg")        
@@ -34,5 +34,7 @@ export const load = {
         loadSprite("Schloss","./assets/codeSchloss.jpg")
         loadSprite("r1Zettel1","./assets/r1Zettel1.png")
         loadSprite("r1Zettel2","./assets/r1Zettel2.png")
+        loadSprite("LEDgrün","./assets/LEDgrün.jpg")
+        loadSprite("LEDrot","./assets/LEDrot.jpg")
     }
 }
