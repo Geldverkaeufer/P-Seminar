@@ -142,20 +142,9 @@ const scenes = {
     raum3: () => {
         uiManager.displayRaum3()
         Raum3.bildschirmLogik() 
-        uiManager.displayKollegenNachricht(false,"Raum3")
-        onClick("miniPolmann", () => {
-            destroyAll("miniPolmann");  
-            wait(0.01, () => { 
-                uiManager.displayKollegenNachricht(true, "Raum3")})
-            }
-        )
-        uiManager.verkleinerPolmann()  
-        uiManager.areaTürRaum3()
-        onClick("kreis", () => { go("r3_2"); });
-
         
     },
-
+    
     r3_2:()=>{
         uiManager.displayRaum3_2() 
         
