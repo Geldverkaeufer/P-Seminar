@@ -12,6 +12,48 @@ class UIManager {
             "PolizeiBG"
         ]);
     }*/
+
+    displayRaum1() {
+        add([
+            sprite("bgRaum1"),
+            area(),
+            scale(width() / 1574, height() / 908), 
+            pos(width() / 2, height() / 2), 
+            anchor("center"),
+            fixed(),
+            "Raum1BG"
+        ])
+    }
+    
+    areaBoxRaum1 (){
+        add([
+            sprite("kreis"),
+            area(),
+            pos(width()/1.55,height()/1.3),
+            anchor("center"),
+            scale(0.75,0.75),
+            opacity(0),
+            "kreis"
+        ])
+    }
+
+    areaNotizRaum1 (){
+        add([
+            sprite("kreis"),
+            area(),
+            pos(width()/3.2,height()/1.55),
+            anchor("center"),
+            scale(0.55,0.55),
+            opacity(0),
+            "kreis"
+        ])
+    }
+
+    raum1t2_3() {
+        window.open("https://learningapps.org/watch?v=p6i7jkchk25");
+    }
+
+
     
      displayRaum2() {
         add([
