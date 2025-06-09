@@ -73,6 +73,38 @@ const scenes = {
         
     },
 
+    r1t2:()=>{
+        uiManager.displayRaum1()
+        uiManager.areaBoxRaum1()
+        onClick("kreis", () => { go("r1t2_2"); });
+    },
+
+    r1t2_2:()=>{
+        uiManager.boxRaum1()
+        uiManager.areaNotizRaum1()
+        uiManager.displayKollegenNachricht(true,"Notiz?")
+        uiManager.verkleinerPolmann() 
+        let nachricht = 0
+        // Erster Klick
+        onClick("Polmann", () => {
+            if (nachricht === 0) {
+                destroyAll("Sprechblase");
+                destroyAll("nachricht");
+                destroyAll("Polmann");
+    
+                // Jetzt den Rest ausführen
+                wait(0.01,()=>{uiManager.displayKollegenNachricht(false,"laweiuf");})
+                uiManager.vergroesserPolmann("unten rechts zerknüllt");
+                uiManager.displayGlühbirne()
+                uiManager.verkleinerPolmann();;
+                onClick("kreis", () => { go("r2t1"); });
+    
+            }
+        });
+        onClick("kreis", () => { destroyAll("*");uiManager.displayRaum1();});
+    
+    },
+
     raum2: () => {
        
         uiManager.displayKollegenNachricht(false,"raum2")
