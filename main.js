@@ -140,8 +140,113 @@ const scenes = {
     },
 
     raum3: () => {
-        Raum3.displayRaum3()
-        Raum3.bildschirmLogik()        
+        uiManager.displayRaum3()
+        Raum3.bildschirmLogik() 
+        uiManager.displayKollegenNachricht(false,"Raum3")
+        onClick("miniPolmann", () => {
+            destroyAll("miniPolmann");  
+            wait(0.01, () => { 
+                uiManager.displayKollegenNachricht(true, "Raum3")})
+            }
+        )
+        uiManager.verkleinerPolmann()  
+        uiManager.areaTürRaum3()
+        onClick("kreis", () => { go("r3_2"); });
+
+        
+    },
+
+    r3_2:()=>{
+        uiManager.displayRaum3_2() 
+        
+        wait(0.5, () => {uiManager.displayKollegenNachricht(true, "Tür zu")})
+        let nachricht = 0
+        // Erster Klick
+        onClick("Polmann", () => {
+            if (nachricht === 0) {
+                destroyAll("Sprechblase");
+                destroyAll("nachricht");
+                destroyAll("Polmann");
+                nachricht += 1;
+    
+                wait(0.01, () => {
+                    uiManager.displayKollegenNachricht(true, "wo ist etwas für flüssigkeit für auge ?");
+                });
+            }
+        });
+        // Zweiter Klick
+        onClick("Polmann", () => {
+            if (nachricht === 1) {
+                destroyAll("Sprechblase");
+                destroyAll("nachricht");
+                destroyAll("Polmann");
+    
+                // Jetzt den Rest ausführen
+                wait(0.01,()=>{uiManager.displayKollegenNachricht(false,"laweiuf");uiManager.areaTischRaum3_2();})
+                uiManager.vergroesserPolmann("klicke tisch");
+                uiManager.displayGlühbirne()
+                uiManager.verkleinerPolmann();;
+                onClick("kreis", () => {  window.open("https://learningapps.org/watch?v=p4pi0w5kk25", "_blank"); go("r3_2t1") });
+    
+                nachricht += 1; // Falls du noch weitere Schritte hinzufügen willst
+            }
+        });
+    
+
+    },
+
+    r3_2t1:()=>{
+        //uiManager.raum3_2t1();
+        uiManager.displayRaum3_tisch();
+        uiManager.displayProtokolle();
+        wait(0.5, () => {uiManager.displayKollegenNachricht(true, "super fähle jetzt das Protokoll aus das nötig ist")})
+        let nachricht=0
+        onClick("Polmann", () => {
+            if (nachricht === 0) {
+                destroyAll("Sprechblase");
+                destroyAll("nachricht");
+                destroyAll("Polmann");
+                ;
+    
+                wait(0.01, () => {
+                    uiManager.displayKollegenNachricht(false, "f");
+                });
+            }
+        });
+        onClick("PFehling2", () => { go("r3_2t2") });
+        onClick("PSilberspiegel2", () => { go("r3_2t1_2") });
+       
+
+    },
+
+    r3_2t1_2:()=>{
+        uiManager.displayRaum3_tisch();
+        uiManager.displayProtokolle();
+        wait(0.5, () => {uiManager.displayKollegenNachricht(true, "falsches Protokoll")})
+        let nachricht=0
+        onClick("Polmann", () => {
+            if (nachricht === 0) {
+                destroyAll("Sprechblase");
+                destroyAll("nachricht");
+                destroyAll("Polmann");
+                ;
+    
+                wait(0.01, () => {
+                    uiManager.displayKollegenNachricht(false, "f");
+                });
+            }
+        });
+        onClick("PFehling2", () => { go("r3_2t2") });
+        onClick("PSilberspiegel2", () => { go("r3_2t1_2") });
+
+    },
+
+    r3_2t2: () => {
+        destroyAll("*");
+        uiManager.raum3_2t2();
+        uiManager.displayRaum3_2();
+        uiManager.areaAuge (); 
+        onClick("kreis", () => { go("end") });
     },
 
     end: () => {
