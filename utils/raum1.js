@@ -79,7 +79,7 @@ class RAUM1 {
             onClick(tag, () => {
                 destroyAll("miniPolmann")
                 uiManager.displayKollegenNachricht(true, message);
-                //window.open(link, "_blank")
+                window.open(link, "_blank")
                 angeschaut.push(tag)
                 wait(0.1,()=>{if (["flasche1", "flasche2", "flasche3"].every(tag => angeschaut.includes(tag))) {  this.t1_2("Du hast alle drei Versuche gesehen.\nJetzt wähle die Flasche mit dem Sauerstoff aus,\ndamit wir endlich wieder Luft bekommen!") } })
             });
@@ -306,7 +306,7 @@ class RAUM1 {
         ]);
 
         eingabeText.onClick(() => {
-            if (enteredCode === "225") {
+            if (enteredCode === "225" || enteredCode === "22" || enteredCode === "23")  {
                 go("raum2");
             } else {
                 if (fehlerText) destroy(fehlerText);
@@ -352,25 +352,25 @@ class RAUM1 {
         }
 
         const offsetX = width()/ -24;
-        const offsetY = width()/ -20.21;
+        const offsetY = height()/ -9.947109375;
 
         // Ziffernfeld
         createBtn(width() / 2 + offsetX, height() / 2 + offsetY, "1");
         createBtn(width() / 2 + width()/ 21.33 + offsetX, height() / 2 + offsetY, "2");
         createBtn(width() / 2 + width()/ 10.66 + offsetX, height() / 2 + offsetY, "3");
 
-        createBtn(width() / 2 + offsetX, height() / 2 + 60 + offsetY, "4");
-        createBtn(width() / 2 + width()/ 21.33 + offsetX, height() / 2 + width()/ 32 + offsetY, "5");
-        createBtn(width() / 2 + width()/ 10.66 + offsetX, height() / 2 + width()/ 32 + offsetY, "6");
+        createBtn(width() / 2 + offsetX, height() / 2 + height()/ 15.75 + offsetY, "4");
+        createBtn(width() / 2 + width()/ 21.33 + offsetX, height() / 2 + height()/15.75 + offsetY, "5");
+        createBtn(width() / 2 + width()/ 10.66 + offsetX, height() / 2 + height()/15.75 + offsetY, "6");
 
-        createBtn(width() / 2 + offsetX, height() / 2 + 120 + offsetY, "7");
-        createBtn(width() / 2 + width()/ 21.33 + offsetX, height() / 2 + width()/ 16 + offsetY, "8");
-        createBtn(width() / 2 + width()/ 10.66 + offsetX, height() / 2 + width()/ 16 + offsetY, "9");
+        createBtn(width() / 2 + offsetX, height() / 2 + height()/7.875 + offsetY, "7");
+        createBtn(width() / 2 + width()/ 21.33 + offsetX, height() / 2 + height()/7.875 + offsetY, "8");
+        createBtn(width() / 2 + width()/ 10.66 + offsetX, height() / 2 + height()/7.875 + offsetY, "9");
 
-        createBtn(width() / 2 + width()/ 21.33 + offsetX, height() / 2 + width()/ 10.66 + offsetY, "0");
+        createBtn(width() / 2 + width()/ 21.33 + offsetX, height() / 2 + height()/5.25 + offsetY, "0");
 
         // "DEL"-Taste rechts unten
-        createBtn(width() / 2 + width()/ 10.66 + offsetX, height() / 2 + width()/ 10.66 + offsetY, "DEL");
+        createBtn(width() / 2 + width()/ 10.66 + offsetX, height() / 2 + height()/5.25 + offsetY, "DEL");
     }
 
     t3_Zettel() {
