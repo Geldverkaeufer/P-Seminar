@@ -1,4 +1,10 @@
 import { uiManager } from "./UIManager.js";
+/*
+ - MonitorRaum2 verändern für neuen Look und gelösten Monitor anders aussehen lassen
+ - PolizeiNahcrichten je nach gelöstem Bildschirm VOR ALLEM am ende
+
+ -alles bei eingeben von 1,2,3,4,5,6,7,8,9,0,DEL,Enter ABER AUFPASSEN dass sich das verändert je nach bildschirm
+*/
 
 class RAUM3 {
 
@@ -25,10 +31,10 @@ class RAUM3 {
                 { x: width() / 10 *6.45, y: height() / 10* 6.56, tag: "b3", message: "Das ist Bildschirm 3.\nEntsperre diesen Bildschirm um den Tresor öffnen zu können!", code: 333, link: "" , scalex: 2.5, scaley: 1, r: -12 },
                 { x: width() / 10 *9.05, y: height() / 10* 5.8, tag: "b4", message: "Das ist Bildschirm 4.\nEntsperre diesen Bildschirm um den Tresor öffnen zu können!", code: 444, link: "" , scalex: 1.8, scaley: 1, r: -8 }
             ];
-            add([ sprite("kreis"),  scale(width() /553/7 * 0.3, height() /1614/1.5 * 0.3),   pos(width()/10* 4.8, height()/10* 6),  anchor("center"),    color(255,0,0) , opacity(1)])
-            add([ sprite("kreis"),  scale(width() /553/7 * 0.3, height() /1614/1.5 * 0.3),   pos(width()/10* 5.02, height()/10* 6),  anchor("center"),    color(255,0,0) , opacity(1)])
-            add([ sprite("kreis"),  scale(width() /553/7 * 0.3, height() /1614/1.5 * 0.3),   pos(width()/10* 5.24, height()/10* 6),  anchor("center"),    color(255,0,0) , opacity(1)])
-            add([ sprite("kreis"),  scale(width() /553/7 * 0.3, height() /1614/1.5 * 0.3),   pos(width()/10* 5.46, height()/10* 6),  anchor("center"),    color(255,0,0) , opacity(1)])
+            add([ sprite("LEDrot"),  scale(width() /553/7/2 * 0.205, height() /3482/1.5/2 * 0.3),   pos(width()/10* 4.8, height()/10* 6),  anchor("center"), rotate(90), opacity(1)])          
+            add([ sprite("LEDrot"),  scale(width() /553/7/2 * 0.205, height() /3482/1.5/2 * 0.3),   pos(width()/10* 5.02, height()/10* 6),  anchor("center"),    rotate(90) , opacity(1)])
+            add([ sprite("LEDrot"),  scale(width() /553/7/2 * 0.205, height() /3482/1.5/2 * 0.3),   pos(width()/10* 5.24, height()/10* 6),  anchor("center"),    rotate(90) , opacity(1)])
+            add([ sprite("LEDrot"),  scale(width() /553/7/2 * 0.205, height() /3482/1.5/2 * 0.3),   pos(width()/10* 5.46, height()/10* 6),  anchor("center"),    rotate(90) , opacity(1)])
             
             bildschirme.forEach(({ x, y, tag, code, message, link, scalex, scaley, r}) => {
                 add([
@@ -55,7 +61,7 @@ class RAUM3 {
         
         // monitor
         add([
-            sprite("monitorRaum2"),
+            sprite("monitorRaum3"),
             area(),
             scale(width()/1025 , height()/712), 
             pos(width()/2 , height()/2 ), 
@@ -76,14 +82,16 @@ class RAUM3 {
         ]);
 
         // Kästchen für Code
-        add([
-            rect(width() /10, width() /50),
-            pos(width() / 10 * 4.88, height() / 10* 4.2),
+        const codeField = add([
+            rect(width() / 10, width() / 50),
+            color(230, 230, 230),
+            outline(3, rgb(100, 100, 100)),
+            pos(center().x, height() / 10 * 4.2),
             anchor("center"),
-            area(),
-            outline(1.7),
-            "button",
-        ]);
+            z(0),
+            "codeField"
+        ])
+
 
         // Zurück-Button
         add([
@@ -101,8 +109,8 @@ class RAUM3 {
         onClick("zurück" , () => {
             destroyAll("*");          
             this.displayRaum3();        
-            this.bildschirmLogik();  
-            this.lampenLogik();
+            this.bildschirmLogik();   
+            this.lampenLogik()   
         });
         onKeyPress("escape" , () => {
             destroyAll("*");          
@@ -110,6 +118,22 @@ class RAUM3 {
             this.bildschirmLogik();  
             this.lampenLogik()    
         });
+
+        
+        add([
+            sprite("Glühbirne"),
+            scale(0.3),
+            area(),
+            anchor("center"),
+            pos(width()/10 * 7, height() / 10 * 7),
+            "hintButton"
+        ])
+
+        onClick("hintButton", () => {
+            window.open(link, "_blank"); 
+        });
+            
+
 
 
         let enteredCode = "";
@@ -119,7 +143,7 @@ class RAUM3 {
             text("", { size: height() /43 }),
             color(0, 0, 0),
             anchor("center"),
-            pos(width() / 10* 4.88, height() / 10* 4.2),
+            pos(width() / 2, height() / 10* 4.2),
             "Nachricht"
         ]);
 
@@ -127,7 +151,7 @@ class RAUM3 {
             text("OK", { size: height() / 50 }),
             color(0, 0, 0),
             anchor("center"),
-            pos(width() / 10 * 5.5, height() / 10* 4.2),
+            pos(width() / 10 * 5.65, height() / 10* 4.2),
             area(),
             "eingabetext"
         ]);
@@ -147,11 +171,16 @@ class RAUM3 {
                     }),
                     color(0, 0, 0),
                     anchor("center"),
-                    pos(width() / 10* 4.88, height() / 10* 4.75),
+                    pos(width() / 10* 5, height() / 10* 4.75),
                     "Nachricht"
                 ]);
                 enteredCode = "";
                 codeDisplay.text = "";
+                
+                codeField.move(30, 0);
+                wait(0.05, () => codeField.move(-60, 0));
+                wait(0.1, () => codeField.move(30, 0));
+
             }
         })
         /*onKeyPress("enter", ()=> {
@@ -178,14 +207,17 @@ class RAUM3 {
 
         function createBtn(x, y, label) {
             const btn = add([
-                rect(width() /38.4, width() /38.4),
+                rect(width() / 38.4, width() / 38.4),
+                color(240, 240, 240),
+                outline(2, rgb(50, 50, 50)),
                 pos(x, y),
                 anchor("center"),
                 area(),
-                outline(2),
                 "button",
                 { label }
             ]);
+
+            //onHover("button",()=>{btn.color = rgb(255,255,255)})
 
             add([
                 text(label, {
@@ -216,38 +248,50 @@ class RAUM3 {
         const offsetX = width()/ - 20;
         const offsetY = width()/ 60;
 
-        // Ziffernfeld
-        createBtn(width() / 2 + offsetX, height() / 2 + offsetY, "1");
-        createBtn(width() / 2 + width()/ 26 + offsetX, height() / 2 + offsetY, "2");
-        createBtn(width() / 2 + width()/ 13 + offsetX, height() / 2 + offsetY, "3");
+        let startX = center().x - width() / 26.5;
+        let startY = center().y + height() / 25;
+        let buttonSize = width() / 38.4;
+        let padding = width() / 100;
 
-        createBtn(width() / 2 + offsetX, height() / 2 + width()/ 32 + offsetY, "4");
-        createBtn(width() / 2 + width()/ 26 + offsetX, height() / 2 + width()/ 32 + offsetY, "5");
-        createBtn(width() / 2 + width()/ 13 + offsetX, height() / 2 + width()/ 32 + offsetY, "6");
+        let labels = [
+        ["1", "2", "3"],
+        ["4", "5", "6"],
+        ["7", "8", "9"],
+        ["", "0", "DEL"]
+        ];
 
-        createBtn(width() / 2 + offsetX, height() / 2 + width()/ 16 + offsetY, "7");
-        createBtn(width() / 2 + width()/ 26 + offsetX, height() / 2 + width()/ 16 + offsetY, "8");
-        createBtn(width() / 2 + width()/ 13 + offsetX, height() / 2 + width()/ 16 + offsetY, "9");
+        labels.forEach((row, rowIndex) => {
+        row.forEach((label, colIndex) => {
+            if (!label) return;
+            let x = startX + colIndex * (buttonSize + padding);
+            let y = startY + rowIndex * (buttonSize + padding);
+            createBtn(x, y, label);
+        });
+        });
 
-        createBtn(width() / 2 + width()/ 26 + offsetX, height() / 2 + width()/ 10.66 + offsetY, "0");
-
-        // "DEL"-Taste rechts unten
-        createBtn(width() / 2 + width()/ 13 + offsetX, height() / 2 + width()/ 10.66 + offsetY, "DEL");
 
     }
 
     lampenLogik() {
         console.log("Gelöste Bildschirme:", Array.from(this.geloesteBildschirme));
-        if (this.geloesteBildschirme.has("b1")) {add([ sprite("kreis"),  scale(width() /553/7 * 0.3, height() /1614/1.5 * 0.3),   pos(width()/10* 4.8, height()/10* 6),  anchor("center"),    color(0,255,0) , opacity(1)])}
-        if (this.geloesteBildschirme.has("b2")) {add([ sprite("kreis"),  scale(width() /553/7 * 0.3, height() /1614/1.5 * 0.3),   pos(width()/10* 5.02, height()/10* 6),  anchor("center"),    color(0,255,0) ,  opacity(1)])}
-        if (this.geloesteBildschirme.has("b3")) {add([ sprite("kreis"),  scale(width() /553/7 * 0.3, height() /1614/1.5 * 0.3),   pos(width()/10* 5.24, height()/10* 6),  anchor("center"),    color(0,255,0) ,  opacity(1)])}
-        if (this.geloesteBildschirme.has("b4")) {add([ sprite("kreis"),  scale(width() /553/7 * 0.3, height() /1614/1.5 * 0.3),   pos(width()/10* 5.46, height()/10* 6),  anchor("center"),    color(0,255,0) ,  opacity(1)])}
-        if (["b1", "b2", "b3", "b4"].every(tag => this.geloesteBildschirme.has(tag)))  {this.tresor()}
+        if (this.geloesteBildschirme.has("b1")) {add([ sprite("LEDgrün"),  scale(width() /553/7/2 * 0.205, height() /3482/1.5/2 * 0.3),   pos(width()/10* 4.8, height()/10* 6),  anchor("center"), rotate(90), opacity(1)])}
+        if (this.geloesteBildschirme.has("b2")) {add([ sprite("LEDgrün"),  scale(width() /553/7/2 * 0.205, height() /3482/1.5/2 * 0.3),   pos(width()/10* 5.02, height()/10* 6),  anchor("center"),   rotate(90) ,  opacity(1)])}
+        if (this.geloesteBildschirme.has("b3")) {add([ sprite("LEDgrün"),  scale(width() /553/7/2 * 0.205, height() /3482/1.5/2 * 0.3),   pos(width()/10* 5.24, height()/10* 6),  anchor("center"),    rotate(90) ,  opacity(1)])}
+        if (this.geloesteBildschirme.has("b4")) {add([ sprite("LEDgrün"),  scale(width() /553/7/2 * 0.205, height() /3482/1.5/2 * 0.3),   pos(width()/10* 5.46, height()/10* 6),  anchor("center"),   rotate(90) ,  opacity(1)])}
+        if (["b1", "b2", "b3", "b4"].every(tag => this.geloesteBildschirme.has(tag)))  {this.bildschirmLogik(),wait(1,()=>onClick("Raum3BG",()=>{this.tresor()}))} // rot?
 
     }
 
     tresor() {
-        uiManager.displayKollegenNachricht(true,"alle")
+       // uiManager.displayKollegenNachricht(true,"alle")
+        add([
+            sprite("raum3offen"),
+            scale(width() / 1919, height() / 950), 
+            pos(width() / 2, height() / 2), 
+            anchor("center"),
+            fixed(),
+            "Raum3BG2"
+        ])
     }
 
 }
