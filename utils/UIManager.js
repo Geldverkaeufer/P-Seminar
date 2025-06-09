@@ -515,18 +515,158 @@ class UIManager {
     }
     
 
+   
+        
     displayRaum3() {
         add([
             sprite("bgRaum3"),
             area(),
-            scale(width() / 1600, height() / 909), 
+            scale(width() / 1727, height() / 987), 
             pos(width() / 2, height() / 2), 
             anchor("center"),
             fixed(),
             "Raum3BG"
         ])
-        onKeyPress("space",() => {go("intro")})
+        
     }
+    areaTürRaum3(){
+        add([
+            sprite("kreis"),
+            area(),
+            pos(width()/1.95,height()/3.3),
+            anchor("center"),
+            scale(0.45,0.55),
+            opacity(0),
+            "kreis"
+        ])
+       
+    }
+
+    displayRaum3_2() {
+        add([
+            sprite("bgRaum3_2"),
+            area(),
+            scale(width() / 1594, height() / 907), 
+            pos(width() / 2, height() / 2), 
+            anchor("center"),
+            fixed(),
+            "Raum3BG_2"
+        ])
+       
+    }
+
+    raum3t2 (){
+
+
+    }
+
+    areaTischRaum3_2(){
+        add([
+            sprite("kreis"),
+            area(),
+            pos(width()/1.22,height()/1.3),
+            anchor("center"),
+            scale(1.7,1),
+            opacity(0),
+            "kreis"
+        ])
+
+    }
+
+    raum3_2t1() {
+        window.open("https://learningapps.org/watch?v=p4pi0w5kk25", "_blank");
+
+    }
+    displayRaum3_tisch(){
+        add([
+            sprite("Raum3_tisch"),
+            area(),
+            scale(width() /1429, height() /845), 
+            pos(width() / 2, height() / 2), 
+            anchor("center"),
+            fixed(),
+            "Raum3_tisch"
+        ])
+    }
+
+   displayProtokolle(){
+        add([
+            sprite("PFehling"),
+            area(),
+            scale(height() / 1150 / 2.8),
+            pos(width() / 4, height() / 2),
+            anchor("center"),
+            fixed(),
+            "PFehling"
+        ])
+        
+        onHover("PFehling", () => {
+            get("PFehling").forEach(obj => obj.opacity = 0); 
+        
+            add([
+                sprite("PFehling"), 
+                scale(height() / 1150 / 1.5),
+                area(),
+                pos(width() / 4, height() / 2),
+                anchor("center"),
+                "PFehling2"
+            ]);
+        });
+
+        onHoverEnd("PFehling", () => {
+            get("PFehling").forEach(obj => obj.opacity = 1); 
+            destroyAll("PFehling2"); 
+        });
+        
+
+         add([
+            sprite("PSilberspiegel"),
+            area(),
+            scale(height() / 1458 / 2.8),
+            pos(width() / 4*3, height() / 2),
+            anchor("center"),
+            fixed(),
+            "PSilberspiegel"
+        ])
+
+         onHover("PSilberspiegel", () => {
+            get("PSilberspiegel").forEach(obj => obj.opacity = 0); 
+        
+            add([
+                sprite("PSilberspiegel"), 
+                scale(height() / 1458 / 1.2),
+                area(),
+                pos(width() / 4*3, height() / 2),
+                anchor("center"),
+                "PSilberspiegel2"
+            ]);
+        });
+
+        onHoverEnd("PSilberspiegel", () => {
+            get("PSilberspiegel").forEach(obj => obj.opacity = 1); 
+            destroyAll("PSilberspiegel2"); 
+        });
+        
+        
+    }
+   
+    raum3_2t2(){
+        window.open("https://learningapps.org/watch?v=phcfyn56t25", "_blank");
+    }
+
+    areaAuge (){
+        add([
+            sprite("kreis"),
+            area(),
+            pos(width()/2.7,height()/1.8),
+            anchor("center"),
+            scale(0.4,0.25),
+            opacity(0),
+            "kreis"
+        ])
+    }
+  
+
     
     displayKollegenNachricht(big, content) {
         if (big) {
