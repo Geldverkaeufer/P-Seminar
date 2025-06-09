@@ -140,7 +140,7 @@ const scenes = {
     },
 
     raum3: () => {
-        uiManager.displayRaum3()
+        Raum3.displayRaum3()
         Raum3.bildschirmLogik() 
         
     },
