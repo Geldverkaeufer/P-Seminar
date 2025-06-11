@@ -101,8 +101,11 @@ const scenes = {
     
             }
         });
-        onClick("kreis", () => { destroyAll("*");uiManager.displayRaum1();});
+        onClick("kreis", () => { destroyAll("*"), go("r1t3");});
     
+    },
+    r1t3:()=>{
+        Raum1.t2zu3()
     },
 
     raum2: () => {
@@ -168,13 +171,19 @@ const scenes = {
     
     r2t2: () => {
         uiManager.raum2t2()
+        //onKeyPress("space",() => {go("raum3")})
+    },
+
+    r2t2_2: () => {
+        uiManager.raum2t2_2()
         onKeyPress("space",() => {go("raum3")})
     },
 
     raum3: () => {
         Raum3.displayRaum3()
-        Raum3.bildschirmLogik() 
-        
+        Raum3.bildschirmLogik()
+        //Raum3.areaTürRaum3()
+        onClick("kreis", () => { go("r3_2"); });  
     },
     
     r3_2:()=>{
