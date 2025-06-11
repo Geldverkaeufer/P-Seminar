@@ -17,7 +17,7 @@ class UIManager {
         add([
             sprite("bgRaum1"),
             area(),
-            scale(width() / 1574, height() / 908), 
+            scale(width() / 1330, height() / 933), 
             pos(width() / 2, height() / 2), 
             anchor("center"),
             fixed(),
@@ -672,15 +672,40 @@ class UIManager {
                                 get("2teil").forEach(obj => obj.opacity = 1); 
                                 destroyAll("2teil2"); 
                             });
+
+                            let clicked1teil = false;
+                            let clicked2teil = false;
+
                             onClick("1teil2", () => {
-                                window.open("https://learningapps.org/watch?v=pgbaob0c525", "_blank");
-                                
+                                window.open("https://learningapps.org/watch?v=pgbaob0c525", "_blank"),
+                                clicked1teil = true;  
+
+                                if (clicked1teil==true && clicked2teil==true) {
+                                    go("raum3");
+                                    
+                                }
+                           
                             }); 
+                            
+
                             onClick("2teil2", () => {
-                                window.open("https://learningapps.org/watch?v=pydivz9cn25", "_blank");
+                                window.open("https://learningapps.org/watch?v=pydivz9cn25", "_blank"),
+                                clicked2teil = true;
+
+                                if (clicked1teil==true && clicked2teil==true) {
+                                    go("raum3");
+                                    
+                                }
+
                             }); 
-                
-                        
+
+                            if (clicked1teil==true && clicked2teil==true) {
+                                go("raum3");
+                                
+                            }
+
+                            
+                            
                         }); 
                     
                     
@@ -734,18 +759,20 @@ class UIManager {
         ])
         
     }
-    areaTürRaum3(){
+    /*areaTürRaum3(){
         add([
             sprite("kreis"),
             area(),
             pos(width()/1.95,height()/3.3),
             anchor("center"),
-            scale(0.45,0.55),
+            scale(0.7,0.55),
             opacity(0),
             "kreis"
         ])
        
-    }
+    }*/
+
+    
 
     displayRaum3_2() {
         add([
