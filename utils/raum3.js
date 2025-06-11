@@ -280,6 +280,10 @@ class RAUM3 {
         if (this.geloesteBildschirme.has("b4")) {add([ sprite("LEDgrün"),  scale(width() /553/7/2 * 0.205, height() /3482/1.5/2 * 0.3),   pos(width()/10* 5.46, height()/10* 6),  anchor("center"),   rotate(90) ,  opacity(1)])}
         if (["b1", "b2", "b3", "b4"].every(tag => this.geloesteBildschirme.has(tag)))  {this.bildschirmLogik(),wait(1,()=>onClick("Raum3BG",()=>{this.tresor()}))} // rot?
 
+        if (["b1", "b2", "b3", "b4"].every(tag => this.geloesteBildschirme.has(tag))) {
+            this.areaTürRaum3();
+        }
+
     }
 
     tresor() {
@@ -292,6 +296,19 @@ class RAUM3 {
             fixed(),
             "Raum3BG2"
         ])
+    }
+
+    areaTürRaum3(){
+        add([
+            sprite("kreis"),
+            area(),
+            pos(width()/1.95,height()/3.3),
+            anchor("center"),
+            scale(0.5,0.8),
+            opacity(0),
+            "kreis"
+        ])
+       
     }
 
 }
