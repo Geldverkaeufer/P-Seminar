@@ -38,5 +38,11 @@ export const load = {
         loadSprite("LEDrot","./assets/LEDrot.jpg")
         loadSprite("monitorRaum3","./assets/monitorRaum3.jpg")
         loadSprite("raum3offen","./assets/raum3offen.png")
+        loadSprite("bgRaum3_2","./assets/raum3_2.jpg") 
+        loadSprite("Raum3_tisch",  "./assets/raum3_tisch.jpg")
+        loadSprite("PFehling","./assets/protokolFehing.png") 
+        loadSprite("PSilberspiegel","./assets/protokolSilberspiegel.png")
+        loadSprite("Raum1_box",  "./assets/boxRaum1.jpg")
+       
     }
 }
