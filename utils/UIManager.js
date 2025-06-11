@@ -25,6 +25,18 @@ class UIManager {
         ])
     }
     
+    boxRaum1 (){
+        add([
+            sprite("Raum1_box"),
+            area(),
+            scale(width()/1558 , height()/1083 ), 
+            pos(width()/2 , height()/2 ), 
+            anchor("center"),
+            fixed(),
+            "boxRaum1"
+        ])
+    }
+    
     areaBoxRaum1 (){
         add([
             sprite("kreis"),
@@ -126,8 +138,6 @@ class UIManager {
         ])
     }
     raum2t2 (){
-
-        destroyAll("*")
         
         add([
             sprite("monitorRaum2"),
@@ -138,107 +148,260 @@ class UIManager {
             fixed(),
             "Raum2Monitor"    
         ])
-       
+
+        let bildschirme = [
+            { x: width() / 10 * 1.2, y: height() / 10* 5.8, tag: "m1", message: "füge den passwort ein ", code: 163, link: "", scalex: 2.6, scaley: 1, r: 0 },
+          ];
+          bildschirme.forEach(({ x, y, tag, code, message, link, scalex, scaley, r}) => {
+            add([
+                sprite("kreis"),
+                scale(width() /553/7 *scalex, height() /1614/1.5 *scaley),                                          
+                area(),
+                rotate(r),
+                pos(x, y),
+                anchor("center"),
+                opacity(0),
+                tag 
+            ]);
+            this.bildschirm(tag, code, message, link)
+
+        
+            /*onClick(tag, () => {
+                destroyAll("*")
+                this.bildschirm(tag, code, message, link)
+            });*/
+
+            onClick(tag, () => {
+                destroyAll("*")
+                
+            });
+        })
+
+    }
+    bildschirm ( tag, code, message, link) {
+
+
+         // text
+        add([
+            text(message, {
+                size: height()/30,  
+                align: "center"
+            }),
+            color(0, 0, 0),
+            anchor("center"),
+            pos(width()/2, height()/10 * 2.5),
+            "Nachricht"
+        ]);
+
+        // Kästchen für Code
+        const codeField = add([
+            rect(width() / 10, width() / 50),
+            color(230, 230, 230),
+            outline(3, rgb(100, 100, 100)),
+            pos(center().x, height() / 10 * 4.2),
+            anchor("center"),
+            z(0),
+            "codeField"
+        ])
+
+
+        // Zurück-Button
+        add([
+            text("<- zurück", {
+                size: height() / 37,
+            }),
+            color(20, 20, 120),
+            anchor("center"),
+            area(),
+            pos(width() / 10 * 2, height() / 10 * 8),
+            z(31),
+            "zurück"
+        ])
+
+        onClick("zurück" , () => {
+            destroyAll("*");          
+            this.displayRaum2_2();
+            add([
+                sprite("kreis"),
+                area(),
+                pos(width()/1.65,height()/1.85),
+                anchor("center"),
+                scale(0.7,0.6),
+                opacity(0),
+                "kreis"
+            ])
+            onClick("kreis", () => { this.raum2t2();});
+
+            add([
+                sprite("kreis"),
+                area(),
+                pos(width()/2.05,height()/1.24),
+                anchor("center"),
+                scale(0.25,0.3),
+                opacity(0),
+                "kreis2"
+            ])
+            onClick("kreis2", () => { this.raum2t1_2();});
+            
+        });
+
+        onKeyPress("escape" , () => {
+            destroyAll("*");          
+            this.displayRaum2_2();
+            add([
+                sprite("kreis"),
+                area(),
+                pos(width()/1.65,height()/1.85),
+                anchor("center"),
+                scale(0.7,0.6),
+                opacity(0),
+                "kreis"
+            ])
+            onClick("kreis", () => { this.raum2t2();});
+
+            add([
+                sprite("kreis"),
+                area(),
+                pos(width()/2.05,height()/1.24),
+                anchor("center"),
+                scale(0.25,0.3),
+                opacity(0),
+                "kreis2"
+            ])
+            onClick("kreis2", () => { this.raum2t1_2();});
+                 
+        });
+
+        
+        add([
+            sprite("Glühbirne"),
+            scale(0.3),
+            area(),
+            anchor("center"),
+            pos(width()/10 * 7, height() / 10 * 7),
+            "hintButton"
+        ])
+
+        onClick("hintButton", () => {
+            window.open("https://learningapps.org/watch?v=pcs8rbghk25"); 
+        });
+            
+
+
+
         let enteredCode = "";
-        function createButton(x, y, label) {
+        let fehlerText = null; 
+
+        const codeDisplay = add([
+            text("", { size: height() /43 }),
+            color(0, 0, 0),
+            anchor("center"),
+            pos(width() / 2, height() / 10* 4.2),
+            "Nachricht"
+        ]);
+
+        const eingabeText = add([
+            text("OK", { size: height() / 50 }),
+            color(0, 0, 0),
+            anchor("center"),
+            pos(width() / 10 * 5.65, height() / 10* 4.2),
+            area(),
+            "eingabetext"
+        ]);
+
+        eingabeText.onClick(() => {
+            if (enteredCode === `${code}`) {
+                destroyAll("*");
+                go("r2t2_2");
+                //this.raum2t2_2();
+                this.bildschirm()
+            } else {
+                if (fehlerText) destroy(fehlerText);
+                fehlerText = add([
+                    text("Das war leider der falsche Code", {
+                        size: height() / 50,
+                    }),
+                    color(0, 0, 0),
+                    anchor("center"),
+                    pos(width() / 10* 5, height() / 10* 4.75),
+                    "Nachricht"
+                ]);
+                enteredCode = "";
+                codeDisplay.text = "";
+                
+                codeField.move(30, 0);
+                wait(0.05, () => codeField.move(-60, 0));
+                wait(0.1, () => codeField.move(30, 0));
+
+            }
+        })
+       
+
+        function createBtn(x, y, label) {
             const btn = add([
-                rect(40, 40),
-                pos(x , y),
+                rect(width() / 38.4, width() / 38.4),
+                color(240, 240, 240),
+                outline(2, rgb(50, 50, 50)),
+                pos(x, y),
                 anchor("center"),
                 area(),
-                outline(2),
                 "button",
-               {label }
+                { label }
             ]);
-            btn.add([
-                text(label, { size: 18 }),
+
+            //onHover("button",()=>{btn.color = rgb(255,255,255)})
+
+            add([
+                text(label, {
+                    size: height() / 40,
+                }),
+                pos(x, y),
                 anchor("center"),
-                pos(0,0), 
                 color(0, 0, 0),
             ]);
-        
+
+
             btn.onClick(() => {
-                enteredCode += label;
-                //debug.log(enteredCode);
-            });
-
-   
-        }
-        const offsetX = -50; 
-        const offsetY = -50; 
-       
-        createButton(width()/2 + offsetX , height()/2 + offsetY , "0");
-        createButton((width()/2)+50 + offsetX , height()/2 + offsetY , "1");
-        createButton((width()/2)+100 + offsetX, height()/2 + offsetY , "2");
-        
-        createButton(width()/2 + offsetX , (height()/2)+50 + offsetY , "3");
-        createButton((width()/2)+50 + offsetX , (height()/2)+50 + offsetY , "4"); 
-        createButton((width()/2)+100 + offsetX , (height()/2)+50 + offsetY , "5");
-        
-        createButton(width()/2 + offsetX , (height()/2)+100 + offsetY, "6");
-        createButton((width()/2)+50 + offsetX, (height()/2)+100 + offsetY, "7");
-        createButton((width()/2)+100 + offsetX , (height()/2)+100 + offsetY, "8");
-        
-        createButton((width()/2)+50 + offsetX , (height()/2)+150 + offsetY, "OK");
-        
-        onClick("button", (b) => {
-            if (enteredCode.length==1){
-            add([
-                text("*", {
-                    size: height()/37,  
-                }),
-                color(0, 0, 0),
-                anchor("center"), 
-                pos(width()/2-14,height()/2.8),
-                "Nachricht"
-            ]);
-        }
-        if (enteredCode.length==2){
-            add([
-                text("    *", {
-                    size: height()/37,  
-                }),
-                color(0, 0, 0),
-                anchor("center"), 
-                pos(width()/2-14,height()/2.8),
-                "Nachricht"
-            ]);
-        }
-        if (enteredCode.length==3){
-            add([
-                text("        *", {
-                    size: height()/37,  
-                }),
-                color(0, 0, 0),
-                anchor("center"), 
-                pos(width()/2-14,height()/2.8),
-                "Nachricht"
-            ]);
-        }
-
-        });
-        
-        onClick("button", (b) => {
-            if (b.label === "OK") {
-                if (enteredCode === "163OK") {
-                    //debug.log("Richtig!"),
-                    this.raum2t2_2();
+                if (label === "Del") {
+                    enteredCode = enteredCode.slice(0, -1);
                 } else {
-                    //debug.log("Falsch, versuch's nochmal!");
-                    add([
-                        text("Falsch, versuch's nochmal!", {
-                            size: height()/37,  
-                        }),
-                        color(0, 0, 0),
-                        anchor("center"), 
-                        pos(width()/2,height()/2.8),
-                        "Nachricht"
-                    ]);
-                    enteredCode = "";
+                    if (enteredCode.length <= 12) enteredCode += label;
+
+                    if (fehlerText) {
+                        destroy(fehlerText);
+                        fehlerText = null;
+                    }
                 }
-            }
+
+                codeDisplay.text = enteredCode;
+            });
+        }
+
+        const offsetX = width()/ - 20;
+        const offsetY = width()/ 60;
+
+        let startX = center().x - width() / 26.5;
+        let startY = center().y + height() / 25;
+        let buttonSize = width() / 38.4;
+        let padding = width() / 100;
+
+        let labels = [
+        ["1", "2", "3"],
+        ["4", "5", "6"],
+        ["7", "8", "9"],
+        ["", "0", "Del"]
+        ];
+
+        labels.forEach((row, rowIndex) => {
+        row.forEach((label, colIndex) => {
+            if (!label) return;
+            let x = startX + colIndex * (buttonSize + padding);
+            let y = startY + rowIndex * (buttonSize + padding);
+            createBtn(x, y, label);
         });
-       
+        });
+
+
     }
 
     raum2t2_2 (){
