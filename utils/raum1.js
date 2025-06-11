@@ -23,7 +23,7 @@ class RAUM1 {
         add([
             sprite("bgRaum1"),
             area(),
-            scale(width() / 1574, height() / 908*0.88), 
+            scale(width() / 1330, height() / 933*0.88),
             pos(width() / 2, height() / 2), 
             anchor("center"),
             fixed(),
@@ -221,7 +221,8 @@ class RAUM1 {
                     onClick("ja", () => {
                         if (aktuelleFlasche === korrekteFlasche) {
                             destroyAll("*"); 
-                            this.t2zu3(); 
+                            //this.t2zu3(); 
+                            go("r1t2");
                     } else {wait(0.01,()=>{
                         destroyAll("*")
                         this.t1_2("Das war nicht die richtige Flasche! Versuche es noch einmal.")
@@ -244,6 +245,7 @@ class RAUM1 {
             })
         })
         uiManager.vergroesserPolmann2()
+       
     }
     
     t2zu3() {
