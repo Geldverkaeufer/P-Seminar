@@ -1,17 +1,7 @@
 let gespeicherterPolmannText = ""
 
+
 class UIManager {
-    /*displayPolizeiMap() {
-        add([
-            sprite("bgpolizei"),
-            area(),
-            scale(width() / 1492, height() / 811), 
-            pos(width() / 2, height() / 2), 
-            anchor("center"),
-            fixed(),
-            "PolizeiBG"
-        ]);
-    }*/
 
     displayRaum1() {
         add([
@@ -24,8 +14,8 @@ class UIManager {
             "Raum1BG"
         ])
     }
-    
-    boxRaum1 (){
+
+    boxRaum1 () {
         add([
             sprite("Raum1_box"),
             area(),
@@ -37,7 +27,7 @@ class UIManager {
         ])
     }
     
-    areaBoxRaum1 (){
+    areaBoxRaum1 () {
         add([
             sprite("kreis"),
             area(),
@@ -49,7 +39,7 @@ class UIManager {
         ])
     }
 
-    areaNotizRaum1 (){
+    areaNotizRaum1 () {
         add([
             sprite("kreis"),
             area(),
@@ -60,14 +50,8 @@ class UIManager {
             "kreis"
         ])
     }
-
-    raum1t2_3() {
-        window.open("https://learningapps.org/watch?v=p6i7jkchk25");
-    }
-
-
-    
-     displayRaum2() {
+ 
+    displayRaum2() {
         add([
             sprite("bgRaum2"),
             area(),
@@ -108,6 +92,7 @@ class UIManager {
             window.open("https://learningapps.org/watch?v=p6i7jkchk25");
         
     }
+
     raum2t1_2(){
         window.open("https://learningapps.org/watch?v=pcs8rbghk25");
 
@@ -137,6 +122,7 @@ class UIManager {
             "kreis"
         ])
     }
+
     raum2t2 (){
         
         add([
@@ -178,6 +164,7 @@ class UIManager {
         })
 
     }
+
     bildschirm ( tag, code, message, link) {
 
 
@@ -743,36 +730,6 @@ class UIManager {
         
          
     }
-    
-
-   
-        
-    displayRaum3() {
-        add([
-            sprite("bgRaum3"),
-            area(),
-            scale(width() / 1727, height() / 987), 
-            pos(width() / 2, height() / 2), 
-            anchor("center"),
-            fixed(),
-            "Raum3BG"
-        ])
-        
-    }
-    /*areaTürRaum3(){
-        add([
-            sprite("kreis"),
-            area(),
-            pos(width()/1.95,height()/3.3),
-            anchor("center"),
-            scale(0.7,0.55),
-            opacity(0),
-            "kreis"
-        ])
-       
-    }*/
-
-    
 
     displayRaum3_2() {
         add([
@@ -897,58 +854,61 @@ class UIManager {
             "kreis"
         ])
     }
-  
 
     
+    
     displayKollegenNachricht(big, content) {
+
         if (big) {
             gespeicherterPolmannText = content; 
+
             add([
-                sprite("Sprechblase"), 
-                pos(width()/2,height()/10*9), 
+                sprite("Sprechblase"),
+                pos(width() / 2, height() / 10 * 9),
                 area(),
-                scale(width() / 1046/1.3, height() /177/5.5), 
+                scale(width() / 1046 / 1.3, height() / 177 / 5.5),
                 anchor("center"),
                 z(19),
                 "Sprechblase"
             ]);
-        
+
             add([
                 text(content, {
-                    size: height()/37,  
+                    size: height() / 37,
                 }),
                 color(0, 0, 0),
                 anchor("center"),
-                pos(width()/10*5, height()/10*9),
+                pos(width() / 10 * 5, height() / 10 * 9),
                 z(19),
                 "nachricht"
             ]);
-        
-         add([
-                sprite("Polmann"), 
-                pos(width(), height()), 
+
+            add([
+                sprite("Polmann"),
+                pos(width(), height()),
                 area(),
-                scale(Math.max(width() / 800/6, height() / 1600/5)), 
-                anchor("botright"), 
+                scale(0.8),
+                anchor("botright"),
                 z(20),
                 "Polmann"
             ]);
-        }
-        else {
+        } else {
             add([
-                sprite("Polmann"), 
-                pos(width(), height()), 
+                sprite("Polmann"),
+                pos(width(), height()),
                 area(),
-                scale(Math.max(width() / 800/6/3, height() / 1600/5/3)), 
+                scale(0.3),
                 anchor("botright"),
+                z(10),
                 "miniPolmann"
             ]);
         }
     }
-
+    
     updateKollegenNachricht(content) {
         gespeicherterPolmannText = content
     }
+
 
     displayNachricht(content,y) {
         add([
@@ -975,6 +935,7 @@ class UIManager {
             "Nachricht"
         ]);
     }
+    
 
     verkleinerPolmann () {
         onClick("Polmann", () => {
@@ -1014,11 +975,11 @@ class UIManager {
         ])
     }
 
-    openLink (sprite,link) {
+    /*openLink (sprite,link) {
         onClick(sprite, () => {
             window.open(link, "_blank");
          })
-    }
+    }*/
     }
 
 
