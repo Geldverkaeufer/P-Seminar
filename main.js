@@ -75,6 +75,24 @@ const scenes = {
 
     r1t2:()=>{
         uiManager.displayRaum1()
+        wait(0.5, () => {uiManager.displayKollegenNachricht(true, " auffälliges/box?")})
+        uiManager.verkleinerPolmann() 
+        let nachricht=0
+        onClick("Polmann", () => {
+            if (nachricht == 0) {
+                destroyAll("Sprechblase");
+                destroyAll("nachricht");
+                destroyAll("Polmann");
+    
+                // Jetzt den Rest ausführen
+                wait(0.01,()=>{uiManager.displayKollegenNachricht(false,"laweiuf");})
+                uiManager.vergroesserPolmann("auf tisch");
+                uiManager.displayGlühbirne()
+                uiManager.verkleinerPolmann()
+                nachricht += 1;
+    
+            }
+        });
         uiManager.areaBoxRaum1()
         onClick("kreis", () => { go("r1t2_2"); });
     },
@@ -94,16 +112,24 @@ const scenes = {
     
                 // Jetzt den Rest ausführen
                 wait(0.01,()=>{uiManager.displayKollegenNachricht(false,"laweiuf");})
-                uiManager.vergroesserPolmann("unten rechts zerknüllt");
+                uiManager.vergroesserPolmann("unten links zerknüllt");
+                
                 uiManager.displayGlühbirne()
                 uiManager.verkleinerPolmann();;
-                onClick("kreis", () => { go("r2t1"); });
+                onClick("kreis", () => {  window.open("https://learningapps.org/watch?v=po2e570r525", "_blank"); 
+                    //go("r1t3")
+                });
+    
     
             }
         });
-        onClick("kreis", () => { destroyAll("*"), go("r1t3");});
+        //onClick("kreis", () => { destroyAll("*"), go("r1t3");});
+        onClick("kreis", () => {  window.open("https://learningapps.org/watch?v=po2e570r525", "_blank"); 
+            go("r1t3")
+        });
     
     },
+
     r1t3:()=>{
         Raum1.t2zu3()
     },
@@ -114,38 +140,37 @@ const scenes = {
         uiManager.verkleinerPolmann()  
         uiManager.areaWärmematteRaum2()
         uiManager.displayRaum2();
-        wait(0.5, () => { uiManager.displayKollegenNachricht(true,"Auf dem Bildschirm finden wir sicherlich Hilfreiche Informationen um aus dem Raum zu gelangen")})
+        wait(0.5, () => { uiManager.displayKollegenNachricht(true,"Auf dem Bildschirm finden wir")})
         let nachricht = 0
-        // Erster Klick
         onClick("Polmann", () => {
-            if (nachricht === 0) {
-                destroyAll("Sprechblase");
-                destroyAll("nachricht");
-                destroyAll("Polmann");
-                nachricht += 1;
-    
-                wait(0.01, () => {
-                    uiManager.displayKollegenNachricht(true,"wir könnten durch eine Säurme base Reaktion Wärme erzeugen um den BIldschirm Batterie ...");
-                });
-            }
-        });
-        // Zweiter Klick
-        onClick("Polmann", () => {
-            if (nachricht === 1) {
+            if (nachricht == 0) {
                 destroyAll("Sprechblase");
                 destroyAll("nachricht");
                 destroyAll("Polmann");
     
                 // Jetzt den Rest ausführen
                 wait(0.01,()=>{uiManager.displayKollegenNachricht(false,"laweiuf");})
-                uiManager.vergroesserPolmann("Starte den Versuch indem du darauf klickst");
+                uiManager.vergroesserPolmann("wir könnten durch eine Säurme base Reaktion ...");
+                //uiManager.displayGlühbirne()
+                uiManager.verkleinerPolmann()
+                nachricht += 1;
+    
+            }else if (nachricht == 1) {
+                destroyAll("Sprechblase");
+                destroyAll("nachricht");
+                destroyAll("Polmann");
+    
+                // Jetzt den Rest ausführen
+                wait(0.01,()=>{uiManager.displayKollegenNachricht(false,"laweiuf");})
+                uiManager.vergroesserPolmann("wir könnten durch eine Säurme base Reaktion ...");
                 uiManager.displayGlühbirne()
                 uiManager.verkleinerPolmann();;
-                onClick("kreis", () => { go("r2t1"); });
     
-                nachricht += 1; // Falls du noch weitere Schritte hinzufügen willst
             }
         });
+        
+        
+    
         onClick("kreis", () => { go("r2t1"); });
     },
 
@@ -176,8 +201,20 @@ const scenes = {
 
     r2t2_2: () => {
         uiManager.raum2t2_2()
-        onKeyPress("space",() => {go("raum3")})
+        //onKeyPress("space",() => {go("raum3")})
     },
+
+    r2zu3 : () => {
+        uiManager.displayRaum2_2()
+        uiManager.areaTürRaum2()
+        onClick("kreis", () => { go("r2zu3_2"); });
+    },
+
+    r2zu3_2 :()=>{
+        uiManager.displayTürRaum2()
+        uiManager.raum2zu3();
+    },
+
 
     raum3: () => {
         Raum3.displayRaum3()
@@ -229,20 +266,25 @@ const scenes = {
         //uiManager.raum3_2t1();
         uiManager.displayRaum3_tisch();
         uiManager.displayProtokolle();
-        wait(0.5, () => {uiManager.displayKollegenNachricht(true, "super fähle jetzt das Protokoll aus das nötig ist")})
+        wait(0.5, () => {uiManager.displayKollegenNachricht(true, "super wähle jetzt das Protokoll aus das nötig ist")})
         let nachricht=0
         onClick("Polmann", () => {
-            if (nachricht === 0) {
+            if (nachricht == 0) {
                 destroyAll("Sprechblase");
                 destroyAll("nachricht");
                 destroyAll("Polmann");
-                ;
     
-                wait(0.01, () => {
-                    uiManager.displayKollegenNachricht(false, "f");
-                });
+                // Jetzt den Rest ausführen
+                wait(0.01,()=>{uiManager.displayKollegenNachricht(false,"laweiuf");})
+                uiManager.vergroesserPolmann("hover over für zoom / man braucht rote lsg");
+                uiManager.displayGlühbirne()
+                uiManager.verkleinerPolmann()
+                nachricht += 1;
+    
             }
         });
+        
+       
         onClick("PFehling2", () => { go("r3_2t2") });
         onClick("PSilberspiegel2", () => { go("r3_2t1_2") });
        
@@ -253,19 +295,25 @@ const scenes = {
         uiManager.displayRaum3_tisch();
         uiManager.displayProtokolle();
         wait(0.5, () => {uiManager.displayKollegenNachricht(true, "falsches Protokoll")})
+        uiManager.verkleinerPolmann() 
         let nachricht=0
         onClick("Polmann", () => {
-            if (nachricht === 0) {
+            if (nachricht == 0) {
                 destroyAll("Sprechblase");
                 destroyAll("nachricht");
                 destroyAll("Polmann");
-                ;
     
-                wait(0.01, () => {
-                    uiManager.displayKollegenNachricht(false, "f");
-                });
+                // Jetzt den Rest ausführen
+                wait(0.01,()=>{uiManager.displayKollegenNachricht(false,"laweiuf");})
+                uiManager.vergroesserPolmann("man braucht rote lsg");
+                uiManager.displayGlühbirne()
+                uiManager.verkleinerPolmann()
+                nachricht += 1;
+    
             }
         });
+
+
         onClick("PFehling2", () => { go("r3_2t2") });
         onClick("PSilberspiegel2", () => { go("r3_2t1_2") });
 
@@ -275,10 +323,31 @@ const scenes = {
         destroyAll("*");
         uiManager.raum3_2t2();
         uiManager.displayRaum3_2();
+        
+        wait(0.5, () => {uiManager.displayKollegenNachricht(true, "in auge füllen")})
+        uiManager.verkleinerPolmann() 
+        let nachricht=0
+        onClick("Polmann", () => {
+            if (nachricht == 0) {
+                destroyAll("Sprechblase");
+                destroyAll("nachricht");
+                destroyAll("Polmann");
+    
+                // Jetzt den Rest ausführen
+                wait(0.01,()=>{uiManager.displayKollegenNachricht(false,"laweiuf");})
+                uiManager.vergroesserPolmann("mit drag and drop");
+                uiManager.displayGlühbirne()
+                uiManager.verkleinerPolmann()
+                nachricht += 1;
+    
+            }
+        });
         uiManager.areaAuge (); 
+        uiManager.initFillEye();
+        uiManager.areaTürRaum3_2();
         onClick("kreis", () => { go("end") });
-    },
 
+    },
     end: () => {
         onKeyPress("space",()=>{go("intro")})
         add([
