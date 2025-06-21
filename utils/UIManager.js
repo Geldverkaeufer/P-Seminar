@@ -1,7 +1,17 @@
 let gespeicherterPolmannText = ""
 
-
 class UIManager {
+    /*displayPolizeiMap() {
+        add([
+            sprite("bgpolizei"),
+            area(),
+            scale(width() / 1492, height() / 811), 
+            pos(width() / 2, height() / 2), 
+            anchor("center"),
+            fixed(),
+            "PolizeiBG"
+        ]);
+    }*/
 
     displayRaum1() {
         add([
@@ -14,8 +24,8 @@ class UIManager {
             "Raum1BG"
         ])
     }
-
-    boxRaum1 () {
+    
+    boxRaum1 (){
         add([
             sprite("Raum1_box"),
             area(),
@@ -27,7 +37,7 @@ class UIManager {
         ])
     }
     
-    areaBoxRaum1 () {
+    areaBoxRaum1 (){
         add([
             sprite("kreis"),
             area(),
@@ -39,7 +49,7 @@ class UIManager {
         ])
     }
 
-    areaNotizRaum1 () {
+    areaNotizRaum1 (){
         add([
             sprite("kreis"),
             area(),
@@ -50,8 +60,14 @@ class UIManager {
             "kreis"
         ])
     }
- 
-    displayRaum2() {
+
+    raum1t2_3() {
+        window.open("https://learningapps.org/watch?v=p6i7jkchk25");
+    }
+
+
+    
+     displayRaum2() {
         add([
             sprite("bgRaum2"),
             area(),
@@ -92,7 +108,6 @@ class UIManager {
             window.open("https://learningapps.org/watch?v=p6i7jkchk25");
         
     }
-
     raum2t1_2(){
         window.open("https://learningapps.org/watch?v=pcs8rbghk25");
 
@@ -122,7 +137,6 @@ class UIManager {
             "kreis"
         ])
     }
-
     raum2t2 (){
         
         add([
@@ -164,7 +178,6 @@ class UIManager {
         })
 
     }
-
     bildschirm ( tag, code, message, link) {
 
 
@@ -299,9 +312,10 @@ class UIManager {
         eingabeText.onClick(() => {
             if (enteredCode === `${code}`) {
                 destroyAll("*");
-                go("r2t2_2");
-                //this.raum2t2_2();
-                this.bildschirm()
+                //go("r2t2_2");
+                this.raum2t2_2();
+                //this.bildschirm();
+                return;
             } else {
                 if (fehlerText) destroy(fehlerText);
                 fehlerText = add([
@@ -542,7 +556,7 @@ class UIManager {
                 destroyAll("m4_2r2"); 
             }); 
         })
-        const expectedOrder = ["m1_2r2", "m2_2r2", "m3_2r2", "m4_2r2"];
+        const expectedOrder = ["m2_2r2", "m1_2r2", "m3_2r2", "m4_2r2"];
         let clickedOrder = [];
         let numbers = []; // speichert die angezeigten Nummern
         
@@ -612,7 +626,8 @@ class UIManager {
                                 sprite("1teil"), 
                                 scale(width() / 676/ 11, height() / 448 / 11),
                                 area(),
-                                pos(width() / 2-80, height() / 2+150),
+                                //pos(width() / 2-80, height() / 2+150),
+                                pos(width() * 0.45, height() * 0.68),
                                 anchor("center"),
                                 "1teil"
                             ]);
@@ -623,7 +638,8 @@ class UIManager {
                                     sprite("1teil2"), 
                                     scale(width() / 459/10, height() /304 / 10),
                                     area(),
-                                    pos(width() / 2-80, height() / 2+150),
+                                    //pos(width() / 2-80, height() / 2+150),
+                                    pos(width() * 0.45, height() * 0.68),
                                     anchor("center"),
                                     "1teil2"
                                 ]);
@@ -638,7 +654,8 @@ class UIManager {
                                 sprite("2teil"), 
                                 scale(width() / 676/ 11, height() / 448 / 11),
                                 area(),
-                                pos(width() / 2+80, height() / 2+150),
+                                //pos(width() / 2+80, height() / 2+150),
+                                pos(width() * 0.55, height() * 0.68),
                                 anchor("center"),
                                 "2teil"
                             ]);
@@ -649,7 +666,8 @@ class UIManager {
                                     sprite("2teil2"), 
                                     scale(width() / 459/10, height() /304 / 10),
                                     area(),
-                                    pos(width() / 2+80, height() / 2+150),
+                                    //pos(width() / 2+80, height() / 2+150),
+                                    pos(width() * 0.55, height() * 0.68),
                                     anchor("center"),
                                     "2teil2"
                                 ]);
@@ -668,7 +686,7 @@ class UIManager {
                                 clicked1teil = true;  
 
                                 if (clicked1teil==true && clicked2teil==true) {
-                                    go("raum3");
+                                    go("r2zu3");
                                     
                                 }
                            
@@ -680,14 +698,14 @@ class UIManager {
                                 clicked2teil = true;
 
                                 if (clicked1teil==true && clicked2teil==true) {
-                                    go("raum3");
+                                    go("r2zu3");
                                     
                                 }
 
                             }); 
 
                             if (clicked1teil==true && clicked2teil==true) {
-                                go("raum3");
+                                go("r2zu3");
                                 
                             }
 
@@ -697,7 +715,7 @@ class UIManager {
                     
                     
                     
-                } else {
+                } else if (clickedOrder.length === expectedOrder.length){
                     // Falsch -> Alles zurücksetzen
                     //console.log("Falsche Reihenfolge!");
                     add([
@@ -713,6 +731,8 @@ class UIManager {
                     })
                     wait(0.5, () => {resetClicks();
                     })
+                } else {
+
                 }
             }
         }
@@ -730,6 +750,157 @@ class UIManager {
         
          
     }
+
+    displayTürRaum2(){
+        add([
+            sprite("Raum2_tür"),
+            area(),
+            scale(width() /2048, height() /1277), 
+            pos(width() / 2, height() / 2), 
+            anchor("center"),
+            fixed(),
+            "Raum2_tür"
+        ])
+
+    }
+    areaTürRaum2(){
+        add([
+            sprite("kreis"),
+            area(),
+            pos(width()/7,height()/1.6),
+            anchor("center"),
+            scale(0.9,3.3),
+            opacity(0),
+            "kreis"
+        ])
+
+    }
+
+    raum2zu3(){
+
+        let enteredCode = "";
+        let fehlerText = null; 
+
+        const codeDisplay = add([
+            text("", { size: height() / 30 }),
+            color(0, 0, 0),
+            anchor("topleft"),
+            pos(width() / 10* 4.47, height() / 10* 2.3),
+            "Nachricht"
+        ]);
+
+        const eingabeText = add([
+            text("OK", { size: height() / 35 }),
+            color(0, 0, 0),
+            anchor("center"),
+            //pos(width() / 10 * 5.6, height() / 3.2),
+            pos(width() / 10 * 5.6, height() / 2.9),
+            area(),
+            "eingabetext"
+        ]);
+
+        eingabeText.onClick(() => {
+            if (enteredCode === "24")  {
+                go("raum3");
+            } else {
+                if (fehlerText) destroy(fehlerText);
+                fehlerText = add([
+                    text("Das war leider\nder falsche Code", {
+                        size: height() / 37,
+                    }),
+                    color(0, 0, 0),
+                    anchor("topleft"),
+                    pos(width() / 10* 4.47, height() / 10* 2.3),
+                    "Nachricht"
+                ]);
+                enteredCode = "";
+                codeDisplay.text = "";
+            }
+        });
+
+        function createBtn(x, y, label) {
+            const btn = add([
+                rect(width() /38.4, width() /38.4),
+                pos(x, y),
+                anchor("center"),
+                area(),
+                opacity(0),
+                "button",
+                { label }
+            ]);
+
+            btn.onClick(() => {
+                if (label === "DEL") {
+                    enteredCode = enteredCode.slice(0, -1);
+                } else {
+                    if (enteredCode.length <= 12) enteredCode += label;
+
+                    if (fehlerText) {
+                        destroy(fehlerText);
+                        fehlerText = null;
+                    }
+                }
+
+                codeDisplay.text = enteredCode;
+            });
+        }
+
+        const offsetX = width()/ -24;
+        const offsetY = height()/ -9.947109375;
+
+        // Ziffernfeld
+        createBtn(width() / 2 + offsetX, height() / 2 + offsetY, "1");
+        createBtn(width() / 2 + width()/ 21.33 + offsetX, height() / 2 + offsetY, "2");
+        createBtn(width() / 2 + width()/ 10.66 + offsetX, height() / 2 + offsetY, "3");
+
+        createBtn(width() / 2 + offsetX, height() / 2 + height()/ 15.75 + offsetY, "4");
+        createBtn(width() / 2 + width()/ 21.33 + offsetX, height() / 2 + height()/15.75 + offsetY, "5");
+        createBtn(width() / 2 + width()/ 10.66 + offsetX, height() / 2 + height()/15.75 + offsetY, "6");
+
+        createBtn(width() / 2 + offsetX, height() / 2 + height()/7.875 + offsetY, "7");
+        createBtn(width() / 2 + width()/ 21.33 + offsetX, height() / 2 + height()/7.875 + offsetY, "8");
+        createBtn(width() / 2 + width()/ 10.66 + offsetX, height() / 2 + height()/7.875 + offsetY, "9");
+
+        createBtn(width() / 2 + width()/ 21.33 + offsetX, height() / 2 + height()/5.4 + offsetY, "0");
+
+        // "DEL"-Taste rechts unten
+        createBtn(width() / 2 + width()/ 10.66 + offsetX, height() / 2 + height()/5.4 + offsetY, "DEL");
+    }
+
+
+
+    
+
+    
+
+   
+        
+    displayRaum3() {
+        add([
+            sprite("bgRaum3"),
+            area(),
+            scale(width() / 1727, height() / 987), 
+            pos(width() / 2, height() / 2), 
+            anchor("center"),
+            fixed(),
+            "Raum3BG"
+        ])
+        
+    }
+    /*areaTürRaum3(){
+        add([
+            sprite("kreis"),
+            area(),
+            pos(width()/1.95,height()/3.3),
+            anchor("center"),
+            scale(0.7,0.55),
+            opacity(0),
+            "kreis"
+        ])
+       
+    }*/
+
+    
 
     displayRaum3_2() {
         add([
@@ -851,64 +1022,154 @@ class UIManager {
             anchor("center"),
             scale(0.4,0.25),
             opacity(0),
-            "kreis"
+            "AreaAuge"
         ])
+    }
+        
+    initFillEye() {
+        
+        this.eye = this.displayRaum3_2();
+
+        
+        this.eyeHit = add([
+            sprite("kreis"),
+            area(),
+            pos(width()/2.7,height()/1.8),
+            anchor("center"),
+            scale(0.4, 0.25),                   // passt zu deinem alten areaAuge()
+            opacity(0),
+            "augeHit",
+        ]);
+
+        /* 3) Flasche (rote Flüssigkeit) rechts unten spawnen ---------- */
+        this.spawnBottle();
+    }
+
+    /** Flasche lässt sich ziehen; Loslassen auf augeHit -> fillEye() */
+    spawnBottle() {
+        
+        const bottle = add([
+            sprite("roteFlüssigkeit"),          // roteflüssigkeit.jpg
+            area(),
+            pos(width() / 1.3, height() / 1.32),
+            anchor("center"),
+            //z(50),
+            scale(0.15),
+            "bottle",
+        ]);
+
+        let dragging = false, offset = vec2(0);
+
+        onMousePress(() => {
+            if (bottle.isHovering()) {
+                dragging = true;
+                offset = mousePos().sub(bottle.pos);
+            }
+        });
+
+        onUpdate(() => {
+            if (dragging) bottle.pos = mousePos().sub(offset);
+        });
+
+        onMouseRelease(() => {
+            if (!dragging) return;
+            dragging = false;
+            if (bottle.isColliding(get("augeHit")[0])) { 
+                this.fillEye();
+            } else {
+                // optional zurückspringen, fkt nicht 
+                bottle.moveTo(width() / 1.12, height() / 1.22, 400);
+            }
+
+        });
     }
 
     
+    fillEye() {
+
+        destroyAll("*")
+        add([
+            sprite("bgRaum3_2rot"),
+            area(),
+            scale(width() / 1594, height() / 907), 
+            pos(width() / 2, height() / 2), 
+            anchor("center"),
+            fixed(),
+            "Raum3BG_2rot"
+        ]);
+
+        this.areaTürRaum3_2();
+    }
+
+    areaTürRaum3_2(){
+
+        add([
+            sprite("kreis"),
+            area(),
+            pos(width()/2,height()/1.8),
+            anchor("center"),
+            scale(1.3,1.9),
+            opacity(0),
+            "kreis"
+        ])
+
+
+    }
+
+    
+            
+    
+
     
     displayKollegenNachricht(big, content) {
-
         if (big) {
             gespeicherterPolmannText = content; 
-
             add([
-                sprite("Sprechblase"),
-                pos(width() / 2, height() / 10 * 9),
+                sprite("Sprechblase"), 
+                pos(width()/2,height()/10*9), 
                 area(),
-                scale(width() / 1046 / 1.3, height() / 177 / 5.5),
+                scale(width() / 1046/1.3, height() /177/5.5), 
                 anchor("center"),
                 z(19),
                 "Sprechblase"
             ]);
-
+        
             add([
                 text(content, {
-                    size: height() / 37,
+                    size: height()/37,  
                 }),
                 color(0, 0, 0),
                 anchor("center"),
-                pos(width() / 10 * 5, height() / 10 * 9),
+                pos(width()/10*5, height()/10*9),
                 z(19),
                 "nachricht"
             ]);
-
-            add([
-                sprite("Polmann"),
-                pos(width(), height()),
+        
+         add([
+                sprite("Polmann"), 
+                pos(width(), height()), 
                 area(),
-                scale(0.8),
-                anchor("botright"),
+                scale(Math.max(width() / 800/6, height() / 1600/5)), 
+                anchor("botright"), 
                 z(20),
                 "Polmann"
             ]);
-        } else {
+        }
+        else {
             add([
-                sprite("Polmann"),
-                pos(width(), height()),
+                sprite("Polmann"), 
+                pos(width(), height()), 
                 area(),
-                scale(0.3),
+                scale(Math.max(width() / 800/6/3, height() / 1600/5/3)), 
                 anchor("botright"),
-                z(10),
                 "miniPolmann"
             ]);
         }
     }
-    
+
     updateKollegenNachricht(content) {
         gespeicherterPolmannText = content
     }
-
 
     displayNachricht(content,y) {
         add([
@@ -935,7 +1196,6 @@ class UIManager {
             "Nachricht"
         ]);
     }
-    
 
     verkleinerPolmann () {
         onClick("Polmann", () => {
@@ -975,11 +1235,11 @@ class UIManager {
         ])
     }
 
-    /*openLink (sprite,link) {
+    openLink (sprite,link) {
         onClick(sprite, () => {
             window.open(link, "_blank");
          })
-    }*/
+    }
     }
 
 
