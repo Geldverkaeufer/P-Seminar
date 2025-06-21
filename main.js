@@ -206,12 +206,12 @@ const scenes = {
 
     r2zu3 : () => {
         uiManager.displayRaum2_2()
-        uiManager.areaTürRaum2()
+        uiManager.areaTurRaum2()
         onClick("kreis", () => { go("r2zu3_2"); });
     },
 
     r2zu3_2 :()=>{
-        uiManager.displayTürRaum2()
+        uiManager.displayTurRaum2()
         uiManager.raum2zu3();
     },
 
