@@ -1049,7 +1049,7 @@ class UIManager {
     spawnBottle() {
         
         const bottle = add([
-            sprite("roteFlüssigkeit"),          // roteflüssigkeit.jpg
+            sprite("roteFlussigkeit"),          // roteflüssigkeit.jpg
             area(),
             pos(width() / 1.3, height() / 1.32),
             anchor("center"),
