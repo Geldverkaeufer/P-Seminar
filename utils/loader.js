@@ -44,7 +44,7 @@ export const load = {
         loadSprite("PSilberspiegel","./assets/protokolSilberspiegel.png")
         loadSprite("Raum1_box",  "./assets/boxRaum1.jpg")
         loadSprite("bgRaum3_2rot","./assets/raum3_2rot.jpg") 
-        loadSprite("roteFlüssigkeit",  "./assets/roteFlüssigkeit.png")
+        loadSprite("roteFlussigkeit",  "./assets/roteFlüssigkeit.png")
         loadSprite("Raum2_tür",  "./assets/türRaum2.jpeg")
        
     }
