@@ -367,5 +367,5 @@ onKeyPress("d",() => {debug.inspect = true})
 onKeyPress("f",()=>{debug.inspect = false})
 
 
-go("intro")
+go("r2t2")
 console.log(height(),width())
