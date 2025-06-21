@@ -751,19 +751,19 @@ class UIManager {
          
     }
 
-    displayTürRaum2(){
+    displayTurRaum2(){
         add([
-            sprite("Raum2_tür"),
+            sprite("Raum2_tur"),
             area(),
             scale(width() /2048, height() /1277), 
             pos(width() / 2, height() / 2), 
             anchor("center"),
             fixed(),
-            "Raum2_tür"
+            "Raum2_tur"
         ])
 
     }
-    areaTürRaum2(){
+    areaTurRaum2(){
         add([
             sprite("kreis"),
             area(),
