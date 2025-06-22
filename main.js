@@ -218,7 +218,7 @@ const scenes = {
 
     raum3: () => {
         Raum3.displayRaum3()
-        Raum3.bildschirmLogik()
+        Raum3.bildschirmLogik("text")
         //Raum3.areaTürRaum3()
         onClick("kreis", () => { go("r3_2"); });  
     },
