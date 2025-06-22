@@ -867,11 +867,26 @@ class UIManager {
         createBtn(width() / 2 + width()/ 10.66 + offsetX, height() / 2 + height()/5.4 + offsetY, "DEL");
     }
 
+        raum2Glühbirne(){
 
+        add([
+            sprite("Glühbirne"),
+            area(),
+            scale(0.3), 
+            pos(width() /4, height() / 2), 
+            anchor("center"),
+            fixed(),
+            "Glühbirne"
+        ]);
+
+        onClick("Glühbirne", () => {
+            window.open("https://learningapps.org/watch?v=pgbaob0c525", "_blank"),
+            window.open("https://learningapps.org/watch?v=pydivz9cn25", "_blank");
+        })
 
     
+    }
 
-    
 
    
         
