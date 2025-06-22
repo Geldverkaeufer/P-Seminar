@@ -6,7 +6,7 @@ class Intro {
         add([
             sprite("Zeitung"),
             area(),
-            scale(1),
+            scale(width() /2048, height() /1152),
             pos(width() / 2, height() / 2),
             anchor("center"),
             fixed(),
