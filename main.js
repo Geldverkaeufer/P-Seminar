@@ -212,7 +212,8 @@ const scenes = {
 
     r2zu3_2 :()=>{
         uiManager.displayTurRaum2()
-        uiManager.raum2zu3();
+        uiManager.raum2zu3()
+        uiManager.raum2Glühbirne();
     },
 
 
