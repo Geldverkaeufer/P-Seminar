@@ -1074,7 +1074,8 @@ class UIManager {
         onMouseRelease(() => {
             if (!dragging) return;
             dragging = false;
-            if (bottle.isColliding(get("augeHit")[0])) { 
+            const auge = get("augeHit")[0];
+            if (auge && bottle.isColliding(auge)) {
                 this.fillEye();
             } else {
                 // optional zurückspringen, fkt nicht 
