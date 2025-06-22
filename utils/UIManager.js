@@ -867,7 +867,7 @@ class UIManager {
         createBtn(width() / 2 + width()/ 10.66 + offsetX, height() / 2 + height()/5.4 + offsetY, "DEL");
     }
 
-        raum2Glühbirne(){
+    raum2Glühbirne(){
 
         add([
             sprite("Glühbirne"),
@@ -888,8 +888,7 @@ class UIManager {
     }
 
 
-   
-        
+    
     displayRaum3() {
         add([
             sprite("bgRaum3"),
