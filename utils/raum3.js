@@ -19,7 +19,7 @@ class RAUM3 {
         add([
             sprite("bgRaum3"),
             area(),
-            scale(width() / 1728, height() / 986),
+            scale(width() / 1600, height() / 912),
             pos(width() / 2, height() / 2),
             anchor("center"),
             fixed(),
