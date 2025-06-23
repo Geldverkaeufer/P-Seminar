@@ -368,5 +368,5 @@ onKeyPress("d",() => {debug.inspect = true})
 onKeyPress("f",()=>{debug.inspect = false})
 
 
-go("raum3")
+go("intro")
 console.log(height(),width())
