@@ -130,6 +130,82 @@ const scenes = {
     
     },
 
+    r1t2_3:()=>{
+        add([
+            sprite("bg1t1"),
+            area(),
+            scale(width() / 27, height() / 23), 
+            pos(width() / 2, height() / 2), 
+            anchor("center"),
+            fixed(),
+            "GasflaschenBG"
+        ])
+
+        uiManager.displayNachricht(`Um welches Gas wird es sich beim nächsten Versuch halten?`, height() / 20 * 7);
+        uiManager.verkleinerPolmann()
+        uiManager.vergroesserPolmann2
+        const Gas = (x, y, label) => {
+                const btn = add([
+                    rect(width() / 10, width() / 30),
+                    color(24, 55, 77),
+                    outline(2, rgb(0, 0, 0)),
+                    pos(x, y),
+                    anchor("center"),
+                    area(),
+                    "button",
+                    { label }
+                ]);
+
+                const txt = add([
+                    text(label, { size: height() / 40 }),
+                    pos(x, y),
+                    anchor("center"),
+                    color(255, 255, 255),
+                ]);
+
+                btn.onClick(() => {
+                    if (btn.label === "CH₄") {
+                        go("r1t3")
+                    }
+                    else {
+                        uiManager.displayKollegenNachricht(true,"Das war das falsche Gas.")
+                    }
+                });
+
+                btn.onHover(() => {
+                    btn.scale = vec2(1.2);
+                    txt.scale = vec2(1.2);
+                });
+
+                btn.onHoverEnd(() => {
+                    btn.scale = vec2(1);
+                    txt.scale = vec2(1);
+                });
+            };
+
+            const startX = center().x - width() / 20 * 1.6;
+            const startY = center().y - height()/ 40;
+            const buttonSize = width() / 38.4;
+            const paddingx = width() / 10 *1.3;
+            const paddingy = width() / 35;            
+
+            const labels = [
+                ["Cl₂", "CH₄",],
+                ["SO₂", "NH₃",],
+            ];
+
+            labels.forEach((row, rowIndex) => {
+                row.forEach((label, colIndex) => {
+                    if (!label) return;
+                    const x = startX + colIndex * (buttonSize + paddingx);
+                    const y = startY + rowIndex * (buttonSize + paddingy);
+                    Gas(x, y, label);
+                });
+            });
+
+
+    },
+
     r1t3:()=>{
         Raum1.t2zu3()
     },
