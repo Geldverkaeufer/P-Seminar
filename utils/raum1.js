@@ -23,7 +23,7 @@ class RAUM1 {
         add([
             sprite("bgRaum1"),
             area(),
-            scale(width() / 1330, height() / 933), 
+            scale(width() / 1493, height() / 1067), 
             pos(width() / 2, height() / 2), 
             anchor("center"),
             fixed(),
