@@ -67,7 +67,7 @@ class Intro {
                 INTRO.PolizeiRevier();
             });
         });
-        wait(1,()=>{uiManager.displayKollegenNachricht(true,"Hier ist unsere Übersicht zu unserem Fall.\nDu kannst sie dir jederzeit anschauen!");uiManager.verkleinerPolmann();uiManager.vergroesserPolmann2()})
+        wait(1,()=>{uiManager.displayKollegenNachricht(true,"Hier ist die Übersicht zu unserem Fall.\nDu kannst sie dir jederzeit anschauen!");uiManager.verkleinerPolmann();uiManager.vergroesserPolmann2()})
 
     }
 
