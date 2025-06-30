@@ -143,7 +143,7 @@ const scenes = {
             "GasflaschenBG"
         ])
 
-        uiManager.displayNachricht(`Um welches Gas wird es sich beim nächsten Versuch halten?`, height() / 20 * 7);
+        uiManager.displayNachricht(`Um welches Gas wird es sich beim nächsten Versuch handeln?`, height() / 20 * 7);
         uiManager.verkleinerPolmann()
         uiManager.vergroesserPolmann2
         const Gas = (x, y, label) => {
