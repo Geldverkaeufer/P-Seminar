@@ -43,11 +43,11 @@ class RAUM1 {
             fixed(),
             "GasflaschenBG"
         ])
-        uiManager.displayKollegenNachricht(true,"Sehr gut, du hast die Gasflaschen gefunden!\nAber die Beschriftung fehlt.\nLass uns schnell herausfinden in welcher sich der Sauerstoff befindet!")
+        uiManager.displayKollegenNachricht(true,"Sehr gut, du hast die Gasflaschen gefunden!\nAber die Beschriftung fehlt...\nLass uns schnell herausfinden in welcher sich der Sauerstoff befindet!")
         let circles = [
-            { x: width() / 10 * 2.5, y: height() / 2, tag: "flasche1", message: "Das ist Flasche 1.\nSchaue dir auf der learning app den Gasnachweis, den wir hier durchgeführt haben, an!", link: "https://learningapps.org/watch?v=p9jyrv20t25" },
-            { x: width() / 2, y: height() / 2, tag: "flasche2", message: "Das ist Flasche 2.\nSchaue dir auf der learning app den Gasnachweis, den wir hier durchgeführt haben, an!", link:  "https://learningapps.org/view40123185"},
-            { x: width() / 10 *7.5, y: height() / 2, tag: "flasche3", message: "Das ist Flasche 3.\nSchaue dir auf der learning app den Gasnachweis, den wir hier durchgeführt haben, an!", link: "https://learningapps.org/watch?v=pj58et2rc25" }
+            { x: width() / 10 * 2.5, y: height() / 2, tag: "flasche1", message: "Das ist Flasche 1.\nSchaue dir auf der learning app den Gasnachweis an, den wir hier durchgeführt haben, an!", link: "https://learningapps.org/watch?v=p9jyrv20t25" },
+            { x: width() / 2, y: height() / 2, tag: "flasche2", message: "Das ist Flasche 2.\nSchaue dir auf der learning app den Gasnachweis an, den wir hier durchgeführt haben, an!", link:  "https://learningapps.org/view40123185"},
+            { x: width() / 10 *7.5, y: height() / 2, tag: "flasche3", message: "Das ist Flasche 3.\nSchaue dir auf der learning app den Gasnachweis an, den wir hier durchgeführt haben, an!", link: "https://learningapps.org/watch?v=pj58et2rc25" }
         ];
         
         circles.forEach(({ x, y, tag, message, link }) => {
@@ -249,7 +249,7 @@ class RAUM1 {
     t2zu3() {
         destroyAll("*")
         this.displayRaum1()
-        uiManager.displayKollegenNachricht(true,"du hast die aufgabe gelöst!\netzt lass uns schnell in den nächsten raum gehen")
+        uiManager.displayKollegenNachricht(true,"Sehr gut, wir haben die Aufgaben gelöst.\nLass uns schnell in den nächsten Raum gehen!")
         add([
             sprite("kreis"),
             area(),
@@ -259,6 +259,8 @@ class RAUM1 {
             opacity(0),
             "tür"
         ])
+        uiManager.verkleinerPolmann()
+        uiManager.vergroesserPolmann2()
         onClick("tür", () => {destroyAll("*");this.t3()})
     }
 
@@ -274,16 +276,10 @@ class RAUM1 {
         ]);
         
         this.t3_Zettel()
-        uiManager.displayKollegenNachricht(true, "sieht so aus als wär die tür noch mit einem schloss verriegelt?\nlass uns herausfinden was der code ist")
-        uiManager.updateKollegenNachricht("sieht so aus als wär die tür noch mit einem schloss verriegelt?\nlass uns herausfinden was der code ist")
+        uiManager.displayKollegenNachricht(true, "Sieht so aus als wär die Tür noch mit einem Schloss verriegelt?\nLass uns herausfinden was der Code ist")
         uiManager.verkleinerPolmann()
-        uiManager.vergroesserPolmann2()
-        onClick("miniPolmann", () => {
-            destroyAll("miniPolmann");  
-            wait(0.01, () => {  
-                uiManager.displayKollegenNachricht(true, "sieht so aus als wär die tür noch mit einem schloss verriegelt?\nlass uns herausfinden was der code ist")})
-            }
-        )
+        uiManager.displayGlühbirne()
+        uiManager.vergroesserPolmann("Vielleicht finden wir ja auf dem Zettel einen Tipp...")
 
         let enteredCode = "";
         let fehlerText = null; 
