@@ -14,7 +14,9 @@ kaboom({
 })
 
 //debug.inspect = true
-
+/*
+in anfangsscreeen sagen man soll immer auf lösungswörter schauen
+*/
 
 load.assets()
 
@@ -29,7 +31,7 @@ const scenes = {
 
     raum1: () => {
         Raum1.displayRaum1();
-        wait(0.5, () => {uiManager.displayKollegenNachricht(true, "Willkommen im ersten Raum! Ich bin Herr Polizist.\nIch bin immer da, falls du einen Tipp brauchst,\nklick mich einfach an!")})
+        wait(0.5, () => {uiManager.displayKollegenNachricht(true, "Wir sind im ersten Raum angekommen\nFalls du mal nicht weiterkommen solltest, klick mich einfach an\nund ich versuche dir zu helfen!")})
         let nachricht = 0
         onClick("Polmann", () => {
             if (nachricht === 0) {
@@ -125,7 +127,7 @@ const scenes = {
         });
         //onClick("kreis", () => { destroyAll("*"), go("r1t3");});
         onClick("kreis", () => {  window.open("https://learningapps.org/watch?v=po2e570r525", "_blank"); 
-            go("r1t3")
+            go("r1t2_3")
         });
     
     },
@@ -288,8 +290,7 @@ const scenes = {
 
     r2zu3_2 :()=>{
         uiManager.displayTurRaum2()
-        uiManager.raum2zu3()
-        uiManager.raum2Glühbirne();
+        uiManager.raum2zu3();
     },
 
 
@@ -426,14 +427,16 @@ const scenes = {
 
     },
     end: () => {
-        onKeyPress("space",()=>{go("intro")})
         add([
-            text("Endscreen", { size: height() / 35 }),
-            color(255, 255, 255),
+            sprite("bgpolizeiRevier"),
+            scale(width() / 1600, height() / 900),
+            pos(width() / 2, height() / 2),
             anchor("center"),
-            pos(width() / 10 * 5.6, height() / 3.2),
-            area(),
+            fixed(),
+            "PolizeiRevierBG"
         ]);
+        wait(0.5,()=>{uiManager.displayKollegenNachricht(true,"Endlich haben wir den Fall gelöst und sind mit dem Diamanten entkommen!\nDanke für deine Mithilfe. Wenn wir das nächste Mal wieder chemische Fragen haben,\nwenden wir uns an dich!");uiManager.verkleinerPolmann();uiManager.vergroesserPolmann2()})
+
     },
 }
 
