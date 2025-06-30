@@ -28,14 +28,17 @@ class RAUM3 {
     }
 
     bildschirmLogik(anfang) {
-        if (anfang) {uiManager.displayKollegenNachricht(true,"wir sind im letzten raum angekommen")}
+        if (anfang) {uiManager.displayKollegenNachricht(true,"Sieh mal Kollege, da ist der Tresor!\nLass uns veruchen, diesen aufzusperren.")
+            uiManager.displayGlühbirne()
+        }
         uiManager.verkleinerPolmann()
-        uiManager.vergroesserPolmann2()
+        uiManager.displayGlühbirne()
+        uiManager.vergroesserPolmann("Sieht so aus als müssten wir die vier Bildschirme benutzen,\ndamit die Lichter grün werden.")
         const bildschirme = [
-            { x: width() / 10 * 1.2, y: height() / 10 * 5.8, tag: "b1", message: "Das ist Bildschirm 1.\nEntsperre diesen Bildschirm um den Tresor öffnen zu können!", code: 111, link: "https://learningapps.org/watch?v=pw6s7ebha25", scalex: 2.6, scaley: 1, r: 0 },
-            { x: width() / 10 * 3.8, y: height() / 10 * 6.6, tag: "b2", message: "Das ist Bildschirm 2.\nEntsperre diesen Bildschirm um den Tresor öffnen zu können!", code: 222, link: "https://learningapps.org/watch?v=p0u2ga3m325", scalex: 2.5, scaley: 1, r: 12 },
-            { x: width() / 10 * 6.45, y: height() / 10 * 6.56, tag: "b3", message: "Das ist Bildschirm 3.\nEntsperre diesen Bildschirm um den Tresor öffnen zu können!", code: 333, link: "https://learningapps.org/watch?v=pmurtztga25", scalex: 2.5, scaley: 1, r: -12 },
-            { x: width() / 10 * 9.05, y: height() / 10 * 5.8, tag: "b4", message: "Das ist Bildschirm 4.\nEntsperre diesen Bildschirm um den Tresor öffnen zu können!", code: 444, link: "https://learningapps.org/watch?v=p5gefmzha25", scalex: 1.8, scaley: 1, r: -8 }
+            { x: width() / 10 * 1.2, y: height() / 10 * 5.8, tag: "1", message: "Das ist Bildschirm 1.\nEntsperre diesen Bildschirm um den Tresor öffnen zu können!", code: 812, link: "https://learningapps.org/watch?v=pw6s7ebha25", scalex: 2.6, scaley: 1, r: 0 },
+            { x: width() / 10 * 3.8, y: height() / 10 * 6.6, tag: "2", message: "Das ist Bildschirm 2.\nEntsperre diesen Bildschirm um den Tresor öffnen zu können!", code: 314, link: "https://learningapps.org/watch?v=p0u2ga3m325", scalex: 2.5, scaley: 1, r: 12 },
+            { x: width() / 10 * 6.45, y: height() / 10 * 6.56, tag: "3", message: "Das ist Bildschirm 3.\nEntsperre diesen Bildschirm um den Tresor öffnen zu können!", code: 229, link: "https://learningapps.org/watch?v=pmurtztga25", scalex: 2.5, scaley: 1, r: -12 },
+            { x: width() / 10 * 9.05, y: height() / 10 * 5.8, tag: "4", message: "Das ist Bildschirm 4.\nEntsperre diesen Bildschirm um den Tresor öffnen zu können!", code: 141, link: "https://learningapps.org/watch?v=p5gefmzha25", scalex: 1.8, scaley: 1, r: -8 }
         ];
 
         const ledPosX = [4.8, 5.02, 5.24, 5.46];
@@ -207,7 +210,7 @@ class RAUM3 {
             eingabeBox.onClick(() => {
                 if (enteredCode === `${code}`) {
                     this.geloesteBildschirme.add(tag);
-                    this.resetView(`Sehr gut! du hast den Bildschirm ${tag} entsperrt und das LED ist grünn geworden\nEntsperre die weiteren Bildschirme um den Tresor zu öffnen`);
+                    this.resetView(`Sehr gut! du hast Bildschirm ${tag} entsperrt und das LED ist grün geworden\nEntsperre die weiteren Bildschirme um den Tresor zu öffnen`);
                 } else {
                     if (fehlerText) destroy(fehlerText);
                     fehlerText = add([
@@ -284,7 +287,7 @@ class RAUM3 {
     lampenLogik(content) {
         console.log("Gelöste Bildschirme:", Array.from(this.geloesteBildschirme));
 
-        ["b1", "b2", "b3", "b4"].forEach((tag, i) => {
+        ["1", "2", "3", "4"].forEach((tag, i) => {
             if (this.geloesteBildschirme.has(tag)) {
                 add([
                     sprite("LEDgrün"),
@@ -298,7 +301,7 @@ class RAUM3 {
         });
         
         uiManager.displayKollegenNachricht(true, content);
-        if (["b1", "b2", "b3", "b4"].every(tag => this.geloesteBildschirme.has(tag))) {
+        if (["1", "2", "3", "4"].every(tag => this.geloesteBildschirme.has(tag))) {
             this.bildschirmLogik();
             for (let i = 0; i < 4; i++) {add([ sprite("LEDgrün"), scale(width() / 553 / 7 / 2 * 0.205, height() / 3482 / 1.5 / 2 * 0.3), pos(width() / 10 * (4.8 + i * 0.22), height() / 10 * 6), anchor("center"), rotate(90), opacity(1)]);}
             uiManager.displayKollegenNachricht(true, "Alle grünen Lichter sind angegangen!\nDer Tresor sollte sich jetzt öffnen können");
@@ -311,13 +314,13 @@ class RAUM3 {
     tresor() {
         add([
             sprite("raum3offen"),
-            scale(width() / 1919, height() / 950),
+            scale(width() / 1600, height() / 912),
             pos(width() / 2, height() / 2),
             anchor("center"),
             fixed(),
             "Raum3BG2"
         ]);
-        uiManager.displayKollegenNachricht(true, "Sehr gut Kollege, wir haben den Fall gelöst.\nJetzt müssen wir nur noch hier raus!")
+        uiManager.displayKollegenNachricht(true, "Sehr gut Kollege, wir haben den Fall gelöst!\nJetzt müssen wir nur noch hier raus.")
         this.areaTürRaum3();
     }
 
