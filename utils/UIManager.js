@@ -417,6 +417,16 @@ class UIManager {
             fixed(),
             "Raum2Monitor"    
         ])
+        add([
+            text("Damit du das Rätsel lösen kannst musst du erstmal \ndie Herausforderung meistern", {
+                size: height()/30,  
+                align: "center"
+            }),
+            color(0, 0, 0),
+            anchor("center"),
+            pos(width()/2, height()/10 * 2.5),
+            "Nachricht"
+        ]);
 
         add([
             sprite("1Herausforderung"), 
@@ -593,6 +603,18 @@ class UIManager {
                              fixed(),
                               "Raum2Monitor"     
                         ]);  
+                        add([
+                            text("Damit du wirklich ein Experte bist und \nden Fall ohne Probleme lösen kannst \nmusst du noch 2 Herausforderungen überwinden.", {
+                                size: height()/30,  
+                                align: "center"
+                            }),
+                            color(0, 0, 0),
+                            anchor("center"),
+                            pos(width()/2, height()/10 * 2.5),
+                            "Nachricht"
+                        ]);
+                
+                    
                 
                         add([
                             sprite("2Herausforderung"), 
