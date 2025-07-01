@@ -77,7 +77,7 @@ const scenes = {
 
     r1t2:()=>{
         uiManager.displayRaum1()
-        wait(0.5, () => {uiManager.displayKollegenNachricht(true, " auffälliges/box?")})
+        wait(0.5, () => {uiManager.displayKollegenNachricht(true, "Vielleicht befindet sich in dem Raum ein Hinweis der uns weiterhilft .\nKlicke auf die Box auf dem Tisch.")})
         uiManager.verkleinerPolmann() 
         let nachricht=0
         onClick("Polmann", () => {
@@ -88,7 +88,7 @@ const scenes = {
     
                 // Jetzt den Rest ausführen
                 wait(0.01,()=>{uiManager.displayKollegenNachricht(false,"laweiuf");})
-                uiManager.vergroesserPolmann("auf tisch");
+                uiManager.vergroesserPolmann("Klicke auf die Box auf dem Tisch.");
                 uiManager.displayGlühbirne()
                 uiManager.verkleinerPolmann()
                 nachricht += 1;
@@ -102,7 +102,7 @@ const scenes = {
     r1t2_2:()=>{
         uiManager.boxRaum1()
         uiManager.areaNotizRaum1()
-        uiManager.displayKollegenNachricht(true,"Notiz?")
+        uiManager.displayKollegenNachricht(true,"Gibt es hier ein Objekt das uns ein Hinweis geben kann?")
         uiManager.verkleinerPolmann() 
         let nachricht = 0
         // Erster Klick
@@ -114,7 +114,7 @@ const scenes = {
     
                 // Jetzt den Rest ausführen
                 wait(0.01,()=>{uiManager.displayKollegenNachricht(false,"laweiuf");})
-                uiManager.vergroesserPolmann("unten links zerknüllt");
+                uiManager.vergroesserPolmann("Klicke auf das zerknüllte Papier links unten.");
                 
                 uiManager.displayGlühbirne()
                 uiManager.verkleinerPolmann();;
@@ -218,7 +218,7 @@ const scenes = {
         uiManager.verkleinerPolmann()  
         uiManager.areaWärmematteRaum2()
         uiManager.displayRaum2();
-        wait(0.5, () => { uiManager.displayKollegenNachricht(true,"Auf dem Bildschirm finden wir")})
+        wait(0.5, () => { uiManager.displayKollegenNachricht(true,"Wir können mit den Informationen auf dem Bildschirm bestimmt \nin den nächsten Raum kommen.")})
         let nachricht = 0
         onClick("Polmann", () => {
             if (nachricht == 0) {
@@ -228,7 +228,7 @@ const scenes = {
     
                 // Jetzt den Rest ausführen
                 wait(0.01,()=>{uiManager.displayKollegenNachricht(false,"laweiuf");})
-                uiManager.vergroesserPolmann("wir könnten durch eine Säurme base Reaktion ...");
+                uiManager.vergroesserPolmann("Doch zuerst müssen wir die Batterie aufladen.\nDies kann erfolgen durch Speicherung der Wärme in der \nWärmematte bei einer exothermen Reaktion.");
                 //uiManager.displayGlühbirne()
                 uiManager.verkleinerPolmann()
                 nachricht += 1;
@@ -240,7 +240,7 @@ const scenes = {
     
                 // Jetzt den Rest ausführen
                 wait(0.01,()=>{uiManager.displayKollegenNachricht(false,"laweiuf");})
-                uiManager.vergroesserPolmann("wir könnten durch eine Säurme base Reaktion ...");
+                uiManager.vergroesserPolmann("Doch zuerst müssen wir die Batterie aufladen.\nDies kann erfolgen durch Speicherung der Wärme in der Wärmematte bei einer exothermen Reaktion.");
                 uiManager.displayGlühbirne()
                 uiManager.verkleinerPolmann();;
     
@@ -267,6 +267,8 @@ const scenes = {
         uiManager.raum2t1_2()
         uiManager.displayRaum2_2()
         uiManager.displayKollegenNachricht(true,"super ! Der monitor ist angegangen, lass uns schauen \nwas der Dieb uns hinterlassen hat\n");;
+        uiManager.verkleinerPolmann()
+        uiManager.vergroesserPolmann2()
         uiManager.areaMonitorRaum2()
         onClick("kreis", () => { go("r2t2"); });
     },
@@ -304,7 +306,7 @@ const scenes = {
     r3_2:()=>{
         uiManager.displayRaum3_2() 
         
-        wait(0.5, () => {uiManager.displayKollegenNachricht(true, "Tür zu")})
+        wait(0.5, () => {uiManager.displayKollegenNachricht(true, "Beim Entnehmen des Diamanten ist leider die Tür zu gegangen.")})
         let nachricht = 0
         // Erster Klick
         onClick("Polmann", () => {
@@ -315,7 +317,7 @@ const scenes = {
                 nachricht += 1;
     
                 wait(0.01, () => {
-                    uiManager.displayKollegenNachricht(true, "wo ist etwas für flüssigkeit für auge ?");
+                    uiManager.displayKollegenNachricht(true, "Können wir mit den Gegenständen auf dem Tisch eine rote Flüssigkeit herstellen?");
                 });
             }
         });
@@ -328,7 +330,7 @@ const scenes = {
     
                 // Jetzt den Rest ausführen
                 wait(0.01,()=>{uiManager.displayKollegenNachricht(false,"laweiuf");uiManager.areaTischRaum3_2();})
-                uiManager.vergroesserPolmann("klicke tisch");
+                uiManager.vergroesserPolmann("Klicke auf den Tisch.");
                 uiManager.displayGlühbirne()
                 uiManager.verkleinerPolmann();;
                 onClick("kreis", () => {  window.open("https://learningapps.org/watch?v=p4pi0w5kk25", "_blank"); go("r3_2t1") });
@@ -344,7 +346,7 @@ const scenes = {
         //uiManager.raum3_2t1();
         uiManager.displayRaum3_tisch();
         uiManager.displayProtokolle();
-        wait(0.5, () => {uiManager.displayKollegenNachricht(true, "super wähle jetzt das Protokoll aus das nötig ist")})
+        wait(0.5, () => {uiManager.displayKollegenNachricht(true, "Super ! Wähle jetzt das Protokoll aus das nötig ist.")})
         let nachricht=0
         onClick("Polmann", () => {
             if (nachricht == 0) {
@@ -354,7 +356,7 @@ const scenes = {
     
                 // Jetzt den Rest ausführen
                 wait(0.01,()=>{uiManager.displayKollegenNachricht(false,"laweiuf");})
-                uiManager.vergroesserPolmann("hover over für zoom / man braucht rote lsg");
+                uiManager.vergroesserPolmann("Gehe mit der Maus auf die Protokolle um sie zu lösen.");
                 uiManager.displayGlühbirne()
                 uiManager.verkleinerPolmann()
                 nachricht += 1;
@@ -372,7 +374,7 @@ const scenes = {
     r3_2t1_2:()=>{
         uiManager.displayRaum3_tisch();
         uiManager.displayProtokolle();
-        wait(0.5, () => {uiManager.displayKollegenNachricht(true, "falsches Protokoll")})
+        wait(0.5, () => {uiManager.displayKollegenNachricht(true, "Das war leider das falsche Protokoll.")})
         uiManager.verkleinerPolmann() 
         let nachricht=0
         onClick("Polmann", () => {
@@ -383,7 +385,7 @@ const scenes = {
     
                 // Jetzt den Rest ausführen
                 wait(0.01,()=>{uiManager.displayKollegenNachricht(false,"laweiuf");})
-                uiManager.vergroesserPolmann("man braucht rote lsg");
+                uiManager.vergroesserPolmann("Wähle das aus wo eine rote Flüssigkeit entsteht!");
                 uiManager.displayGlühbirne()
                 uiManager.verkleinerPolmann()
                 nachricht += 1;
@@ -402,7 +404,7 @@ const scenes = {
         uiManager.raum3_2t2();
         uiManager.displayRaum3_2();
         
-        wait(0.5, () => {uiManager.displayKollegenNachricht(true, "in auge füllen")})
+        wait(0.5, () => {uiManager.displayKollegenNachricht(true, "Fülle jetzt die Flüssigkeit in das Auge.")})
         uiManager.verkleinerPolmann() 
         let nachricht=0
         onClick("Polmann", () => {
@@ -413,7 +415,7 @@ const scenes = {
     
                 // Jetzt den Rest ausführen
                 wait(0.01,()=>{uiManager.displayKollegenNachricht(false,"laweiuf");})
-                uiManager.vergroesserPolmann("mit drag and drop");
+                uiManager.vergroesserPolmann("Das umfüllen der Flüssigkeit ist möglich mit drag and drop.");
                 uiManager.displayGlühbirne()
                 uiManager.verkleinerPolmann()
                 nachricht += 1;
