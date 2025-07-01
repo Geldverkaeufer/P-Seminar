@@ -942,7 +942,7 @@ class UIManager {
         add([
             sprite("bgRaum3_2"),
             area(),
-            scale(width() / 1594, height() / 907), 
+            scale(width() /2000, height() /1145), 
             pos(width() / 2, height() / 2), 
             anchor("center"),
             fixed(),
@@ -1128,7 +1128,7 @@ class UIManager {
         add([
             sprite("bgRaum3_2rot"),
             area(),
-            scale(width() / 1594, height() / 907), 
+            scale(width() / 2000, height() /1130), 
             pos(width() / 2, height() / 2), 
             anchor("center"),
             fixed(),
