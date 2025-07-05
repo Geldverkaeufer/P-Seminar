@@ -377,6 +377,9 @@ const scenes = {
 
     r2zu3 : () => {
         uiManager.displayRaum2_2()
+        uiManager.displayKollegenNachricht(true,"Verlasse den Raum durch die Tür\n");;
+        uiManager.verkleinerPolmann()
+        uiManager.vergroesserPolmann2()
         uiManager.areaTurRaum2()
         onClick("kreis", () => { go("r2zu3_2"); });
     },
