@@ -253,17 +253,29 @@ class RAUM1 {
         add([
             sprite("kreis"),
             area(),
-            pos(width()/10*9,height()/10*6),
+            pos(width()/10*9,height()/10*5.7),
             anchor("center"),
-            scale(1.3, 2.9),
+            scale(1.3, 2.5),
             opacity(0),
             "tür"
         ])
         uiManager.verkleinerPolmann()
         uiManager.vergroesserPolmann2()
+        
+        wait(1.3,()=>{add([
+                    sprite("kreis"),
+                    area(),
+                    pos(width()/2,height()/10*4.5),
+                    anchor("center"),
+                    scale(width()/1500,height()/1550),
+                    opacity(0),
+                    "map"
+                ])})
+        onClick("map",()=>go("raum1_Map",{ nummer: 3 }))
+
         onClick("tür", () => {destroyAll("*");this.t3()})
     }
-
+    
     t3() {
         add([
             sprite("Schloss"),
