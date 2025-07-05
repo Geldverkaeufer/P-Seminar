@@ -148,12 +148,10 @@ const scenes = {
             "schließen"
         ]);
         onClick("schließen",()=>{ende()})
-    },
-        
+    }, 
 
     r1t1: () => {
-        Raum1.t1()
-        
+        Raum1.t1()   
     },
 
     r1t2:()=>{
