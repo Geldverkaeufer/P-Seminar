@@ -30,9 +30,21 @@ const scenes = {
     },
 
     raum1: () => {
+        let nachricht = 0
         Raum1.displayRaum1();
         wait(0.5, () => {uiManager.displayKollegenNachricht(true, "Wir sind im ersten Raum angekommen\nFalls du mal nicht weiterkommen solltest, klick mich einfach an\nund ich versuche dir zu helfen!")})
-        let nachricht = 0
+   
+        wait(1.3,()=>{add([
+                    sprite("kreis"),
+                    area(),
+                    pos(width()/2,height()/10*4.5),
+                    anchor("center"),
+                    scale(width()/1500,height()/1550),
+                    opacity(0),
+                    "map"
+                ])})
+                onClick("map",()=>go("raum1_Map",{ nummer: 1 }))
+        
         onClick("Polmann", () => {
             if (nachricht === 0) {
                 destroyAll("Sprechblase");
@@ -54,6 +66,8 @@ const scenes = {
                     uiManager.displayKollegenNachricht(false, "laweiuf");
                     Raum1.areaGasflaschen();
                 });
+
+                
         
                 uiManager.vergroesserPolmann("Wir sind hier in einem Chemie-Labor!\nBestimmt finden wir irgendwo Gasflaschen...");
                 uiManager.displayGlühbirne();
@@ -69,6 +83,75 @@ const scenes = {
         
         
     },
+    raum1_Map: ({ nummer } = {}) => {
+        let ende = null
+        if (nummer===1) {ende = () => go("raum1")}
+        if (nummer===2) {ende = () => go("r1t2")}
+        if (nummer===3) {ende = () => go("r1t3")}
+        add([
+            sprite("bgpolizei"),
+            area(),
+            scale(width() / 1492, height() / 811),
+            pos(width() / 2, height() / 2),
+            anchor("center"),
+            fixed(),
+            "PolizeiBG"
+        ]);
+        
+        uiManager.displayKollegenNachricht(false, "shdg")
+        uiManager.vergroesserPolmann("Das ist wieder unsere Übersicht.\nBis jetzt sind wir nur bis zum ersten Raum gekommen...")
+        uiManager.verkleinerPolmann()
+
+        wait(1.3,()=>{
+            add([
+                sprite("kreis"),
+                area(),
+                pos(width()/10*5.85,height()/10*7.1),
+                anchor("center"),
+                scale(width()/1200,height()/1150),
+                opacity(0),
+                "zu1"
+            ])
+            add([
+                sprite("kreis"),
+                area(),
+                pos(width()/10*5.3,height()/10*4.6),
+                anchor("center"),
+                scale(width()/1500,height()/650),
+                opacity(0),
+                "zu2"
+            ])
+            add([
+                sprite("kreis"),
+                area(),
+                pos(width()/10*4.16,height()/10*4.57),
+                anchor("center"),
+                scale(width()/2200,height()/630),
+                opacity(0),
+                "zu3"
+            ])
+        })
+        onClick("zu1",()=>{ende()})
+        onClick("zu2",()=>{uiManager.displayKollegenNachricht(true,"Der zweite Raum ist leider noch versperrt.");uiManager.verkleinerPolmann();uiManager.vergroesserPolmann2()})
+        onClick("zu3",()=>{uiManager.displayKollegenNachricht(true,"Der dritte Raum ist leider noch versperrt.");uiManager.verkleinerPolmann();uiManager.vergroesserPolmann2()})
+        onKeyPress("escape",()=>{ende()})
+
+        add([
+            text("<- schließen", {
+                size: height() / 37,
+            }),
+            color(20, 20, 120),
+            anchor("center"),
+            area(),
+            pos(width() / 10 * 0.5, height() / 10 * 0.5),
+            z(31),
+            "schließen"
+        ]);
+        onClick("schließen",()=>{ende()})
+    },
+        
+        
+    },
 
     r1t1: () => {
         Raum1.t1()
@@ -79,6 +162,18 @@ const scenes = {
         uiManager.displayRaum1()
         wait(0.5, () => {uiManager.displayKollegenNachricht(true, "Vielleicht befindet sich in dem Raum ein Hinweis der uns weiterhilft .\nKlicke auf die Box auf dem Tisch.")})
         uiManager.verkleinerPolmann() 
+
+        wait(1.3,()=>{add([
+                    sprite("kreis"),
+                    area(),
+                    pos(width()/2,height()/10*4.5),
+                    anchor("center"),
+                    scale(width()/1500,height()/1550),
+                    opacity(0),
+                    "map"
+                ])})
+        onClick("map",()=>go("raum1_Map",{ nummer: 2 }))
+        
         let nachricht=0
         onClick("Polmann", () => {
             if (nachricht == 0) {
