@@ -150,8 +150,6 @@ const scenes = {
         onClick("schließen",()=>{ende()})
     },
         
-        
-    },
 
     r1t1: () => {
         Raum1.t1()
