@@ -1087,10 +1087,10 @@ class UIManager {
         const bottle = add([
             sprite("roteFlussigkeit"),          // roteflüssigkeit.jpg
             area(),
-            pos(width() / 1.3, height() / 1.32),
+            pos(width() / 1.26, height() / 1.36),
             anchor("center"),
             //z(50),
-            scale(0.15),
+            scale(0.13),
             "bottle",
         ]);
 
