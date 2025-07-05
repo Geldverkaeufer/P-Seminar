@@ -150,7 +150,7 @@ class UIManager {
         ])
 
         let bildschirme = [
-            { x: width() / 10 * 1.2, y: height() / 10* 5.8, tag: "m1", message: "füge den passwort ein ", code: 163, link: "", scalex: 2.6, scaley: 1, r: 0 },
+            { x: width() / 10 * 1.2, y: height() / 10* 5.8, tag: "m1", message: "Entsperre diesen Bildschirm mit dem Codes aus dem Versuch.", code: 163, link: "", scalex: 2.6, scaley: 1, r: 0 },
           ];
           bildschirme.forEach(({ x, y, tag, code, message, link, scalex, scaley, r}) => {
             add([
