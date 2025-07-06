@@ -45,8 +45,9 @@ class Intro {
             wait(0.01, () => {
                 INTRO.Zeitung();
             });
-        });
-        wait(1,()=>{uiManager.displayKollegenNachricht(true,"Hallo, ich bin dein Kollege!\nIch freue mich, dass wir endlich jemanden mit Chemiekentnissen gefunden haben");uiManager.verkleinerPolmann();uiManager.vergroesserPolmann2()})
+        });      
+        
+        wait(0.5,()=>{uiManager.displayKollegenNachricht(true,"Hallo! Ich bin der Polizist, der sich mit dem Fall beschäftigt.\nIch freue mich, endlich jemanden mit Chemiekenntnissen gefunden zu haben!");uiManager.verkleinerPolmann();uiManager.vergroesserPolmann2()}
     }
 
     PolizeiMap() {
