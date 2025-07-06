@@ -45,8 +45,7 @@ class Intro {
             wait(0.01, () => {
                 INTRO.Zeitung();
             });
-        });      
-        
+        });
         wait(0.5,()=>{uiManager.displayKollegenNachricht(true,"Hallo! Ich bin der Polizist, der sich mit dem Fall beschäftigt.\nIch freue mich, endlich jemanden mit Chemiekenntnissen gefunden zu haben!");uiManager.verkleinerPolmann();uiManager.vergroesserPolmann2()})
     }
 
