@@ -155,7 +155,7 @@ const scenes = {
     },
 
     r1t2:()=>{
-        uiManager.displayRaum1()
+        Raum1.displayRaum1()
         wait(0.5, () => {uiManager.displayKollegenNachricht(true, "Vielleicht befindet sich in dem Raum ein Hinweis der uns weiterhilft .\nKlicke auf die Box auf dem Tisch.")})
         uiManager.verkleinerPolmann() 
 
