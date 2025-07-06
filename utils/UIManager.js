@@ -455,116 +455,120 @@ class UIManager {
             destroyAll("1Herausforderung2"); 
         });
         
-        
+        let offen = false
         onClick("1Herausforderung2", () => {
             window.open("https://learningapps.org/watch?v=pa02p7wsc25", "_blank");
-            add([
-                sprite("Molekül1Raum2"), 
-                scale(width() / 226/14, height() / 187/ 14),
-                area(),
-                pos(width() / 1.5, height() / 1.3),
-                anchor("center"),
-                "m1r2"
-            ]);
-    
-            onHover("m1r2", () => {
-                get("m1r2").forEach(obj => obj.opacity = 0); 
-            
+            if (offen === false) {
                 add([
                     sprite("Molekül1Raum2"), 
-                    scale(width() / 226/12, height() /187/12 ),
+                    scale(width() / 226/14, height() / 187/ 14),
                     area(),
                     pos(width() / 1.5, height() / 1.3),
                     anchor("center"),
-                    "m1_2r2"
+                    "m1r2"
                 ]);
-            });
-    
-            onHoverEnd("m1r2", () => {
-                get("m1r2").forEach(obj => obj.opacity = 1); 
-                destroyAll("m1_2r2"); 
-            });
-    
-            add([
-                sprite("Molekül2Raum2"), 
-                scale(width() / 226/20, height() / 187/20),
-                area(),
-                pos(width() / 1.79, height() / 1.3),
-                anchor("center"),
-                "m2r2"
-            ]);
-    
-            onHover("m2r2", () => {
-                get("m2r2").forEach(obj => obj.opacity = 0); 
-            
+        
+                onHover("m1r2", () => {
+                    get("m1r2").forEach(obj => obj.opacity = 0); 
+                
+                    add([
+                        sprite("Molekül1Raum2"), 
+                        scale(width() / 226/12, height() /187/12 ),
+                        area(),
+                        pos(width() / 1.5, height() / 1.3),
+                        anchor("center"),
+                        "m1_2r2"
+                    ]);
+                });
+        
+                onHoverEnd("m1r2", () => {
+                    get("m1r2").forEach(obj => obj.opacity = 1); 
+                    destroyAll("m1_2r2"); 
+                });
+        
                 add([
                     sprite("Molekül2Raum2"), 
-                    scale(width() / 226/18, height() /187/18 ),
+                    scale(width() / 226/20, height() / 187/20),
                     area(),
-                    pos(width() /1.79, height() / 1.3),
+                    pos(width() / 1.79, height() / 1.3),
                     anchor("center"),
-                    "m2_2r2"
+                    "m2r2"
                 ]);
-            });
-    
-            onHoverEnd("m2r2", () => {
-                get("m2r2").forEach(obj => obj.opacity = 1); 
-                destroyAll("m2_2r2"); 
-            });
-    
-            add([
-                sprite("Molekül3Raum2"), 
-                scale((width() / 160)/10, (height() / 133)/ 10),
-                area(),
-                pos(width() /2.25, height() / 1.3),
-                anchor("center"),
-                "m3r2"
-            ]);
-    
-            onHover("m3r2", () => {
-                get("m3r2").forEach(obj => obj.opacity = 0); 
-            
+        
+                onHover("m2r2", () => {
+                    get("m2r2").forEach(obj => obj.opacity = 0); 
+                
+                    add([
+                        sprite("Molekül2Raum2"), 
+                        scale(width() / 226/18, height() /187/18 ),
+                        area(),
+                        pos(width() /1.79, height() / 1.3),
+                        anchor("center"),
+                        "m2_2r2"
+                    ]);
+                });
+        
+                onHoverEnd("m2r2", () => {
+                    get("m2r2").forEach(obj => obj.opacity = 1); 
+                    destroyAll("m2_2r2"); 
+                });
+        
                 add([
                     sprite("Molekül3Raum2"), 
-                    scale((width() / 160)/8, (height() /133)/8 ),
+                    scale((width() / 160)/10, (height() / 133)/ 10),
                     area(),
                     pos(width() /2.25, height() / 1.3),
                     anchor("center"),
-                    "m3_2r2"
+                    "m3r2"
                 ]);
-            });
-    
-            onHoverEnd("m3r2", () => {
-                get("m3r2").forEach(obj => obj.opacity = 1); 
-                destroyAll("m3_2r2"); 
-            });
-    
-            add([
-                sprite("Molekül4Raum2"), 
-                scale(width() / 522/10, height() /297/ 10),
-                area(),
-                pos(width() /3.05, height() / 1.3),
-                anchor("center"),
-                "m4r2"
-            ]);
-    
-            onHover("m4r2", () => {
-                get("m4r2").forEach(obj => obj.opacity = 0); 
-            
+        
+                onHover("m3r2", () => {
+                    get("m3r2").forEach(obj => obj.opacity = 0); 
+                
+                    add([
+                        sprite("Molekül3Raum2"), 
+                        scale((width() / 160)/8, (height() /133)/8 ),
+                        area(),
+                        pos(width() /2.25, height() / 1.3),
+                        anchor("center"),
+                        "m3_2r2"
+                    ]);
+                });
+        
+                onHoverEnd("m3r2", () => {
+                    get("m3r2").forEach(obj => obj.opacity = 1); 
+                    destroyAll("m3_2r2"); 
+                });
+        
                 add([
                     sprite("Molekül4Raum2"), 
-                    scale(width() /522/8, height() /297/8 ),
+                    scale(width() / 522/10, height() /297/ 10),
                     area(),
                     pos(width() /3.05, height() / 1.3),
                     anchor("center"),
-                    "m4_2r2"
+                    "m4r2"
                 ]);
-            });
-    
-            onHoverEnd("m4r2", () => {
-                get("m4r2").forEach(obj => obj.opacity = 1); 
-                destroyAll("m4_2r2"); 
-            }); 
+        
+                onHover("m4r2", () => {
+                    get("m4r2").forEach(obj => obj.opacity = 0); 
+                
+                    add([
+                        sprite("Molekül4Raum2"), 
+                        scale(width() /522/8, height() /297/8 ),
+                        area(),
+                        pos(width() /3.05, height() / 1.3),
+                        anchor("center"),
+                        "m4_2r2"
+                    ]);
+                });
+        
+                onHoverEnd("m4r2", () => {
+                    get("m4r2").forEach(obj => obj.opacity = 1); 
+                    destroyAll("m4_2r2"); 
+                }); 
+                offen = true
+            }
+            else return
         })
         const expectedOrder = ["m2_2r2", "m1_2r2", "m3_2r2", "m4_2r2"];
         let clickedOrder = [];
