@@ -91,7 +91,7 @@ const scenes = {
         add([
             sprite("bgpolizei"),
             area(),
-            scale(width() / 1492, height() / 811),
+            scale(width() / 1600, height() / 871),
             pos(width() / 2, height() / 2),
             anchor("center"),
             fixed(),
