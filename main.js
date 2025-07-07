@@ -1,7 +1,7 @@
 import kaboom from "./libs/kaboom.mjs"
 import { INTRO } from "./utils/Intro.js";
-import { END } from "./utils/End.js";
-import { uiManager } from "./utils/UIManager.js";
+import { END } from "./utils/End.js"
+import { uiManager } from "./utils/UIManager.js"
 import { load } from "./utils/loader.js";
 import { Raum1 } from "./utils/raum1.js";
 import { Raum3 } from "./utils/raum3.js";
