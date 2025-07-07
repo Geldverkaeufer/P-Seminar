@@ -24,9 +24,7 @@ load.assets()
 const scenes = {
     intro: () => {
         INTRO.Zeitung()
-        onKeyPress("1",()=>go("raum1"))
-        onKeyPress("2",()=>go("raum2"))
-        onKeyPress("3",()=>go("raum3"))
+        onKeyPress("e",()=>go("end"))
     },
 
     raum1: () => {
@@ -523,17 +521,11 @@ const scenes = {
 
     },
     end: () => {
-        add([
-            sprite("bgpolizeiRevier"),
-            scale(width() / 1600, height() / 900),
-            pos(width() / 2, height() / 2),
-            anchor("center"),
-            fixed(),
-            "PolizeiRevierBG"
-        ]);
-        wait(0.5,()=>{uiManager.displayKollegenNachricht(true,"Endlich haben wir den Fall gelöst und sind mit dem Diamanten entkommen!\nDanke für deine Mithilfe. Wenn wir das nächste Mal wieder chemische Fragen haben,\nwenden wir uns an dich!");uiManager.verkleinerPolmann();uiManager.vergroesserPolmann2()})
-
+        END.MapHaken()
     },
+    end2: () => {
+        END.Rückblick()
+    }
 }
 
 for (const key in scenes) {
