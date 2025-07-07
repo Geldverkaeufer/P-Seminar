@@ -1238,15 +1238,28 @@ class UIManager {
         ]);
     }
 
-    verkleinerPolmann () {
+    verkleinerPolmann (extra) {
         onClick("Polmann", () => {
             wait(0.01, () => { 
                 ["Polmann","Sprechblase","nachricht"].forEach(destroyAll);;
                 uiManager.displayKollegenNachricht(false, "Raum3");
+                if (extra === "ja") {destroyAll("w")}
+                if (extra==="nein") {"w2"}
             });
         });
     }
 
+    vergroesserPolmann2(extra) {
+        onClick("miniPolmann", () => {
+            destroyAll("miniPolmann");  
+            wait(0.01, () => {  
+                uiManager.displayKollegenNachricht(true, gespeicherterPolmannText); 
+                if (extra==="ja") {add([text("->", {size: height() / 30,}), color(20, 20, 120),anchor("center"),area(),pos(width() / 10 * 7.1, height() / 10 * 9.3),z(31),"w"]);onClick("w", () => {destroyAll("*");wait(0.01, () => {go("end2")});})
+                if (extra==="nein") {add([text("->", {size: height() / 30,}), color(20, 20, 120),anchor("center"),area(),pos(width() / 10 * 7.1, height() / 10 * 9.3),z(31),"w2"]);onClick("w2", () => {destroyAll("*");wait(0.01, () => {this.Endszene()});});}
+             }})
+        });
+    }
+    
     vergroesserPolmann(content) {
         onClick("miniPolmann", () => {
             destroyAll("miniPolmann");  
@@ -1254,14 +1267,6 @@ class UIManager {
                 uiManager.displayKollegenNachricht(true, content)})
             }
         )
-    }
-    vergroesserPolmann2() {
-        onClick("miniPolmann", () => {
-            destroyAll("miniPolmann");  
-            wait(0.01, () => {  
-                uiManager.displayKollegenNachricht(true, gespeicherterPolmannText); 
-            });
-        });
     }
 
     displayGlühbirne() {
