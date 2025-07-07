@@ -46,6 +46,8 @@ export const load = {
         loadSprite("bgRaum3_2rot","./assets/raum3_2rot.jpg") 
         loadSprite("roteFlussigkeit",  "./assets/roteFlussigkeit.png")
         loadSprite("Raum2_tur",  "./assets/turRaum2.jpeg")
-       
+        loadSprite("PolizeiMapHaken",  "./assets/PolizeiMapHaken.jpg")
+        loadSprite("Rückblick",  "./assets/Rückblick.jpg")
+        loadSprite("Ende","./assets/Ende.jpg")
     }
 }
