@@ -457,7 +457,7 @@ class UIManager {
         
         let offen = false
         onClick("1Herausforderung2", () => {
-            window.open("https://learningapps.org/watch?v=pa02p7wsc25", "_blank");
+            window.open("https://learningapps.org/watch?v=ptrkogh2n25", "_blank");
             if (offen === false) {
                 add([
                     sprite("Molekül1Raum2"), 
